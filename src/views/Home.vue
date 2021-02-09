@@ -1,16 +1,22 @@
 <template>
   <div>
-    <h1 class="w-welcome">HOME</h1>
-    <componentWelcome />
+    <div class="website">
+      <componentHome />
+    </div>
+    <div class="mobile">
+      <componentWelcome />
+    </div>
   </div>
 </template>
 
 <script>
 import componentWelcome from '../components/m_welcome'
+import componentHome from '../components/w-home'
 export default {
   name: 'Home',
   components: {
-    componentWelcome
+    componentWelcome,
+    componentHome
   }
 }
 </script>

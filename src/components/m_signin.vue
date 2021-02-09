@@ -42,7 +42,7 @@ export default {
   methods: {
     onLogin () {
       if (!this.formLogin.email || !this.formLogin.password) {
-        alert('Oops!')
+        alert('Oops! Isi dahulu ya!')
       } else {
         console.log(this.formLogin)
         this.$router.push('/')

@@ -50,8 +50,9 @@ export default {
       if (!this.formCreate.email ||
       !this.formCreate.password ||
       !this.formCreate.phone) {
-        alert('kosong')
+        alert('kosong, diisi dulu ya!')
       } else {
+        alert('lihat console dan tekan F5 blm di arahin ke laman lain soalnya')
         console.log(this.formCreate)
       }
     }
