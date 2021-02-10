@@ -172,7 +172,10 @@
                   </li>
                 </ul>
                 <h3 class="list-idr">IDR 25.000</h3>
-                <button class="btn btn-outline-warning bt-order-now">
+                <button
+                  @click="orderNow()"
+                  class="btn btn-outline-warning bt-order-now"
+                >
                   Order Now
                 </button>
               </div>
@@ -210,7 +213,10 @@
                   </li>
                 </ul>
                 <h3 class="list-idr">IDR 30.000</h3>
-                <button class="btn btn-outline-warning bt-order-now">
+                <button
+                  @click="select()"
+                  class="btn btn-outline-warning bt-order-now"
+                >
                   Select
                 </button>
               </div>
@@ -254,7 +260,10 @@
                   </li>
                 </ul>
                 <h3 class="list-idr">IDR 25.000</h3>
-                <button class="btn btn-outline-warning bt-order-now">
+                <button
+                  @click="select()"
+                  class="btn btn-outline-warning bt-order-now"
+                >
                   Select
                 </button>
               </div>
@@ -339,22 +348,154 @@
             </p>
           </div>
         </div>
+        <!-- card review-->
+        <div class="row">
+          <div class="col-md-4">
+            <div class="card-review cd-active">
+              <div class="card-body-review">
+                <img
+                  src="../assets/img/profile1.png"
+                  alt="profile1"
+                  class="img-review"
+                />
+                <h5 class="card-title-review">Viezh Robert</h5>
+                <h6 class="card-subtitle-review">Warsaw, Poland</h6>
+                <p class="score-review">
+                  4.5
+                  <span class="start-review ml-2"
+                    ><i class="fas fa-star"></i
+                  ></span>
+                </p>
+                <p class="card-text-review mt-4">
+                  “Wow... I am very happy to spend my whole day here. the Wi-fi
+                  is good, and the coffee and meals tho. I like it here!! Very
+                  recommended!
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card-review cd-noactive">
+              <div class="card-body-review">
+                <img
+                  src="../assets/img/profile2.png"
+                  alt="profile2"
+                  class="img-review"
+                />
+                <h5 class="card-title-review">Yessica Christy</h5>
+                <h6 class="card-subtitle-review">Shanxi, China</h6>
+                <p class="score-review">
+                  4.5
+                  <span class="start-review ml-2"
+                    ><i class="fas fa-star"></i
+                  ></span>
+                </p>
+                <p class="card-text-review mt-4">
+                  “I like it because I like to travel far and still can make my
+                  day better just by drinking their Hazelnut Latte
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card-review cd-noactive">
+              <div class="card-body-review">
+                <img
+                  src="../assets/img/profile3.png"
+                  alt="profile3"
+                  class="img-review"
+                />
+                <h5 class="card-title-review">Kim Young Jou</h5>
+                <h6 class="card-subtitle-review">Seoul, South Korea</h6>
+                <p class="score-review">
+                  4.5
+                  <span class="start-review ml-2"
+                    ><i class="fas fa-star"></i
+                  ></span>
+                </p>
+                <p class="card-text-review mt-4">
+                  “This is very unusual for my taste, I haven’t liked coffee
+                  before but their coffee is the best! and yup, you have to
+                  order the chicken wings, the best in town!
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-5">
+          <div class="col-md-4 mt-4">
+            <span class="dash1"></span>
+            <span class="dash2 ml-2"></span>
+            <span class="dash2 ml-2"></span>
+            <span class="dash2 ml-2"></span>
+          </div>
+          <div class="col-md-8">
+            <div class="container-btn">
+              <button @click="arrowLeft()" class="btn btn-left">
+                <i class="fas fa-arrow-left"></i>
+              </button>
+              <button @click="arrowRight()" class="btn btn-right ml-3">
+                <i class="fas fa-arrow-right"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        <!-- end card review-->
       </div>
     </section>
     <!-- end react customer -->
+    <!-- box promo -->
+    <div class="container">
+      <section class="box-promo">
+        <div class="row">
+          <div class="col-md-6">
+            <h2 class="title-promo">Check our promo today!</h2>
+            <p class="info-promo mt-3">Let's see the deals and pick yours!</p>
+          </div>
+          <div class="col-md-6">
+            <button @click="promoBtn()" class="btn btn-promo">See Promo</button>
+          </div>
+        </div>
+      </section>
+    </div>
+    <!-- end box promo -->
+    <!-- footer -->
+    <componentFooter />
+    <!-- end footer -->
   </div>
 </template>
 <script>
+import componentFooter from '../components/footers'
 export default {
+  components: {
+    componentFooter
+  },
   methods: {
     login () {
-      alert('LoGIN')
+      // alert('Login')
+      this.$router.push('/login')
     },
     signup () {
-      alert('Signup')
+      // alert('Signup')
+      this.$router.push('/signup')
     },
     getStart () {
       alert('Get Start')
+    },
+    select () {
+      alert('Select')
+    },
+    orderNow () {
+      alert('Order Now')
+    },
+    arrowLeft () {
+      alert('Left')
+    },
+    arrowRight () {
+      alert('Right')
+    },
+    promoBtn () {
+      alert('Promo menarik!')
     }
   }
 }

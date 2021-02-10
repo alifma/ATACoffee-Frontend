@@ -17,8 +17,7 @@
           class="login-m-password"
         />
         <hr class="hr-line-l" />
-        <!-- ganti router link -->
-        <a class="forgot-pass" href="">Forgot password?</a>
+        <router-link class="forgot-pass" to="/">Forgot password?</router-link>
         <hr class="hr-line-r" />
         <button type="submit" class="btn btn-login-form">Login</button>
       </form>
