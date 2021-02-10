@@ -1,5 +1,11 @@
 # coffeeshop
-
+## LIBRARY
+ - Axios
+ - Bootstrap-vue
+ - Sweetalert2
+ - fontawesome (cek di header file HTML)
+ - Vuex
+ 
 ## Project setup
 ```
 npm install
