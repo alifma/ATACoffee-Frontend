@@ -1,35 +1,8 @@
 <template>
   <div>
-    <!-- navbar -->
-    <nav class="navbar navbar-expand-lg">
-      <div class="container">
-        <router-link class="navbar-brand" to="/"
-          ><img
-            class="img-navbar"
-            src="../assets/img/icoWeb.png"
-            alt="icoWeb"
-          />
-          Coffee Shop</router-link
-        >
-        <div class="collapse navbar-collapse justify-content-center">
-          <div class="navbar-nav">
-            <router-link class="nav-link active" to="/">Home</router-link>
-            <router-link class="nav-link" to="/">Product</router-link>
-            <router-link class="nav-link" to="/">Your Cart</router-link>
-            <router-link class="nav-link" to="/">History</router-link>
-          </div>
-        </div>
-        <div class="justify-conten-end">
-          <button @click="login()" class="btn btn-link mr-4 bt-login">
-            Login
-          </button>
-          <button @click="signup()" class="btn btn-warning bt-signup">
-            Sign Up
-          </button>
-        </div>
-      </div>
-    </nav>
-    <!-- end navbar -->
+    <!-- Header -->
+    <componentHeader />
+    <!-- end Header -->
     <!-- jumbotron -->
     <div class="jumbotron">
       <div class="container">
@@ -465,20 +438,14 @@
   </div>
 </template>
 <script>
+import componentHeader from '../components/headers'
 import componentFooter from '../components/footers'
 export default {
   components: {
+    componentHeader,
     componentFooter
   },
   methods: {
-    login () {
-      // alert('Login')
-      this.$router.push('/login')
-    },
-    signup () {
-      // alert('Signup')
-      this.$router.push('/signup')
-    },
     getStart () {
       alert('Get Start')
     },
