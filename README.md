@@ -6,6 +6,19 @@
  - fontawesome (cek di header file HTML)
  - Vuex
  
+ ## Styling
+ada di folder assets >> css >> styles.css
+Maksud dari ```website``` dan ```mobile``` untuk mengatur status display di css jika ukutan mobile yang akan di kerjakan versi mobile atau sebaliknya.
+
+```
+<div class="website">
+  isi untuk komponen web
+</div>
+<div class="mobile">
+  isi komponen mobile
+</div>
+```
+ 
 ## Project setup
 ```
 npm install
