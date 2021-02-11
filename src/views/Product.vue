@@ -1,7 +1,8 @@
 <template>
   <div>
     <div class="website">
-      <ctWebProduct />
+      <!-- <ctWebProductAdm /> -->
+      <ctWebProductCs />
     </div>
     <div class="mobile">
       <cMobileProduct />
@@ -9,11 +10,13 @@
   </div>
 </template>
 <script>
-import ctWebProduct from '../components/w-product'
+// import ctWebProductAdm from '../components/w-productadmin'
+import ctWebProductCs from '../components/w-productcust'
 import cMobileProduct from '../components/m_product'
 export default {
   components: {
-    ctWebProduct,
+    // ctWebProductAdm,
+    ctWebProductCs,
     cMobileProduct
   }
 }

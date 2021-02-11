@@ -8,10 +8,14 @@
       >
       <div class="collapse navbar-collapse justify-content-center">
         <div class="navbar-nav">
-          <router-link class="nav-link active" to="/">Home</router-link>
-          <router-link class="nav-link" to="/product">Product</router-link>
-          <router-link class="nav-link" to="/">Your Cart</router-link>
-          <router-link class="nav-link" to="/">History</router-link>
+          <router-link class="nav-link" id="link1" to="/">Home</router-link>
+          <router-link class="nav-link" id="link2" to="/product"
+            >Product</router-link
+          >
+          <router-link class="nav-link" id="link3" to="/"
+            >Your Cart</router-link
+          >
+          <router-link class="nav-link" id="link4" to="/">History</router-link>
         </div>
       </div>
       <div class="justify-conten-end">
