@@ -235,42 +235,50 @@
     border-radius: 10px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
   }
+
   .font-active {
-    color:  #6a4029
+    color: #6a4029
   }
+
   .font-rubik {
     font-family: 'Rubik';
   }
+
   .font-poppins {
     font-family: 'Poppins';
   }
+
   img.product-rounded {
     object-fit: cover;
     border-radius: 50%;
   }
 
   button.btn-brown {
-    background:#6A4029;
-    color:#fff;
+    background: #6A4029;
+    color: #fff;
     font-family: 'Poppins';
-    font-weight:bold;
+    font-weight: bold;
   }
+
   button.btn-yellow {
-    background:#FFBA33;
-    color:#6A4029;
+    background: #FFBA33;
+    color: #6A4029;
     font-family: 'Poppins';
-    font-weight:bold;
+    font-weight: bold;
   }
+
   button.btn-black {
-    background:#000;
-    color:#fff;
+    background: #000;
+    color: #fff;
     font-family: 'Poppins';
-    font-weight:bold;
+    font-weight: bold;
   }
+
   .brown {
-    color:#6A4029;
+    color: #6A4029;
   }
-/* End Produc Details */
+
+  /* End Produc Details */
 
   /* start info teamwork */
   section.info-teamwork {
@@ -1262,7 +1270,6 @@
     flex: 70%;
     /* background-color: pink; */
     height: 1000px;
-    overflow: scroll;
     overflow-x: hidden;
     padding: 30px 50px;
     font-family: 'Rubik';

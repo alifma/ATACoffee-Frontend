@@ -2,9 +2,9 @@
   <div>
     <div class="website">
       <ctWebProductAdm />
-      <!-- <ctWebProductCs /> -->
-      <!-- <cWebNewProduct /> -->
     </div>
+    <!-- <cWebNewProduct /> -->
+    <!-- <ctWebProductCs /> -->
     <!-- <div class="mobile">
       <cMobileProduct />
     </div> -->

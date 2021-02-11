@@ -70,208 +70,24 @@
         </div>
         <!-- menu -->
         <div class="row">
-          <div class="col-md-3 mt-5 mb-4">
+          <div
+            class="col-md-3 mt-5 mb-4"
+            v-for="(element, index) in allitems"
+            :key="index"
+          >
             <div class="card-menu">
               <img
                 @click="addproduct()"
-                src="../assets/img/menu-Img4.png"
+                :src="`http://52.91.116.102:3001/image/${element.image}`"
                 alt=""
                 class="img-menus"
               />
               <div class="card-body">
-                <h5 class="card-title-menus mt-n4">Veggie tomato mix</h5>
-                <h6 class="card-subtitle-menus mb-2">IDR 34.000</h6>
-                <span @click="editProduct()" class="icon-edit-menus"
-                  ><i class="fas fa-pencil-alt"></i
-                ></span>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3 mt-5 mb-4">
-            <div class="card-menu">
-              <img
-                @click="addproduct()"
-                src="../assets/img/menu-Img4.png"
-                alt=""
-                class="img-menus"
-              />
-              <div class="card-body">
-                <h5 class="card-title-menus mt-n4">Veggie tomato mix</h5>
-                <h6 class="card-subtitle-menus mb-2">IDR 34.000</h6>
-                <span @click="editProduct()" class="icon-edit-menus"
-                  ><i class="fas fa-pencil-alt"></i
-                ></span>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3 mt-5 mb-4">
-            <div class="card-menu">
-              <img
-                @click="addproduct()"
-                src="../assets/img/menu-Img4.png"
-                alt=""
-                class="img-menus"
-              />
-              <div class="card-body">
-                <h5 class="card-title-menus mt-n4">Veggie tomato mix</h5>
-                <h6 class="card-subtitle-menus mb-2">IDR 34.000</h6>
-                <span @click="editProduct()" class="icon-edit-menus"
-                  ><i class="fas fa-pencil-alt"></i
-                ></span>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3 mt-5 mb-4">
-            <div class="card-menu">
-              <img
-                @click="addproduct()"
-                src="../assets/img/menu-Img4.png"
-                alt=""
-                class="img-menus"
-              />
-              <div class="card-body">
-                <h5 class="card-title-menus mt-n4">Veggie tomato mix</h5>
-                <h6 class="card-subtitle-menus mb-2">IDR 34.000</h6>
-                <span @click="editProduct()" class="icon-edit-menus"
-                  ><i class="fas fa-pencil-alt"></i
-                ></span>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3 mt-5 mb-4">
-            <div class="card-menu">
-              <img
-                @click="addproduct()"
-                src="../assets/img/menu-Img4.png"
-                alt=""
-                class="img-menus"
-              />
-              <div class="card-body">
-                <h5 class="card-title-menus mt-n4">Veggie tomato mix</h5>
-                <h6 class="card-subtitle-menus mb-2">IDR 34.000</h6>
-                <span @click="editProduct()" class="icon-edit-menus"
-                  ><i class="fas fa-pencil-alt"></i
-                ></span>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3 mt-5 mb-4">
-            <div class="card-menu">
-              <img
-                @click="addproduct()"
-                src="../assets/img/menu-Img4.png"
-                alt=""
-                class="img-menus"
-              />
-              <div class="card-body">
-                <h5 class="card-title-menus mt-n4">Veggie tomato mix</h5>
-                <h6 class="card-subtitle-menus mb-2">IDR 34.000</h6>
-                <span @click="editProduct()" class="icon-edit-menus"
-                  ><i class="fas fa-pencil-alt"></i
-                ></span>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3 mt-5 mb-4">
-            <div class="card-menu">
-              <img
-                @click="addproduct()"
-                src="../assets/img/menu-Img4.png"
-                alt=""
-                class="img-menus"
-              />
-              <div class="card-body">
-                <h5 class="card-title-menus mt-n4">Veggie tomato mix</h5>
-                <h6 class="card-subtitle-menus mb-2">IDR 34.000</h6>
-                <span @click="editProduct()" class="icon-edit-menus"
-                  ><i class="fas fa-pencil-alt"></i
-                ></span>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3 mt-5 mb-4">
-            <div class="card-menu">
-              <img
-                @click="addproduct()"
-                src="../assets/img/menu-Img4.png"
-                alt=""
-                class="img-menus"
-              />
-              <div class="card-body">
-                <h5 class="card-title-menus mt-n4">Veggie tomato mix</h5>
-                <h6 class="card-subtitle-menus mb-2">IDR 34.000</h6>
-                <span @click="editProduct()" class="icon-edit-menus"
-                  ><i class="fas fa-pencil-alt"></i
-                ></span>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3 mt-5 mb-4">
-            <div class="card-menu">
-              <img
-                @click="addproduct()"
-                src="../assets/img/menu-Img4.png"
-                alt=""
-                class="img-menus"
-              />
-              <div class="card-body">
-                <h5 class="card-title-menus mt-n4">Veggie tomato mix</h5>
-                <h6 class="card-subtitle-menus mb-2">IDR 34.000</h6>
-                <span @click="editProduct()" class="icon-edit-menus"
-                  ><i class="fas fa-pencil-alt"></i
-                ></span>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3 mt-5 mb-4">
-            <div class="card-menu">
-              <img
-                @click="addproduct()"
-                src="../assets/img/menu-Img4.png"
-                alt=""
-                class="img-menus"
-              />
-              <div class="card-body">
-                <h5 class="card-title-menus mt-n4">Veggie tomato mix</h5>
-                <h6 class="card-subtitle-menus mb-2">IDR 34.000</h6>
-                <span @click="editProduct()" class="icon-edit-menus"
-                  ><i class="fas fa-pencil-alt"></i
-                ></span>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3 mt-5 mb-4">
-            <div class="card-menu">
-              <img
-                @click="addproduct()"
-                src="../assets/img/menu-Img4.png"
-                alt=""
-                class="img-menus"
-              />
-              <div class="card-body">
-                <h5 class="card-title-menus mt-n4">Veggie tomato mix</h5>
-                <h6 class="card-subtitle-menus mb-2">IDR 34.000</h6>
-                <span @click="editProduct()" class="icon-edit-menus"
-                  ><i class="fas fa-pencil-alt"></i
-                ></span>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3 mt-5 mb-4">
-            <div class="card-menu">
-              <img
-                @click="addproduct()"
-                src="../assets/img/menu-Img4.png"
-                alt=""
-                class="img-menus"
-              />
-              <div class="card-body">
-                <h5 class="card-title-menus mt-n4">Veggie tomato mix</h5>
-                <h6 class="card-subtitle-menus mb-2">IDR 34.000</h6>
-                <span
-                  @click="editProduct()"
-                  class="icon-edit-menus"
-                  id="icon-edit-menus"
+                <h5 class="card-title-menus mt-n3">{{ element.name }}</h5>
+                <h6 class="card-subtitle-menus mb-2">
+                  IDR {{ formatPrice(element.price) }}
+                </h6>
+                <span @click="editProduct(element.id)" class="icon-edit-menus"
                   ><i class="fas fa-pencil-alt"></i
                 ></span>
               </div>
@@ -298,7 +114,10 @@
 <script>
 import cHeader from '../components/headers'
 import cFooter from '../components/footers'
+import { mapGetters, mapActions } from 'vuex'
+import { mixins } from '../helpers/mixin'
 export default {
+  mixins: [mixins],
   data () {
     return {
       stateAdmin: false
@@ -308,7 +127,18 @@ export default {
     cHeader,
     cFooter
   },
+  computed: {
+    ...mapGetters({
+      allitems: 'products/allitems'
+    })
+  },
   methods: {
+    ...mapActions({
+      getAllProduct: 'products/getAllProduct'
+    }),
+    editProduct (id) {
+      this.$router.push(`/product/${id}`)
+    },
     test () {
       alert('TEST')
     },
@@ -333,9 +163,6 @@ export default {
     addpromo () {
       alert('add promo')
     },
-    editProduct () {
-      alert('Edit Product')
-    },
     addproduct () {
       alert('Item Masuk ke List')
     },
@@ -344,14 +171,7 @@ export default {
     }
   },
   mounted () {
-    // set status header
-    document.getElementById('link1').classList.remove('active')
-    document.getElementById('link2').classList.add('active')
-    document.getElementById('link3').classList.remove('active')
-    document.getElementById('link4').classList.remove('active')
-    // set hide button
-    // document.querySelector('button.bt-login').remove()
-    // document.querySelector('button.bt-signup').remove()
+    this.getAllProduct()
   }
 }
 </script>
