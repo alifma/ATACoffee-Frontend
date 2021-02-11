@@ -29,6 +29,7 @@
   .navbar.navbar-expand-lg {
     background: #fff;
     height: 100px;
+    border-bottom: 1px solid #eee;
   }
 
   .navbar-brand {
@@ -1004,6 +1005,352 @@
     color: #6A4029 !important;
     background: #fcaf16;
   }
+
+  .container-bars {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+  }
+
+  /* ASIDE LEFT */
+  aside.left {
+    flex: 30%;
+    text-align: center;
+    /* min-width: 400px; */
+    max-width: 400px;
+    min-height: 1200px;
+    font-family: 'Rubik';
+    border-right: 1px solid #ccc;
+  }
+
+  h3.title-aside-promo {
+    position: absolute;
+    width: 174px;
+    height: 30px;
+    top: 120px;
+    left: 8%;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 25px;
+    line-height: 30px;
+    color: #6A4029;
+  }
+
+  p.info-aside-promo {
+    position: absolute;
+    width: 231px;
+    height: 36px;
+    left: 6%;
+    top: 200px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 18px;
+    color: #000000;
+  }
+
+  /* box menu promo */
+  section.box-aside-menu {
+    position: absolute;
+  }
+
+  section#aside-menu1 {
+    width: 284px;
+    height: 472px;
+    left: 3%;
+    top: 290px;
+    background: #FFCB65;
+    border-radius: 20px;
+  }
+
+  section#aside-menu2 {
+    width: 284px;
+    height: 402px;
+    left: 5%;
+    top: 325px;
+    background: #000;
+    border-radius: 20px;
+  }
+
+  section#aside-menu3 {
+    width: 284px;
+    height: 322px;
+    left: 7%;
+    top: 365px;
+    background: #895537;
+    border-radius: 20px;
+  }
+
+  span.icon-edit-cupon {
+    position: absolute;
+    padding: 5px 8px;
+    background: #6A4029;
+    color: #FFF;
+    border-radius: 50%;
+    cursor: pointer;
+    top: 10px;
+    right: 10px;
+  }
+
+  .icon-edit-cupon:hover {
+    background: #8a563a;
+  }
+
+  img.img-aside-promo {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+  }
+
+  h3.title-menu-aside {
+    margin-top: 20px;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 101.34%;
+    color: #000000;
+  }
+
+  h3.discon-menu-aside {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 22px;
+    line-height: 101.34%;
+    color: #000000;
+  }
+
+  p.info-discon-aside {
+    width: 247px;
+    height: 28px;
+    margin-left: 20px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 120%;
+    color: #000000;
+  }
+
+  hr.breakline {
+    margin: 30px 0;
+    border-bottom: 2px dashed #000;
+  }
+
+  p.title-codecupon {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 101.34%;
+    color: #000000;
+  }
+
+  h2.codecupon-aside {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 33px;
+    color: #000000;
+  }
+
+  p.sub-codecupon {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    color: #000000
+  }
+
+  button.btn-cupon {
+    width: 284px;
+    height: 64px;
+    color: #FFF;
+    background: #6A4029;
+    border-radius: 20px;
+  }
+
+  .btn-cupon:hover {
+    color: #FFF !important;
+    background: #8a563a;
+  }
+
+  p.msg-cupon {
+    text-align: left;
+    margin-top: 100px;
+    font-size: 12px;
+  }
+
+  ul.list-msg-cupon {
+    list-style: none;
+    text-align: left;
+    margin-top: -10px;
+  }
+
+  li.txt-msg-cupon {
+    font-size: 12px;
+    margin-left: -15px;
+    line-height: 20px;
+  }
+
+  /* button admin */
+  button.bt-addpromo {
+    margin-top: 60px;
+    width: 284px;
+    height: 80px;
+    background: #FFBA33;
+    border-radius: 20px;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 30px;
+    text-align: center;
+    color: #6A4029;
+  }
+
+  .bt-addpromo:hover {
+    color: #6A4029 !important;
+    background: #FFCB65;
+  }
+
+  /* end box menu promo */
+  /* AND ASIDE LEFT */
+
+  /* MAIN MENU */
+  section.main-menu {
+    flex: 70%;
+    /* background-color: pink; */
+    max-height: 1000px;
+    overflow: scroll;
+    overflow-x: hidden;
+    padding: 30px 50px;
+    font-family: 'Rubik';
+
+  }
+
+  span.bt-favorite {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    color: #9F9F9F;
+    cursor: pointer;
+    padding: 8px 0;
+  }
+
+  span.bt-favorite.bt-active {
+    color: #6A4029;
+    border-bottom: 3px solid #6a4029;
+  }
+
+  span.bt-favorite:hover {
+    text-decoration: none !important;
+    color: #6A4029 !important;
+  }
+
+  span.bt-vcoffe,
+  span.bt-vnoncoffe,
+  span.bt-vfoods,
+  span.bt-addon {
+    font-style: normal;
+    font-weight: 300;
+    font-size: 18px;
+    color: #9F9F9F;
+    cursor: pointer;
+  }
+
+  .bt-vcoffe:hover,
+  .bt-vnoncoffe:hover,
+  .bt-vfoods:hover,
+  .bt-addon:hover {
+    text-decoration: none !important;
+    color: #6A4029 !important;
+  }
+
+  /* menu */
+  div.card-menu {
+    width: 156px;
+    height: 212px;
+    background: #FFFFFF;
+    box-shadow: 0px 30px 60px rgba(57, 57, 57, 0.1);
+    border-radius: 30px;
+    text-align: center;
+    font-family: 'Poppins';
+  }
+
+  img.img-menus {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin-top: -35px;
+    cursor: pointer;
+  }
+
+  h5.card-title-menus {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 22px;
+    line-height: 24px;
+    color: #000000;
+  }
+
+  h6.card-subtitle-menus {
+    position: absolute;
+    left: 50px;
+    bottom: 4px;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 17px;
+    line-height: 25px;
+    text-align: center;
+    color: #6A4029;
+  }
+
+  span.icon-edit-menus {
+    position: absolute;
+    padding: 5px 8px;
+    background: #6A4029;
+    color: #FFF;
+    border-radius: 50%;
+    cursor: pointer;
+    /* top: 10px; */
+    right: 35px;
+    bottom: -15px;
+  }
+
+  .icon-edit-menus:hover {
+    background: #8a563a;
+  }
+
+  /* end menu */
+
+  section.button-add {
+    position: absolute;
+    top: 1130px;
+    left: 30%;
+    right: 0;
+    background: none;
+    height: 120px;
+    overflow: hidden;
+    /* width: 800px; */
+  }
+
+  /* button new product */
+  button.btn-add-new-product {
+    position: absolute;
+    width: 729px;
+    height: 90px;
+    left: 10%;
+    top: 15px;
+    background: #6A4029;
+    border-radius: 20px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    color: #FFFFFF;
+  }
+
+  .btn-add-new-product:hover {
+    color: #FFFFFF !important;
+    background: #8a563a;
+  }
+
+  /* end MAIN MENU */
 }
 
 /* mobile web */
