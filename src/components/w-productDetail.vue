@@ -4,15 +4,16 @@
     <div class="container pt-4">
       <div id="breadcrumb-productDetails" class="d-inline">
         <router-link to="/product" class="mb-0 text-secondary font-rubik d-inline">Favorite & Promo</router-link>
-        <p class="mb-0 font-weight-bold font-active font-rubik d-inline"> > Cold Brew</p>
+        <p class="mb-0 font-weight-bold font-active font-rubik d-inline"> > {{detail.name}}</p>
       </div>
       <div>
         <div class="row py-4">
           <div class="col-md-5 col-lg-5 text-center">
-            <img style="width:75%" class="product-rounded" src="http://52.91.116.102:3001/image/defaultFood.png" alt="">
+            <img style="width:75%" class="product-rounded" :src="`http://52.91.116.102:3001/image/${detail.image}`" alt="">
             <div class="mt-4">
-              <h1 class="font-poppins font-weight-bolder">COLD BREW</h1>
-              <h5 class="font-poppins font-weight-light">IDR 30.000</h5>
+              <!-- <h1 class="font-poppins font-weight-bolder">COLD BREW</h1> -->
+              <h1 class="font-poppins font-weight-bolder">{{detail.name}}</h1>
+              <h5 class="font-poppins font-weight-light">IDR {{formatPrice(detail.price)}}</h5>
             </div>
           </div>
           <div class=" col-md-7 col-lg-7">
@@ -21,17 +22,15 @@
                 <div class="row p-4">
                   <div class="col">
                     <p class="font-poppins brown" style="font-size:20px">Delivery only on <b>Monday to friday</b> at <b>1 - 7 pm</b></p>
-                    <p class="font-poppins brown" style="text-align:justify; font-size:20px;">Cold brewing is a method of brewing that
-                      combines ground coffee and cool water and uses time instead of heat to extract the flavor. It is
-                      brewed in small batches and steeped for as long as 48 hours.</p>
+                    <p class="font-poppins brown" style="text-align:justify; font-size:20px;">{{detail.desc}}</p>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col text-center">
                     <h5 class="font-weight-bolder font-poppins">Choose a size</h5>
-                    <button class="btn btn-warning font-weight-bolder font-poppins mx-3" style="border-radius:50px;height:50px;width:50px;">R</button>
-                    <button class="btn btn-warning font-weight-bolder font-poppins mx-3" style="border-radius:50px;height:50px;width:50px;">L</button>
-                    <button class="btn btn-warning font-weight-bolder font-poppins mx-3" style="border-radius:50px;height:50px;width:50px;">XL</button>
+                    <div>
+                      <button  v-for="(item, index) in detail.size" :key="index" class="btn btn-warning font-weight-bolder font-poppins mx-3 d-inline" style="border-radius:50px;height:50px;width:50px;font-size:15px;line-height:13px">{{item}}</button>
+                    </div>
                   </div>
                 </div>
               </section>
@@ -53,12 +52,7 @@
                   <h5 class="font-weight-bolder font-poppins mb-4">Choose Delivery Methods</h5>
                   <div class="row">
                     <div class="col">
-                      <button style="border-radius:10px" class="btn btn-brown font-weight-bolder font-poppins mx-3">Dine
-                        In</button>
-                      <button style="border-radius:10px"
-                        class="btn btn-secondary disabled font-weight-bolder font-poppins mx-3">Door Delivery</button>
-                      <button style="border-radius:10px"
-                        class="btn btn-secondary disabled font-weight-bolder font-poppins mx-3">Pick Up</button>
+                      <button v-for="(item, index) in detail.delivery" :key="index" style="border-radius:10px" class="btn btn-brown font-weight-bolder font-poppins mx-3">{{item}}</button>
                     </div>
                   </div>
                   <div class="row my-4">
@@ -86,11 +80,31 @@
 <script>
 import cHeader from '../components/headers'
 import cFooter from '../components/footers'
+import { mapGetters, mapActions } from 'vuex'
+import { mixins } from '../helpers/mixin'
 export default {
+  mixins: [mixins],
+  data () {
+    return {
+      id: this.$route.params.id
+    }
+  },
   components: {
     cHeader,
     cFooter
+  },
+  computed: {
+    ...mapGetters({
+      detail: 'products/detail'
+    })
+  },
+  methods: {
+    ...mapActions({
+      getDetailAction: 'products/getDetail'
+    })
+  },
+  mounted () {
+    this.getDetailAction(this.id)
   }
-
 }
 </script>

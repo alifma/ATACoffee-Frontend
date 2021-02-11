@@ -1,11 +1,13 @@
 // import Swal from 'sweetalert2'
-const mixins = {
+export const mixins = {
   data () {
     return {
     }
   },
   methods: {
+    // Format Currency
+    formatPrice (value) {
+      return value.toLocaleString().replace(/,/g, '.')
+    }
   }
 }
-
-export default mixins
