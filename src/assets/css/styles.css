@@ -797,7 +797,7 @@
 
   img.img-signup-web {
     position: absolute;
-    width: 550px;
+    width: 700px;
     /* height: 1100px; */
     left: 0;
     top: 0;
@@ -842,6 +842,7 @@
     position: absolute;
     width: 157px;
     height: 25px;
+    left: 13%;
     font-style: normal;
     font-weight: 600;
     font-size: 18px;
@@ -853,9 +854,10 @@
   input.form-signup-pass,
   input.form-signup-phone {
     position: absolute;
-    width: 590px;
+    max-width: 900px;
+    width: 80%;
     height: 55px;
-    left: 15%;
+    left: 13%;
     padding: 0 25px;
     background: #FFFFFF;
     border: 1px solid #4F5665;
@@ -892,9 +894,10 @@
 
   button.btn-signup-web {
     position: absolute;
-    width: 590px;
+    max-width: 900px;
+    width: 80%;
     height: 75px;
-    left: 15%;
+    left: 13%;
     top: 480px;
     background: #FFBA33;
     box-shadow: 0px 6px 20px rgba(255, 186, 51, 0.4);
@@ -914,9 +917,10 @@
 
   button.bt-google {
     position: absolute;
-    width: 590px;
+    max-width: 900px;
+    width: 80%;
     height: 75px;
-    left: 13.5%;
+    left: 13%;
     top: 585px;
     box-shadow: 0px 6px 20px rgba(196, 196, 196, 0.67);
     border-radius: 20px;
@@ -935,7 +939,7 @@
     position: absolute;
     width: 232px;
     height: 25px;
-    left: 15%;
+    left: 13%;
     top: 370px;
     font-style: normal;
     font-weight: bold;
@@ -954,9 +958,10 @@
   /* button login web */
   button.btn-login-web {
     position: absolute;
-    width: 590px;
+    max-width: 900px;
+    width: 80%;
     height: 75px;
-    left: 15%;
+    left: 13%;
     top: 420px;
     background: #FFBA33;
     box-shadow: 0px 6px 20px rgba(255, 186, 51, 0.4);
@@ -976,9 +981,10 @@
 
   button.bt-login-google {
     position: absolute;
-    width: 590px;
+    max-width: 900px;
+    width: 80%;
     height: 75px;
-    left: 13.5%;
+    left: 13%;
     top: 520px;
     box-shadow: 0px 6px 20px rgba(196, 196, 196, 0.67);
     border-radius: 20px;
@@ -995,8 +1001,10 @@
   /* box member card */
   section.member-card {
     position: absolute;
-    width: 1140px;
+    max-width: 1500px;
     height: 160px;
+    right: 10%;
+    left: 5%;
     top: 780px;
     background: #FFFFFF;
     border-radius: 10px;
@@ -1007,11 +1015,11 @@
 
   h3.title-member-card {
     position: absolute;
-    width: 280px;
+    max-width: 580px;
+    width: 80%;
     height: 80px;
     font-style: normal;
-    font-weight: 500;
-    font-size: 30px;
+    font-size: max(1vw, 30px);
     line-height: 30px;
     display: flex;
     align-items: center;

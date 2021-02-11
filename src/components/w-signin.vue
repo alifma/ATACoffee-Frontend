@@ -9,6 +9,7 @@
               src="../assets/img/bgLogin.png"
               alt="bgLogin"
               class="img-signup-web"
+              style="max-width: 800px; width: 100%; height: 830px"
             />
           </div>
           <div class="col-md-7">
@@ -122,6 +123,7 @@
   </div>
 </template>
 <script>
+import { mapActions } from 'vuex'
 import componentFooter from '../components/footers'
 export default {
   data () {
@@ -136,13 +138,30 @@ export default {
     componentFooter
   },
   methods: {
+    ...mapActions({
+      actionLogin: 'auth/login'
+    }),
+    loginForm () {
+      // alert('check console')
+      const dataLogin = {
+        email: this.formData.email,
+        password: this.formData.password
+      }
+      this.actionLogin(dataLogin).then((response) => {
+        console.log(response)
+        if (response === 'Email Not Registered') {
+          this.$swal('Email Not Registered', 'Please Check your Email ', 'error')
+        } else if (response === 'Wrong Password') {
+          this.$swal('Wrong Password', 'Please Check your Password ', 'error')
+        } else {
+          this.$swal('Login Success', ' ', 'success')
+          this.$router.push('/product')
+        }
+      })
+      // this.$router.push('/')
+    },
     gotoSigup () {
       this.$router.push('/signup')
-    },
-    loginForm () {
-      alert('check console')
-      console.log(this.formData)
-      this.$router.push('/')
     },
     loginGoogle () {
       alert('Login Google')
