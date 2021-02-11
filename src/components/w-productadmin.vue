@@ -13,7 +13,7 @@
         <section class="box-aside-menu" id="aside-menu3">KETIGA</section>
         <section class="box-aside-menu" id="aside-menu2">KEDUA</section>
         <section class="box-aside-menu" id="aside-menu1">
-          <span @click="test()" class="icon-edit-cupon"
+          <span v-if="getAccess == 1" @click="test()" class="icon-edit-cupon"
             ><i class="fas fa-pencil-alt"></i
           ></span>
           <img
@@ -46,7 +46,11 @@
             </li>
           </ul>
           <!-- button admin -->
-          <button @click="addpromo()" class="btn btn-warning bt-addpromo">
+          <button
+            v-if="getAccess == 1"
+            @click="addpromo()"
+            class="btn btn-warning bt-addpromo"
+          >
             Add New Promo
           </button>
         </section>
@@ -87,7 +91,10 @@
                 <h6 class="card-subtitle-menus mb-2">
                   IDR {{ formatPrice(element.price) }}
                 </h6>
-                <span @click="editProduct(element.id)" class="icon-edit-menus"
+                <span
+                  v-if="getAccess == 1"
+                  @click="editProduct(element.id)"
+                  class="icon-edit-menus"
                   ><i class="fas fa-pencil-alt"></i
                 ></span>
               </div>
@@ -100,7 +107,7 @@
     </div>
     <section class="button-add">
       <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12" v-if="getAccess == 1">
           <button @click="addnewproduct()" class="btn btn-add-new-product">
             Add New Product
           </button>
@@ -129,6 +136,7 @@ export default {
   },
   computed: {
     ...mapGetters({
+      getAccess: 'auth/getAccess',
       allitems: 'products/allitems'
     })
   },
