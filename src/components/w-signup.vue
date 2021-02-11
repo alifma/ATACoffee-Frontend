@@ -9,9 +9,10 @@
               src="../assets/img/bgLogin.png"
               alt="bgLogin"
               class="img-signup-web"
+              style="max-width: 800px; width: 100%; height: 830px"
             />
           </div>
-          <div class="col-md-7">
+          <div class="col-md-7 col-lg-7">
             <!-- bar -->
             <div class="row mt-5">
               <div class="col-md-4">
@@ -41,7 +42,7 @@
                     >Email Address :
                   </label>
                 </div>
-                <div class="col-md-12">
+                <div class="col-md-12 col-lg-12">
                   <input
                     v-model="formData.email"
                     type="email"
@@ -106,13 +107,13 @@
     <div class="container">
       <section class="member-card">
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-6">
             <h3 class="title-member-card">Get your member card now!</h3>
             <p class="info-member-card">
               Let's join with our member and enjoy the deals.
             </p>
           </div>
-          <div class="col-md-6">
+          <div class="col-6 bg-primary">
             <button @click="createBtn()" class="btn btn-create-member">
               Create Now
             </button>
@@ -143,26 +144,24 @@ export default {
   },
   methods: {
     ...mapActions({
-      actionregister: 'register/actionregister'
+      actionregister: 'register/actionRegister'
     }),
     login () {
       // alert('LOGIN')
       this.$router.push('/login')
     },
     sigupForm () {
-      alert('Registration Success!')
-      console.log(this.formData)
-      this.$router.push('/login')
-      // this.actionregister(this.formData).then((response) => {
-      //   if (response === 'Email Exist') {
-      //     console.log('Email telah terdaftar')
-      //   } else {
-      //     console.log('Registration Success!')
-      //     this.$router.push('/login')
-      //   }
-      // }).catch((error) => {
-      //   console.log(error)
-      // })
+      this.actionregister(this.formData).then((response) => {
+        console.log(response)
+        if (response === 'Email Exist') {
+          this.$swal('Email registed', 'Please Change Email ', 'error')
+        } else {
+          this.$swal('Register Email Success', 'You can Login Now ', 'success')
+          this.$router.push('/login')
+        }
+      }).catch((error) => {
+        console.log(error)
+      })
     },
     signupGoogle () {
       alert('Sign up Google')

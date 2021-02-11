@@ -8,7 +8,7 @@ const modulregister = {
   mutations: {
   },
   actions: {
-    actionregister (contex, data) {
+    actionRegister (context, data) {
       return new Promise((resolve, reject) => {
         axios.post('http://52.91.116.102:3001/register', data).then((response) => {
           // console.log(response.data.msg)
