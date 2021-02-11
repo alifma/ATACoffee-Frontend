@@ -44,6 +44,17 @@ const moduleProducts = {
             reject(err)
           })
       })
+    },
+    updateDetail (context, data) {
+      return new Promise((resolve, reject) => {
+        axios.patch(`${context.state.apiURL}/items/${data.id}`, data.fd, { headers: { token: context.state.dataTesting.token } })
+          .then((response) => {
+            resolve(response)
+          })
+          .catch((err) => {
+            reject(err)
+          })
+      })
     }
   },
   getters: {
