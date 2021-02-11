@@ -18,7 +18,7 @@
 
   body {
     /* position: relative; */
-    min-height: 500px;
+    height: 500px;
     background: #FFFFFF;
     border-radius: 20px;
     /* background: #EDEDED !important; */
@@ -1063,8 +1063,8 @@
     flex: 30%;
     text-align: center;
     /* min-width: 400px; */
-    max-width: 400px;
-    min-height: 1200px;
+    width: 400px;
+    height: 1200px;
     font-family: 'Rubik';
     border-right: 1px solid #ccc;
   }
@@ -1261,7 +1261,7 @@
   section.main-menu {
     flex: 70%;
     /* background-color: pink; */
-    max-height: 1000px;
+    height: 1000px;
     overflow: scroll;
     overflow-x: hidden;
     padding: 30px 50px;
@@ -1406,7 +1406,7 @@
   }
 
   body {
-    min-height: 100vh;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1439,8 +1439,10 @@
     position: absolute;
     width: 433px;
     height: 481px;
-    left: 20px;
-    top: 258px;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
   }
 
   button.btn-start {
@@ -1477,7 +1479,7 @@
   }
 
   div.bg-signup {
-    min-height: 100vh;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1560,7 +1562,7 @@
 
   /* start signup form */
   div.container-signup-form {
-    min-height: 100vh;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1656,7 +1658,7 @@
 
   /* start signin form */
   div.container-signin {
-    min-height: 100vh;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
