@@ -9,7 +9,7 @@
 }
 
 /* view web 992 */
-@media (min-width: 576px) and (max-width: 1440px) {
+@media (min-width: 576px) {
 
   /* hide page mobile */
   div.mobile {
