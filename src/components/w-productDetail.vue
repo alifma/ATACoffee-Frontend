@@ -42,7 +42,7 @@
             <div style="width:75%" class="mx-auto d-flex flex-column">
               <button style="font-size:20px;border-radius:25px;height:60px" class="btn mb-3 btn-brown ">Add to Cart</button>
               <button @click="editProduct()" style="font-size:20px;border-radius:25px;height:60px" class="btn mb-3 btn-yellow ">Edit Product</button>
-              <button style="font-size:20px;border-radius:25px;height:60px" class="btn mb-3 btn-black ">Delete Menu</button>
+              <button @click="deleteConfirm()" style="font-size:20px;border-radius:25px;height:60px" class="btn mb-3 btn-black ">Delete Menu</button>
             </div>
           </div>
           <div class=" col-md-7 col-lg-7">
@@ -100,10 +100,32 @@ export default {
   },
   methods: {
     ...mapActions({
-      getDetailAction: 'products/getDetail'
+      getDetailAction: 'products/getDetail',
+      deleteAction: 'products/deleteProduct'
     }),
     editProduct () {
       this.$router.push(`/product/${this.id}/edit`)
+    },
+    deleteConfirm () {
+      // this.$swal('Email Not Registered', 'Please Check your Email ', 'error')
+      this.$swal.fire({
+        text: 'Are you Sure want to delete this product?',
+        showCancelButton: true,
+        confirmButtonColor: '#6A4029',
+        cancelButtonColor: '#FFF',
+        confirmButtonText: 'Yes, delete it!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.deleteAction(this.id)
+            .then((res) => {
+              this.$swal('Delete Success', 'Product has been deleted', 'success')
+              this.$router.push('/product')
+            })
+            .catch((err) => {
+              this.$swal('Delete failed', err.message, 'success')
+            })
+        }
+      })
     }
   },
   mounted () {

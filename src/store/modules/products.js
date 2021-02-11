@@ -61,13 +61,24 @@ const moduleProducts = {
       })
     },
     getAllProduct (context) {
-      axios.get('http://52.91.116.102:3001/items', { headers: { token: context.state.dataTesting.token } })
+      axios.get(`${context.state.apiURL}/items?limit=12`, { headers: { token: context.state.dataTesting.token } })
         .then((response) => {
           // console.log(response.data)
           context.commit('setAllItems', response.data.data)
         }).catch((err) => {
           console.log(err)
         })
+    },
+    deleteProduct (context, id) {
+      return new Promise((resolve, reject) => {
+        axios.delete(`${context.state.apiURL}/items/${id}`, { headers: { token: context.state.dataTesting.token } })
+          .then((response) => {
+            resolve(response)
+          })
+          .catch((err) => {
+            reject(err)
+          })
+      })
     }
   },
   getters: {
