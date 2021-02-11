@@ -3,7 +3,7 @@
     <cHeader />
     <div class="container pt-4">
       <div id="breadcrumb-productDetails" class="d-inline">
-        <p class="mb-0 text-secondary font-rubik d-inline">Favorite & Promo</p>
+        <router-link to="/product" class="mb-0 text-secondary font-rubik d-inline">Favorite & Promo</router-link>
         <p class="mb-0 font-weight-bold font-active font-rubik d-inline"> > Cold Brew</p>
       </div>
       <div>
@@ -62,9 +62,14 @@
                     </div>
                   </div>
                   <div class="row my-4">
-                    <div class="col d-flex">
-                      <p>Set Time: </p>
-                      <input type="text" class="form-control-plaintext" id="staticEmail2" value="email@example.com">
+                    <div class="col">
+                      <form class="form-inline ">
+                        <div class="form-group w-75 mx-auto">
+                          <label class="my-1 mr-2 font-poppins">Set Time : </label>
+                          <input type="text" class="form-control border-none w-75" style=""
+                            placeholder="Enter the time you’ll arrived">
+                        </div>
+                      </form>
                     </div>
                   </div>
                 </div>
@@ -74,14 +79,17 @@
           </div>
           </div>
     </div>
+    <cFooter />
   </div>
 </template>
 
 <script>
 import cHeader from '../components/headers'
+import cFooter from '../components/footers'
 export default {
   components: {
-    cHeader
+    cHeader,
+    cFooter
   }
 
 }
