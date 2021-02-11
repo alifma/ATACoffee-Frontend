@@ -71,7 +71,7 @@
                 </div>
                 <div class="col-md-12">
                   <input
-                    v-model="formData.phone"
+                    v-model="formData.handphone"
                     type="text"
                     class="form-signup-phone"
                     placeholder="Enter your phone number (62)"
@@ -124,13 +124,14 @@
 </template>
 <script>
 import componentFooter from '../components/footers'
+import { mapActions } from 'vuex'
 export default {
   data () {
     return {
       formData: {
         email: '',
         password: '',
-        phone: ''
+        handphone: ''
       }
     }
   },
@@ -138,14 +139,27 @@ export default {
     componentFooter
   },
   methods: {
+    ...mapActions({
+      actionregister: 'register/actionregister'
+    }),
     login () {
       // alert('LOGIN')
       this.$router.push('/login')
     },
     sigupForm () {
-      alert('Signup')
+      alert('Registration Success!')
       console.log(this.formData)
-      this.$router.push('/')
+      this.$router.push('/login')
+      // this.actionregister(this.formData).then((response) => {
+      //   if (response === 'Email Exist') {
+      //     console.log('Email telah terdaftar')
+      //   } else {
+      //     console.log('Registration Success!')
+      //     this.$router.push('/login')
+      //   }
+      // }).catch((error) => {
+      //   console.log(error)
+      // })
     },
     signupGoogle () {
       alert('Sign up Google')

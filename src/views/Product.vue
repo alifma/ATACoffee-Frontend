@@ -1,23 +1,26 @@
 <template>
   <div>
     <div class="website">
-      <!-- <ctWebProductAdm /> -->
-      <ctWebProductCs />
+      <ctWebProductAdm />
+      <!-- <ctWebProductCs /> -->
+      <!-- <cWebNewProduct /> -->
     </div>
-    <div class="mobile">
+    <!-- <div class="mobile">
       <cMobileProduct />
-    </div>
+    </div> -->
   </div>
 </template>
 <script>
-// import ctWebProductAdm from '../components/w-productadmin'
-import ctWebProductCs from '../components/w-productcust'
-import cMobileProduct from '../components/m_product'
+import ctWebProductAdm from '../components/w-productadmin'
+// import ctWebProductCs from '../components/w-productcust'
+// import cWebNewProduct from '../components/w-newproduct'
+// import cMobileProduct from '../components/m_product'
 export default {
   components: {
-    // ctWebProductAdm,
-    ctWebProductCs,
-    cMobileProduct
+    ctWebProductAdm
+    // ctWebProductCs,
+    // cWebNewProduct,
+    // cMobileProduct
   }
 }
 </script>
