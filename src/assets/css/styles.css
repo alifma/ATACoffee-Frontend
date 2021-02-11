@@ -8,6 +8,9 @@
   src: url('../fonts/Rubik-font/Rubik-Medium.ttf');
 }
 
+html>body {
+ color:red;
+}
 /* view web 992 */
 @media (min-width: 576px) {
 

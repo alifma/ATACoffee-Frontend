@@ -47,7 +47,8 @@
                 <div class="col-md-12">
                   <input
                     v-model="formData.email"
-                    type="text"
+                    type="email"
+                    required
                     class="form-signup-email"
                     placeholder="Enter your email adress"
                     id="email-form"
@@ -62,6 +63,7 @@
                   <input
                     v-model="formData.password"
                     type="password"
+                    required
                     class="form-signup-pass"
                     placeholder="Enter your password"
                     id="password-form"
