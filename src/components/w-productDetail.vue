@@ -103,7 +103,7 @@ export default {
       getDetailAction: 'products/getDetail'
     }),
     editProduct () {
-      this.$router.push(`/product/edit/${this.id}`)
+      this.$router.push(`/product/${this.id}/edit`)
     }
   },
   mounted () {

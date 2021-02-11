@@ -17,7 +17,8 @@ const moduleProducts = {
         name: 'admin@atac.com',
         access: 1,
         token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywiZW1haWwiOiJhZG1pbkBhdGFjLmNvbSIsImFjY2VzcyI6MSwiaWF0IjoxNjEzMDQwNDM0fQ.FGOETBx3rxQej09x9m2BSxrRg9gEbu_GDPm3aKuiWVY'
-      }
+      },
+      listItems: []
     }
   },
   mutations: {
@@ -29,6 +30,9 @@ const moduleProducts = {
       state.detail.desc = payload.description
       state.detail.delivery = payload.deliveryMethod.split(',')
       state.detail.size = payload.size.split(',')
+    },
+    setAllItems (state, payload) {
+      state.listItems = payload
     }
   },
   actions: {
@@ -55,10 +59,20 @@ const moduleProducts = {
             reject(err)
           })
       })
+    },
+    getAllProduct (context) {
+      axios.get('http://52.91.116.102:3001/items', { headers: { token: context.state.dataTesting.token } })
+        .then((response) => {
+          // console.log(response.data)
+          context.commit('setAllItems', response.data.data)
+        }).catch((err) => {
+          console.log(err)
+        })
     }
   },
   getters: {
-    detail: state => state.detail
+    detail: state => state.detail,
+    allitems: state => state.listItems
   }
 }
 export default moduleProducts
