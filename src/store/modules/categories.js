@@ -3,7 +3,6 @@ const moduleCategories = {
   namespaced: true,
   state: () => {
     return {
-      apiURL: 'http://52.91.116.102:3001',
       categories: []
     }
   },
@@ -13,16 +12,17 @@ const moduleCategories = {
     }
   },
   actions: {
-    getCategories(context) {
-      return new Promise((resolve, reject) => {
-        axios.get(`${context.state.apiURL}/products?limit=12`, { headers: { token: context.state.dataTesting.token } })
-        .then((response) => {
-          // console.log(response.data)
-          context.commit('setAllItems', response.data.data)
-        }).catch((err) => {
-          console.log(err)
-        })
-      }) 
+    getCategories (context) {
+      // return new Promise((resolve, reject) => {
+      // axios.get(`${context.rootState.apiURL}/categories`, { headers: { token: context.rootState.auth.token } })
+      // .then((response) => {
+      // cons ole.log(response.data)
+      // context.commit('setCategories', response.data.data)
+      // }).catch((err) => {
+      // console.log(err)
+      // })
+      // })
+      console.log(context)
     }
   },
   getters: {
