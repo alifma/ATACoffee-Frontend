@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- <div class="website"> -->
-      <productAdd />
+    <productAdd />
     <!-- </div> -->
     <!-- <div class="mobile">
       <cMobileProduct />

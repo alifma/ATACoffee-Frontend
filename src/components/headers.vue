@@ -57,7 +57,16 @@
           <img src="../assets/img/chat.png" alt="chat" />
         </button>
         <button @click="profile()" style="background: none; border: none">
-          <img src="../assets/img/profile1.png" alt="" />
+          <img
+            style="
+              border-radius: 50%;
+              width: 45px;
+              height: 45px;
+              border: 3px solid #6a4029;
+            "
+            src="../assets/img/f-profile.png"
+            alt=""
+          />
         </button>
       </div>
       <div v-else>
