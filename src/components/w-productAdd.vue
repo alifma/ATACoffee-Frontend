@@ -8,6 +8,8 @@
           product</router-link>
       </div>
       <div>
+            <form action="" @submit.prevent="addProduct()">
+
         <div class="row py-4">
           <div class="col-md-5 col-lg-5 ">
             <div class="text-center">
@@ -16,7 +18,7 @@
             <!-- <button style="font-size:20px;border-radius:25px;height:60px" class="w-75 btn mt-4 btn-yellow ">Choose from gallery</button> -->
             <div class="upload-btn-wrapper w-100">
               <button id="btnNewProductImg" style="font-size:20px;border-radius:25px;height:60px" class="w-75 btn mt-4 btn-yellow ">Choose from gallery</button>
-              <input type="file" name="myfile" />
+              <input @change="processFile($event)" type="file" name="myfile" />
             </div></div>
             <div class="row w-75 mx-auto">
               <div class="col">
@@ -24,21 +26,21 @@
                   <label for="exampleInputEmail1">Delivery Hour : </label>
                   <div class="row">
                     <div class="col">
-                      <input class="form-control" type="time" id="appt" name="appt">
+                      <input class="form-control" v-model="newItem.hourStart" type="time">
                     </div>
                     <div class="col">
-                      <input class="form-control" type="time" id="appt" name="appt">
+                      <input class="form-control" v-model="newItem.hourEnd"  type="time">
                     </div>
                   </div>
                   <div class="form-group my-4">
                     <div class="row">
                       <div class="col">
 <label for="exampleInputEmail1">Categories : </label>
-                    <b-form-select v-model="newItem.category_id" :options="categories" required></b-form-select>
+                    <b-form-select v-model="newItem.categoryID" :options="categories" required></b-form-select>
                       </div>
                       <div class="col">
                     <label for="exampleInputEmail1">Stock : </label>
-                    <input type="number" class="form-control">
+                    <input v-model="newItem.stock" type="number" class="form-control">
                       </div>
                     </div>
                   </div>
@@ -47,34 +49,34 @@
             </div>
           </div>
           <div class="col-md-7 col-lg-7">
-            <form action="">
               <div class="form-group mb-4">
                 <label for="exampleInputEmail1">Name :</label>
-                <input type="text" class="form-control inputBorder" placeholder="Type product name min. 50 characters">
+                <input type="text" class="form-control inputBorder" required v-model="newItem.name" placeholder="Type product name min. 50 characters">
               </div>
               <div class="form-group mb-4">
                 <label for="exampleInputEmail1">Price : </label>
-                <input type="number" class="form-control inputBorder" placeholder="Type the price">
+                <input type="number" class="form-control inputBorder" required v-model="newItem.price" placeholder="Type the price">
               </div>
               <div class="form-group mb-4">
                 <label for="exampleInputEmail1">Description : </label>
-                <input type="text" class="form-control inputBorder" placeholder="Describe your product min. 150 characters">
+                <input type="text" class="form-control inputBorder " required v-model="newItem.description" placeholder="Describe your product min. 150 characters">
               </div>
               <div class="form-group mb-4">
                 <label for="exampleInputEmail1">Input Product Size : </label>
                 <small id="emailHelp" class="form-text text-muted">Click size you want to use for this product</small>
-                <input type="text" class="form-control inputBorder">
+                <input type="text" class="form-control inputBorder"  required v-model="newItem.size">
               </div>
               <div class="form-group mb-4">
                 <label for="exampleInputEmail1">Input Delivery Method : </label>
                 <small id="emailHelp" class="form-text text-muted">Click methods you want to use for this product</small>
-                <input type="text" class="form-control inputBorder">
+                <input type="text" class="form-control inputBorder"  required v-model="newItem.deliveryMethod">
               </div>
-            </form>
-            <button style="font-size:20px;border-radius:25px;height:60px" type="submit" class="btn w-100 my-2 btn-brown ">Save Product</button>
+              <button style="font-size:20px;border-radius:25px;height:60px" type="submit" class="btn w-100 my-2 btn-brown ">Save Product</button>
             <button @click="backToProduct()" style="font-size:20px;border-radius:25px;height:60px" type="submit" class="btn w-100 my-2 btn-secondary ">Cancel</button>
           </div>
         </div>
+            </form>
+
       </div>
     </div>
     <cFooter />
@@ -85,7 +87,9 @@
 import cHeader from '../components/headers'
 import cFooter from '../components/footers'
 import { mapActions, mapGetters } from 'vuex'
+import { mixins } from '../helpers/mixin'
 export default {
+  mixins: [mixins],
   data () {
     return {
       newItem: {
@@ -94,7 +98,11 @@ export default {
         description: '',
         size: '',
         deliveryMethod: '',
-        category_id: 1
+        categoryID: 1,
+        hourStart: '00:00',
+        hourEnd: '00:00',
+        stock: 0,
+        image: ''
       }
     }
   },
@@ -109,10 +117,44 @@ export default {
   },
   methods: {
     ...mapActions({
-      getCategories: 'categories/getCategories'
+      getCategories: 'categories/getCategories',
+      addAction: 'products/addProduct'
     }),
     backToProduct () {
       this.$router.push('/product')
+    },
+    processFile (el) {
+      this.newItem.image = el.target.files[0]
+    },
+    addProduct () {
+      const fd = new FormData()
+      fd.append('name', this.newItem.name)
+      fd.append('price', this.newItem.price)
+      fd.append('description', this.newItem.description)
+      fd.append('size', this.newItem.size)
+      fd.append('deliveryMethod', this.newItem.deliveryMethod)
+      fd.append('categoryID', this.newItem.categoryID)
+      fd.append('hourStart', this.newItem.hourStart)
+      fd.append('hourEnd', this.newItem.hourEnd)
+      fd.append('stock', this.newItem.stock)
+      fd.append('image', this.newItem.image)
+      this.swalLoading('Please Wait')
+      this.addAction(fd)
+        .then((response) => {
+          if (response.data.code === 200) {
+            this.$swal.close()
+            this.$router.push('/product')
+            this.swalToast(response.data.msg, 'success')
+          } else {
+            this.$swal.close()
+            // this.alertToast('error', response.data.msg)
+            // this.swalToast('error', response.data.msg)
+            this.swalAlert('Add Product Failed', response.data.msg, 'error')
+          }
+        })
+        .catch((err) => {
+          console.log(err)
+        })
     }
   },
   mounted () {

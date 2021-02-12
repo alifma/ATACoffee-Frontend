@@ -41,7 +41,6 @@ const moduleProducts = {
         axios.get(`${context.state.apiURL}/items/${id}`, { headers: { token: context.state.dataTesting.token } })
           .then((response) => {
             context.commit('setDetail', response.data.data[0])
-            console.log(context.state.detail)
             resolve(response.data.data[0])
           })
           .catch((err) => {
@@ -63,7 +62,6 @@ const moduleProducts = {
     getAllProduct (context) {
       axios.get(`${context.state.apiURL}/items?limit=12`, { headers: { token: context.state.dataTesting.token } })
         .then((response) => {
-          // console.log(response.data)
           context.commit('setAllItems', response.data.data)
         }).catch((err) => {
           console.log(err)
@@ -72,6 +70,17 @@ const moduleProducts = {
     deleteProduct (context, id) {
       return new Promise((resolve, reject) => {
         axios.delete(`${context.state.apiURL}/items/${id}`, { headers: { token: context.state.dataTesting.token } })
+          .then((response) => {
+            resolve(response)
+          })
+          .catch((err) => {
+            reject(err)
+          })
+      })
+    },
+    addProduct (context, data) {
+      return new Promise((resolve, reject) => {
+        axios.post(`${context.state.apiURL}/items/`, data, { headers: { token: context.rootState.auth.token } })
           .then((response) => {
             resolve(response)
           })
