@@ -437,6 +437,17 @@
     <!-- end footer -->
   </div>
 </template>
+<style scoped>
+div.card {
+  position: absolute;
+  height: 800px;
+  background: #ffffff;
+  border: 2px solid #dddddd;
+  box-sizing: border-box;
+  border-radius: 10px;
+  text-align: center;
+}
+</style>
 <script>
 import componentHeader from '../components/headers'
 import componentFooter from '../components/footers'

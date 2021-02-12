@@ -7,14 +7,6 @@
   font-family: 'Rubik';
   src: url('../fonts/Rubik-font/Rubik-Medium.ttf');
 }
-/* Global CSS */
-button.swal2-cancel.swal2-styled {
-  border: 2px solid #6A4029;
-  color: #6A4029
-}
-button.swal2-styled {
-  font-family: 'Poppins';
-}
 
 /* view web 992 */
 @media (min-width: 576px) {
@@ -39,7 +31,14 @@ button.swal2-styled {
     border-right: 0px solid black;
     border-bottom: 2px solid black;
   }
-  
+
+  input.contacBorder {
+    border-top: 0px solid black;
+    border-left: 0px solid black;
+    border-right: 0px solid black;
+    border-bottom: 1px solid black;
+    font-size: 20px;
+  }
 
   /* navbar */
   .navbar.navbar-expand-lg {
@@ -377,15 +376,7 @@ button.swal2-styled {
     color: #0B132A;
   }
 
-  div.card {
-    position: absolute;
-    height: 800px;
-    background: #FFFFFF;
-    border: 2px solid #DDDDDD;
-    box-sizing: border-box;
-    border-radius: 10px;
-    text-align: center;
-  }
+
 
   /* card */
   img.card-img-list {
@@ -1428,16 +1419,6 @@ button.swal2-styled {
   }
 
   /* end MAIN MENU */
-
-  /* Profile */
-  section.body-profile {
-    width: 100%;
-    height: 500px;
-    background: #ccc;
-
-  }
-
-  /* end Profile */
 }
 
 /* mobile web */

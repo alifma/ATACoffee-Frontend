@@ -3,7 +3,7 @@
   <section class="footer bg-white">
     <div class="container co-footer">
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-6 col-12">
           <img
             src="../assets/img/icoWeb.png"
             alt="iconWeb"
@@ -25,7 +25,7 @@
           </button>
           <p class="copyright">&copy;2020CoffeeStore</p>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-3 col-12">
           <h5 class="sub-product">Product</h5>
           <ul class="list-footer-product">
             <li><h6 class="list-info-footer">Download</h6></li>
@@ -35,7 +35,7 @@
             <li><h6 class="list-info-footer">Blog</h6></li>
           </ul>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-3 col-12">
           <h5 class="sub-engage">Engage</h5>
           <ul class="list-footer-product">
             <li><h6 class="list-info-footer">Coffee Shop?</h6></li>
