@@ -4,9 +4,9 @@ const moduleAuth = {
   state: () => {
     return {
       token: localStorage.getItem('token') || null,
-      access: localStorage.getItem('access') || '',
+      access: localStorage.getItem('access') || null,
       name: localStorage.getItem('name') || '',
-      id: localStorage.getItem('id') || ''
+      id: localStorage.getItem('id') || null
     }
   },
   mutations: {
@@ -49,9 +49,9 @@ const moduleAuth = {
         localStorage.removeItem('name')
         localStorage.removeItem('id')
         context.commit('setToken', null)
-        context.commit('setAccess', '')
+        context.commit('setAccess', null)
         context.commit('setName', '')
-        context.commit('setId', '')
+        context.commit('setId', null)
         resolve(true)
       })
     }

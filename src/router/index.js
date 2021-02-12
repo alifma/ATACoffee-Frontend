@@ -6,6 +6,7 @@ import SignIn from '../views/Sigin.vue'
 import Product from '../views/Product.vue'
 import ProductDetails from '../views/ProductDetails.vue'
 import ProductEdit from '../views/ProductEdit.vue'
+import Profile from '../views/Profile.vue'
 
 Vue.use(VueRouter)
 
@@ -39,6 +40,11 @@ const routes = [
     path: '/product/:id/edit',
     name: 'ProductEdit',
     component: ProductEdit
+  },
+  {
+    path: '/Profile',
+    name: 'Profile',
+    component: Profile
   }
 ]
 
