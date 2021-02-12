@@ -21,7 +21,8 @@
               <section class="info-product p-4">
                 <div class="row p-4">
                   <div class="col">
-                    <p class="font-poppins brown" style="font-size:20px">Delivery only on <b>Monday to friday</b> at <b>1 - 7 pm</b></p>
+                    <p class="font-poppins brown" style="font-size:20px">Delivery only on <b>Monday to friday</b> at
+                      <b>1 - 7 pm</b></p>
                     <p class="font-poppins brown" style="text-align:justify; font-size:20px;">{{detail.desc}}</p>
                   </div>
                 </div>
@@ -29,7 +30,12 @@
                   <div class="col text-center">
                     <h5 class="font-weight-bolder font-poppins">Choose a size</h5>
                     <div>
-                      <button  v-for="(item, index) in detail.size" :key="index" class="btn btn-warning font-weight-bolder font-poppins mx-3 d-inline" style="border-radius:50px;height:50px;width:50px;font-size:15px;line-height:13px">{{item}}</button>
+                      <!-- <button  v-for="(item, index) in detail.size" :key="index" class="btn btn-warning font-weight-bolder font-poppins mx-3 d-inline" style="border-radius:50px;height:50px;width:50px;font-size:15px;line-height:13px">{{item}}</button> -->
+                      <div>
+                        <b-form-group>
+                          <b-form-radio-group v-model="cartBody.size" :options="detail.size" plain></b-form-radio-group>
+                        </b-form-group>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -40,7 +46,7 @@
         <div class="row">
           <div class="col-md-5 col-lg-5 text-center">
             <div style="width:75%" class="mx-auto d-flex flex-column">
-              <button style="font-size:20px;border-radius:25px;height:60px" class="btn mb-3 btn-brown ">Add to Cart</button>
+              <button @click="addToCart()" style="font-size:20px;border-radius:25px;height:60px" class="btn mb-3 btn-brown ">Add to Cart</button>
               <button @click="editProduct()" style="font-size:20px;border-radius:25px;height:60px" class="btn mb-3 btn-yellow ">Edit Product</button>
               <button @click="deleteConfirm()" style="font-size:20px;border-radius:25px;height:60px" class="btn mb-3 btn-black ">Delete Menu</button>
             </div>
@@ -52,7 +58,10 @@
                   <h5 class="font-weight-bolder font-poppins mb-4">Choose Delivery Methods</h5>
                   <div class="row">
                     <div class="col">
-                      <button v-for="(item, index) in detail.delivery" :key="index" style="border-radius:10px" class="btn btn-brown font-weight-bolder font-poppins mx-3">{{item}}</button>
+                      <!-- <button v-for="(item, index) in detail.delivery" :key="index" style="border-radius:10px" class="btn btn-brown font-weight-bolder font-poppins mx-3">{{item}}</button> -->
+                      <b-form-group>
+                          <b-form-radio-group v-model="cartHead.orderType" :options="detail.delivery" plain></b-form-radio-group>
+                      </b-form-group>
                     </div>
                   </div>
                   <div class="row my-4">
@@ -86,7 +95,16 @@ export default {
   mixins: [mixins],
   data () {
     return {
-      id: this.$route.params.id
+      id: this.$route.params.id,
+      cartHead: {
+        userID: '',
+        userName: '',
+        orderType: ''
+      },
+      cartBody: {
+        size: ''
+      },
+      fixCart: []
     }
   },
   components: {
@@ -95,7 +113,9 @@ export default {
   },
   computed: {
     ...mapGetters({
-      detail: 'products/detail'
+      detail: 'products/detail',
+      userID: 'auth/getUserID',
+      userName: 'auth/getUserName'
     })
   },
   methods: {
@@ -126,6 +146,21 @@ export default {
             })
         }
       })
+    },
+    addToCart () {
+      const buildItemCart = {
+        itemName: this.detail.name,
+        itemImage: this.detail.image,
+        size: this.cartBody.size,
+        price: this.detail.price,
+        amount: 1
+      }
+      this.fixCart.push(buildItemCart)
+      this.cartBody.size = ''
+      console.log(this.fixCart)
+    },
+    showSize () {
+      console.log(this.selected)
     }
   },
   mounted () {

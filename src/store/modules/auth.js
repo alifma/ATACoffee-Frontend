@@ -57,7 +57,9 @@ const moduleAuth = {
     }
   },
   getters: {
-    getAccess: state => state.access
+    getAccess: state => state.access,
+    getUserName: state => state.name,
+    getUserID: state => state.id
   }
 }
 export default moduleAuth

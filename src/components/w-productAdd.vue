@@ -43,8 +43,8 @@
                   <div class="form-group my-4">
                     <div class="row">
                       <div class="col">
-<label for="exampleInputEmail1">Categories : </label>
-                    <b-form-select v-model="newItem.categoryID" :options="categories" required></b-form-select>
+                    <label for="exampleInputEmail1">Categories : </label>
+                    <b-form-select v-model="newItem.categoryID" :options="categories" ></b-form-select>
                       </div>
                       <div class="col">
                     <label for="exampleInputEmail1">Stock : </label>
@@ -59,25 +59,25 @@
           <div class="col-md-7 col-lg-7">
               <div class="form-group mb-4">
                 <label for="exampleInputEmail1">Name :</label>
-                <input type="text" class="form-control inputBorder" required v-model="newItem.name" placeholder="Type product name min. 50 characters">
+                <input type="text" class="form-control inputBorder" v-model="newItem.name" placeholder="Type product name min. 50 characters">
               </div>
               <div class="form-group mb-4">
                 <label for="exampleInputEmail1">Price : </label>
-                <input type="number" class="form-control inputBorder" required v-model="newItem.price" placeholder="Type the price">
+                <input type="number" class="form-control inputBorder" v-model="newItem.price" placeholder="Type the price">
               </div>
               <div class="form-group mb-4">
                 <label for="exampleInputEmail1">Description : </label>
-                <input type="text" class="form-control inputBorder " required v-model="newItem.description" placeholder="Describe your product min. 150 characters">
+                <input type="text" class="form-control inputBorder " v-model="newItem.description" placeholder="Describe your product min. 150 characters">
               </div>
               <div class="form-group mb-4">
                 <label for="exampleInputEmail1">Input Product Size : </label>
                 <small id="emailHelp" class="form-text text-muted">Click size you want to use for this product</small>
-                <input type="text" class="form-control inputBorder"  required v-model="newItem.size">
+                <input type="text" class="form-control inputBorder"  v-model="newItem.size">
               </div>
               <div class="form-group mb-4">
                 <label for="exampleInputEmail1">Input Delivery Method : </label>
                 <small id="emailHelp" class="form-text text-muted">Click methods you want to use for this product</small>
-                <input type="text" class="form-control inputBorder"  required v-model="newItem.deliveryMethod">
+                <input type="text" class="form-control inputBorder"  v-model="newItem.deliveryMethod">
               </div>
               <button style="font-size:20px;border-radius:25px;height:60px" type="submit" class="btn w-100 my-2 btn-brown ">Save Product</button>
             <button @click="backToProduct()" style="font-size:20px;border-radius:25px;height:60px" type="submit" class="btn w-100 my-2 btn-secondary ">Cancel</button>
