@@ -4,9 +4,9 @@ const moduleAuth = {
   state: () => {
     return {
       token: localStorage.getItem('token') || null,
-      access: localStorage.getItem('access') || '',
+      access: localStorage.getItem('access') || null,
       name: localStorage.getItem('name') || '',
-      id: localStorage.getItem('id') || ''
+      id: localStorage.getItem('id') || null
     }
   },
   mutations: {

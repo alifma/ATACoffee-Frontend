@@ -18,7 +18,7 @@
           <router-link class="nav-link" id="link4" to="/">History</router-link>
         </div>
       </div>
-      <div v-if="getAccess == 2" class="justify-conten-end">
+      <div v-if="getAccess != null" class="justify-conten-end">
         <button
           @click="search()"
           style="
