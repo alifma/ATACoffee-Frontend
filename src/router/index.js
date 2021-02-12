@@ -10,6 +10,7 @@ import detailOrders from '../views/detailOrders.vue'
 import ProductAdd from '../views/ProductAdd.vue'
 import ProductEdit from '../views/ProductEdit.vue'
 import Profile from '../views/Profile.vue'
+import Checkout from '../views/Checkout.vue'
 
 Vue.use(VueRouter)
 
@@ -63,6 +64,11 @@ const routes = [
     path: '/Profile',
     name: 'Profile',
     component: Profile
+  },
+  {
+    path: '/checkout',
+    name: 'checkout',
+    component: Checkout
   }
 ]
 

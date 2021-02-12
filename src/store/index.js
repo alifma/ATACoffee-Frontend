@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import moduleAuth from './modules/auth'
+import moduleCarts from './modules/cart'
 import moduleCategories from './modules/categories'
 import modulregister from './modules/formregister'
 import moduleOrders from './modules/orders'
@@ -23,7 +24,8 @@ const store = new Vuex.Store({
     products: moduleProducts,
     categories: moduleCategories,
     auth: moduleAuth,
-    orders: moduleOrders
+    orders: moduleOrders,
+    carts: moduleCarts
   }
 })
 export default store

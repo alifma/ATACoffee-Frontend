@@ -11,7 +11,6 @@
           <div class="col-md-5 col-lg-5 text-center">
             <img style="width:75%" class="product-rounded" :src="`http://52.91.116.102:3001/image/${detail.image}`" alt="">
             <div class="mt-4">
-              <!-- <h1 class="font-poppins font-weight-bolder">COLD BREW</h1> -->
               <h1 class="font-poppins font-weight-bolder">{{detail.name.toUpperCase()}}</h1>
               <h5 class="font-poppins font-weight-light">IDR {{formatPrice(detail.price)}}</h5>
             </div>
@@ -33,7 +32,7 @@
                       <!-- <button  v-for="(item, index) in detail.size" :key="index" class="btn btn-warning font-weight-bolder font-poppins mx-3 d-inline" style="border-radius:50px;height:50px;width:50px;font-size:15px;line-height:13px">{{item}}</button> -->
                       <div>
                         <b-form-group>
-                          <b-form-radio-group v-model="cartBody.size" :options="detail.size" plain></b-form-radio-group>
+                          <b-form-radio-group v-model="cartHolder.size" :options="detail.size" buttons button-variant="outline-warning"></b-form-radio-group>
                         </b-form-group>
                       </div>
                     </div>
@@ -60,7 +59,7 @@
                     <div class="col">
                       <!-- <button v-for="(item, index) in detail.delivery" :key="index" style="border-radius:10px" class="btn btn-brown font-weight-bolder font-poppins mx-3">{{item}}</button> -->
                       <b-form-group>
-                          <b-form-radio-group v-model="cartHead.orderType" :options="detail.delivery" plain></b-form-radio-group>
+                          <b-form-radio-group v-model="cartHolder.orderType" :options="detail.delivery" buttons ></b-form-radio-group>
                       </b-form-group>
                     </div>
                   </div>
@@ -69,7 +68,7 @@
                       <form class="form-inline ">
                         <div class="form-group w-75 mx-auto">
                           <label class="my-1 mr-2 font-poppins">Set Time : </label>
-                          <input type="text" class="form-control border-none w-75" style=""
+                          <input v-model="cartHolder.orderDetails" type="text" class="form-control border-none w-75" style=""
                             placeholder="Enter the time you’ll arrived">
                         </div>
                       </form>
@@ -81,6 +80,42 @@
           </div>
           </div>
           </div>
+    </div>
+    <!-- Cart Bottom -->
+    <div class="container my-4">
+      <div class="row">
+        <div class="col-1">
+        </div>
+        <div class="col-7">
+          <div class="card">
+          <!-- Jika ada itemnya -->
+            <div v-if="fixCart.length > 0" class="row no-gutters" style="height:20vh">
+              <div class="col-md-4 text-center my-auto">
+                <img :src="`http://52.91.116.102:3001/image/${detail.image}`" style="height:100px;width:100px"
+                  class="card-img product-rounded">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="mb-0 card-title font-weight-bold">{{detail.name.toUpperCase()}}</h5>
+                  <span @click="clearFixCart()" class="icon-edit-cupon" style="height:30px;width:30px"><i class="fas fa-times"></i></span>
+                <div style="overflow-y:scroll">
+                    <p class="card-text mb-0" v-for="(item, index) in fixCart" :key="index">x{{item.amount}} ({{item.size}})</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <!-- Jika Tidak ada itemnya -->
+          <div v-else style="height:20vh">
+            <h1>This item is not in your shoping cart</h1>
+          </div>
+          </div>
+        </div>
+        <div class="col-3">
+          <button @click="buildCheckoutData()" style="font-size:20px;border-radius:25px;"
+            class="text-dark w-100 h-100 btn mb-3 btn-yellow ">CHECKOUT</button>
+        </div>
+        <div class="col-1"></div>
+      </div>
     </div>
     <cFooter />
   </div>
@@ -96,12 +131,9 @@ export default {
   data () {
     return {
       id: this.$route.params.id,
-      cartHead: {
-        userID: '',
-        userName: '',
-        orderType: ''
-      },
-      cartBody: {
+      cartHolder: {
+        orderType: '',
+        orderDetails: '',
         size: ''
       },
       fixCart: []
@@ -121,7 +153,8 @@ export default {
   methods: {
     ...mapActions({
       getDetailAction: 'products/getDetail',
-      deleteAction: 'products/deleteProduct'
+      deleteAction: 'products/deleteProduct',
+      addCartAction: 'carts/addToCart'
     }),
     editProduct () {
       this.$router.push(`/product/${this.id}/edit`)
@@ -148,19 +181,54 @@ export default {
       })
     },
     addToCart () {
-      const buildItemCart = {
-        itemName: this.detail.name,
-        itemImage: this.detail.image,
-        size: this.cartBody.size,
-        price: this.detail.price,
-        amount: 1
+      if (this.cartHolder.size.length === 0) {
+        this.swalAlert('Please Select Size', '', 'error')
+      } else {
+        const buildItemCart = {
+          itemName: this.detail.name,
+          itemImage: this.detail.image,
+          size: this.cartHolder.size,
+          price: this.detail.price,
+          amount: 1
+        }
+        const isInCart = this.fixCart.filter((i) => {
+          return i.size === this.cartHolder.size
+        })
+        if (isInCart.length > 0) {
+          isInCart[0].amount += 1
+        } else {
+          this.fixCart.push(buildItemCart)
+        }
+        this.cartHolder.size = ''
       }
-      this.fixCart.push(buildItemCart)
-      this.cartBody.size = ''
-      console.log(this.fixCart)
     },
-    showSize () {
-      console.log(this.selected)
+    clearFixCart () {
+      this.fixCart = []
+    },
+    buildCheckoutData () {
+      const checkoutData = this.fixCart.map((i) => ({
+        userID: this.userID,
+        userName: this.userName,
+        itemName: i.itemName,
+        itemImage: i.itemImage,
+        size: i.size,
+        amount: i.amount,
+        price: i.price,
+        orderType: this.cartHolder.orderType,
+        orderDetails: this.cartHolder.orderDetails,
+        orderPhone: 0
+      }))
+      this.addCartAction(checkoutData)
+      // .then((response) => {
+      //   console.log(response)
+      // })
+      // .catch((err) => {
+      //   console.log(err)
+      // })
+      /*
+      "inv":102070,
+      "paymentType" : "OVO"
+      */
     }
   },
   mounted () {
@@ -168,3 +236,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.swal2-cancel.swal2-styled {
+  border:1px solid aquamarine;
+}
+</style>

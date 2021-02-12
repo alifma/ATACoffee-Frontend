@@ -12,7 +12,7 @@
           <router-link class="nav-link" id="link2" to="/product"
             >Product</router-link
           >
-          <router-link class="nav-link" id="link3" to="/"
+          <router-link class="nav-link" id="link3" to="/checkout"
             >Your Cart</router-link
           >
           <router-link class="nav-link" id="link4" to="/">History</router-link>

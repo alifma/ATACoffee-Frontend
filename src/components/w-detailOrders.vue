@@ -89,52 +89,25 @@
                 <div class="card cardedit">
                   <div class="card-body">
                     <div class="form-check">
-                      <input
-                        class="form-check-input"
-                        type="radio"
-                        name="exampleRadios"
-                        id="exampleRadios1"
-                        value="option1"
-                        checked
-                      />
-                      <label
-                        class="form-check-label fontpayment"
-                        for="exampleRadios1"
-                      >
+                      <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1"
+                        value="option1"/>
+                      <label class="form-check-label fontpayment" for="exampleRadios1">
                         card
                       </label>
                     </div>
                     <div class="borderedit"></div>
                     <div class="form-check">
-                      <input
-                        class="form-check-input"
-                        type="radio"
-                        name="exampleRadios"
-                        id="exampleRadios1"
-                        value="option1"
-                        checked
-                      />
-                      <label
-                        class="form-check-label fontpayment"
-                        for="exampleRadios1"
-                      >
+                      <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1"
+                        value="option1"/>
+                      <label class="form-check-label fontpayment" for="exampleRadios1">
                         Bank Account
                       </label>
                     </div>
                     <div class="borderedit"></div>
                     <div class="form-check">
-                      <input
-                        class="form-check-input"
-                        type="radio"
-                        name="exampleRadios"
-                        id="exampleRadios1"
-                        value="option1"
-                        checked
-                      />
-                      <label
-                        class="form-check-label fontpayment"
-                        for="exampleRadios1"
-                      >
+                      <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1"
+                        value="option1"/>
+                      <label class="form-check-label fontpayment" for="exampleRadios1">
                         Cash On Delivery
                       </label>
                     </div>
