@@ -5,6 +5,7 @@ import SignUp from '../views/Signup.vue'
 import SignIn from '../views/Sigin.vue'
 import Product from '../views/Product.vue'
 import ProductDetails from '../views/ProductDetails.vue'
+import ProductAdd from '../views/ProductAdd.vue'
 import ProductEdit from '../views/ProductEdit.vue'
 import Profile from '../views/Profile.vue'
 
@@ -30,6 +31,11 @@ const routes = [
     path: '/product',
     name: 'Product',
     component: Product
+  },
+  {
+    path: '/product/add',
+    name: 'ProductAdd',
+    component: ProductAdd
   },
   {
     path: '/product/:id',

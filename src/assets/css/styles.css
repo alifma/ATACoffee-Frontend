@@ -7,6 +7,14 @@
   font-family: 'Rubik';
   src: url('../fonts/Rubik-font/Rubik-Medium.ttf');
 }
+/* Global CSS */
+button.swal2-cancel.swal2-styled {
+  border: 2px solid #6A4029;
+  color: #6A4029
+}
+button.swal2-styled {
+  font-family: 'Poppins';
+}
 
 /* view web 992 */
 @media (min-width: 576px) {
@@ -31,6 +39,7 @@
     border-right: 0px solid black;
     border-bottom: 2px solid black;
   }
+  
 
   /* navbar */
   .navbar.navbar-expand-lg {

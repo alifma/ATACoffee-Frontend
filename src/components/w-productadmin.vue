@@ -175,7 +175,7 @@ export default {
       this.$router.push(`/product/${id}`)
     },
     addnewproduct () {
-      alert('Add new Product')
+      this.$router.push('/product/add')
     }
   },
   mounted () {
