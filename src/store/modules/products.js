@@ -49,12 +49,35 @@ const moduleProducts = {
           })
       })
     },
+    updateDetail (context, data) {
+      return new Promise((resolve, reject) => {
+        axios.patch(`${context.state.apiURL}/items/${data.id}`, data.fd, { headers: { token: context.state.dataTesting.token } })
+          .then((response) => {
+            resolve(response)
+          })
+          .catch((err) => {
+            reject(err)
+          })
+      })
+    },
     getAllProduct (context) {
-      axios.get('http://52.91.116.102:3001/items', { headers: { token: context.state.dataTesting.token } }).then((response) => {
-        // console.log(response.data)
-        context.commit('setAllItems', response.data.data)
-      }).catch((err) => {
-        console.log(err)
+      axios.get(`${context.state.apiURL}/items?limit=12`, { headers: { token: context.state.dataTesting.token } })
+        .then((response) => {
+          // console.log(response.data)
+          context.commit('setAllItems', response.data.data)
+        }).catch((err) => {
+          console.log(err)
+        })
+    },
+    deleteProduct (context, id) {
+      return new Promise((resolve, reject) => {
+        axios.delete(`${context.state.apiURL}/items/${id}`, { headers: { token: context.state.dataTesting.token } })
+          .then((response) => {
+            resolve(response)
+          })
+          .catch((err) => {
+            reject(err)
+          })
       })
     }
   },

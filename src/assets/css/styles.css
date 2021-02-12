@@ -25,6 +25,21 @@
     font-family: 'Rubik';
   }
 
+  input.inputBorder {
+    border-top: 0px solid black;
+    border-left: 0px solid black;
+    border-right: 0px solid black;
+    border-bottom: 2px solid black;
+  }
+
+  input.contacBorder {
+    border-top: 0px solid black;
+    border-left: 0px solid black;
+    border-right: 0px solid black;
+    border-bottom: 1px solid black;
+    font-size: 20px;
+  }
+
   /* navbar */
   .navbar.navbar-expand-lg {
     background: #fff;

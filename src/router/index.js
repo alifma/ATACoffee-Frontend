@@ -7,6 +7,9 @@ import Product from '../views/Product.vue'
 import ProductDetails from '../views/ProductDetails.vue'
 import orders from '../views/orders.vue'
 import detailOrders from '../views/detailOrders.vue'
+import ProductAdd from '../views/ProductAdd.vue'
+import ProductEdit from '../views/ProductEdit.vue'
+import Profile from '../views/Profile.vue'
 
 Vue.use(VueRouter)
 
@@ -32,6 +35,11 @@ const routes = [
     component: Product
   },
   {
+    path: '/product/add',
+    name: 'ProductAdd',
+    component: ProductAdd
+  },
+  {
     path: '/product/:id',
     name: 'ProductDetails',
     component: ProductDetails
@@ -45,6 +53,16 @@ const routes = [
     path: '/orders/:inv',
     name: 'detailOrders',
     component: detailOrders
+  },
+  {
+    path: '/product/:id/edit',
+    name: 'ProductEdit',
+    component: ProductEdit
+  },
+  {
+    path: '/Profile',
+    name: 'Profile',
+    component: Profile
   }
 ]
 

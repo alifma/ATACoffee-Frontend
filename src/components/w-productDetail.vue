@@ -4,7 +4,7 @@
     <div class="container pt-4">
       <div id="breadcrumb-productDetails" class="d-inline">
         <router-link to="/product" class="mb-0 text-secondary font-rubik d-inline">Favorite & Promo</router-link>
-        <p class="mb-0 font-weight-bold font-active font-rubik d-inline"> > {{detail.name}}</p>
+        <router-link :to="`/product/${id}`" class="mb-0 font-weight-bold font-active font-rubik d-inline"> > {{detail.name}}</router-link>
       </div>
       <div>
         <div class="row py-4">
@@ -12,7 +12,7 @@
             <img style="width:75%" class="product-rounded" :src="`http://52.91.116.102:3001/image/${detail.image}`" alt="">
             <div class="mt-4">
               <!-- <h1 class="font-poppins font-weight-bolder">COLD BREW</h1> -->
-              <h1 class="font-poppins font-weight-bolder">{{detail.name}}</h1>
+              <h1 class="font-poppins font-weight-bolder">{{detail.name.toUpperCase()}}</h1>
               <h5 class="font-poppins font-weight-light">IDR {{formatPrice(detail.price)}}</h5>
             </div>
           </div>
@@ -40,9 +40,9 @@
         <div class="row">
           <div class="col-md-5 col-lg-5 text-center">
             <div style="width:75%" class="mx-auto d-flex flex-column">
-              <button style="font-size:20px;border-radius:250px;height:60px" class="btn mb-3 btn-brown ">Add to Cart</button>
-              <button style="font-size:20px;border-radius:250px;height:60px" class="btn mb-3 btn-yellow ">Edit Product</button>
-              <button style="font-size:20px;border-radius:250px;height:60px" class="btn mb-3 btn-black ">Delete Menu</button>
+              <button style="font-size:20px;border-radius:25px;height:60px" class="btn mb-3 btn-brown ">Add to Cart</button>
+              <button @click="editProduct()" style="font-size:20px;border-radius:25px;height:60px" class="btn mb-3 btn-yellow ">Edit Product</button>
+              <button @click="deleteConfirm()" style="font-size:20px;border-radius:25px;height:60px" class="btn mb-3 btn-black ">Delete Menu</button>
             </div>
           </div>
           <div class=" col-md-7 col-lg-7">
@@ -100,8 +100,33 @@ export default {
   },
   methods: {
     ...mapActions({
-      getDetailAction: 'products/getDetail'
-    })
+      getDetailAction: 'products/getDetail',
+      deleteAction: 'products/deleteProduct'
+    }),
+    editProduct () {
+      this.$router.push(`/product/${this.id}/edit`)
+    },
+    deleteConfirm () {
+      // this.$swal('Email Not Registered', 'Please Check your Email ', 'error')
+      this.$swal.fire({
+        text: 'Are you Sure want to delete this product?',
+        showCancelButton: true,
+        confirmButtonColor: '#6A4029',
+        cancelButtonColor: '#FFF',
+        confirmButtonText: 'Yes, delete it!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.deleteAction(this.id)
+            .then((res) => {
+              this.$swal('Delete Success', 'Product has been deleted', 'success')
+              this.$router.push('/product')
+            })
+            .catch((err) => {
+              this.$swal('Delete failed', err.message, 'success')
+            })
+        }
+      })
+    }
   },
   mounted () {
     this.getDetailAction(this.id)
