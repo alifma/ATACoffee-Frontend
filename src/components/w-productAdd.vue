@@ -3,15 +3,23 @@
     <cHeader />
     <div class="container pt-4">
       <div id="breadcrumb-productDetails" class="d-inline">
-        <router-link to="/product" class="mb-0 text-secondary font-rubik d-inline">Favorite & Promo</router-link>
-        <router-link :to="`/product/add`" class="mb-0 font-weight-bold font-active font-rubik d-inline"> > Add new
-          product</router-link>
+        <router-link
+          to="/product"
+          class="mb-0 text-secondary font-rubik d-inline"
+          >Favorite & Promo</router-link
+        >
+        <router-link
+          :to="`/product/add`"
+          class="mb-0 font-weight-bold font-active font-rubik d-inline"
+        >
+          > Add new product</router-link
+        >
       </div>
       <div>
             <form action="" @submit.prevent="addProduct()">
 
         <div class="row py-4">
-          <div class="col-md-5 col-lg-5 ">
+          <div class="col-md-5 col-lg-5">
             <div class="text-center">
             <img style="width:75%" class="product-rounded" :src="`http://52.91.116.102:3001/image/defaultFood.png`" alt="">
             <button style="font-size:20px;border-radius:25px;height:60px;background:#0B132A" class="w-75 btn mt-4 btn-black ">Take a Picture</button>
@@ -164,14 +172,12 @@ export default {
 </script>
 
 <style>
-
-  .upload-btn-wrapper {
+.upload-btn-wrapper {
   position: relative;
-  width:100%;
+  width: 100%;
   overflow: hidden;
   display: inline-block;
 }
-
 #btnNewProductImg {
   width: 100%;
   padding: 8px 20px;
@@ -179,8 +185,7 @@ export default {
   font-size: 20px;
   font-weight: bold;
 }
-
-.upload-btn-wrapper input[type=file] {
+.upload-btn-wrapper input[type="file"] {
   font-size: 100px;
   position: absolute;
   left: 0;

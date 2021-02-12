@@ -49,9 +49,9 @@ const moduleAuth = {
         localStorage.removeItem('name')
         localStorage.removeItem('id')
         context.commit('setToken', null)
-        context.commit('setAccess', '')
+        context.commit('setAccess', null)
         context.commit('setName', '')
-        context.commit('setId', '')
+        context.commit('setId', null)
         resolve(true)
       })
     }

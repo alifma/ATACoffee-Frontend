@@ -56,7 +56,7 @@
           >
           <img src="../assets/img/chat.png" alt="chat" />
         </button>
-        <button @click="signout()" style="background: none; border: none">
+        <button @click="profile()" style="background: none; border: none">
           <img src="../assets/img/profile1.png" alt="" />
         </button>
       </div>
@@ -73,7 +73,7 @@
   <!-- end navbar -->
 </template>
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters } from 'vuex'
 export default {
   computed: {
     ...mapGetters({
@@ -81,23 +81,13 @@ export default {
     })
   },
   methods: {
-    ...mapActions({
-      logout: 'auth/logout'
-    }),
-    signout () {
-      // alert('signout')
-      this.logout().then((response) => {
-        if (response) {
-          this.$router.push('/')
-        }
-      })
+    profile () {
+      this.$router.push('/profile')
     },
     login () {
-      // alert('Login')
       this.$router.push('/login')
     },
     signup () {
-      // alert('Signup')
       this.$router.push('/signup')
     },
     chating () {
