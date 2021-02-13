@@ -9,22 +9,28 @@
           <div class="col-12 col-md-6">
             <h5 class="tittle">Finish your customer Order now.</h5>
             <div class="card cardorder">
-              <div class="card-body">
+              <div class="card-body scroll">
                 <h3 class="ordertext">Delivery Order</h3>
-                <p class="nameorder">for zulaikha</p>
-                <div class="row scroll">
+                <p class="nameorder">for {{ detailOrdersHead.customer }}</p>
+                <div
+                  class="row"
+                  v-for="(item, index) in detailOrdersBody"
+                  :key="index"
+                >
                   <div class="col-3">
                     <img
-                      src="../assets/img/menu-img2.png"
+                      :src="`http://52.91.116.102:3001/image/${item.image}`"
                       class="imgcard"
                       alt=""
                     />
                   </div>
                   <div class="col-6">
-                    <p class="nameorder">Hazelnut Latte x 1 Regular</p>
+                    <p class="nameorder">
+                      {{ item.item }} x {{ item.amount }} {{ item.size }}
+                    </p>
                   </div>
                   <div class="col-3">
-                    <p class="nameorder">IDR 24.0</p>
+                    <p class="nameorder">IDR {{ item.price }}</p>
                   </div>
                 </div>
                 <!-- footer card order -->
@@ -43,13 +49,12 @@
                 </div>
                 <div class="fonttotal">
                   <h3 class="float-left font-weight-bold">TOTAL</h3>
-                  <h3 class="float-right font-weight-bold">IDR 150.000</h3>
+                  <h3 class="float-right font-weight-bold">
+                    IDR {{ detailOrdersHead.total }}
+                  </h3>
                 </div>
               </div>
             </div>
-            <button class="btn btn-lg btn-block btnswipe">
-              Swipe up to see upcoming orders
-            </button>
           </div>
           <div class="col-12 col-md-6">
             <div class="row">
@@ -63,19 +68,20 @@
                 <div class="card cardedit">
                   <div class="card-body">
                     <h5>
-                      <span class="font-weight-bold">Delivery</span> to iskandar
-                      street
+                      <span class="font-weight-bold">{{
+                        detailOrdersHead.orderType
+                      }}</span>
+                      to iskandar street
                     </h5>
                     <div class="borderedit"></div>
                     <div>
                       <h5>
-                        Km 5 refinery road oppsite re public road, effurun,
-                        Jakarta
+                        {{ detailOrdersHead.orderDetails }}
                       </h5>
                     </div>
                     <div class="borderedit"></div>
                     <div>
-                      <h5>+62 81348287878</h5>
+                      <h5>{{ detailOrdersHead.orderPhone }}</h5>
                     </div>
                   </div>
                 </div>
@@ -88,29 +94,23 @@
               <div class="col-12">
                 <div class="card cardedit">
                   <div class="card-body">
+                    <div class="borderedit"></div>
                     <div class="form-check">
-                      <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1"
-                        value="option1"/>
-                      <label class="form-check-label fontpayment" for="exampleRadios1">
-                        card
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="exampleRadios"
+                        id="exampleRadios1"
+                        value="option1"
+                      />
+                      <label
+                        class="form-check-label fontpayment"
+                        for="exampleRadios1"
+                      >
+                        {{ detailOrdersHead.paymentType }}
                       </label>
                     </div>
                     <div class="borderedit"></div>
-                    <div class="form-check">
-                      <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1"
-                        value="option1"/>
-                      <label class="form-check-label fontpayment" for="exampleRadios1">
-                        Bank Account
-                      </label>
-                    </div>
-                    <div class="borderedit"></div>
-                    <div class="form-check">
-                      <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1"
-                        value="option1"/>
-                      <label class="form-check-label fontpayment" for="exampleRadios1">
-                        Cash On Delivery
-                      </label>
-                    </div>
                   </div>
                 </div>
               </div>
@@ -204,7 +204,7 @@
   float: right;
 }
 .scroll {
-  max-height: 200px;
+  max-height: 600px;
   overflow-y: auto;
 }
 .tittle {
@@ -271,6 +271,8 @@
 
 .imgcard {
   border-radius: 20px;
+  max-width: 100px;
+  padding-bottom: 10%;
 }
 .fontstyle {
   font-family: Poppins;
@@ -306,15 +308,24 @@ export default {
     componentHeader,
     componentFooter
   },
+  data () {
+    return {
+      paramInv: this.$route.params.inv
+    }
+  },
   computed: {
     ...mapGetters({
+      detailOrdersHead: 'orders/getDetailOrdersHead',
+      detailOrdersBody: 'orders/getDetailOrdersBody'
     })
   },
   methods: {
     ...mapActions({
+      actionGetDetail: 'orders/actionGetDetailOrders'
     })
   },
   mounted () {
+    this.actionGetDetail(this.paramInv)
   }
 }
 </script>
