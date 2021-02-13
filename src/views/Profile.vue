@@ -11,7 +11,12 @@
         <div class="row">
           <div class="col-md-3 mt-5">
             <div class="card-fotoprofile">
-              <div v-if="getUserDetail.image === 'default.png'">
+              <div
+                v-if="
+                  getUserDetail.image === 'default.png' ||
+                  getUserDetail.image === undefined
+                "
+              >
                 <img
                   src="../assets/img/f-profile.png"
                   class="img-f-profile mt-5"

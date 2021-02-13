@@ -81,7 +81,22 @@
           <img src="../assets/img/chat.png" alt="chat" />
         </button>
         <button @click="profile()" style="background: none; border: none">
-          <div v-if="getUserDetail.image === 'default.png'">
+          <!-- <img
+            src="../assets/img/f-profile.png"
+            style="
+              border-radius: 50%;
+              width: 45px;
+              height: 45px;
+              border: 3px solid #6a4029;
+            "
+            alt="wait"
+          /> -->
+          <div
+            v-if="
+              getUserDetail.image === 'default.png' ||
+              getUserDetail.image === undefined
+            "
+          >
             <img
               src="../assets/img/f-profile.png"
               style="
@@ -102,7 +117,7 @@
                 height: 45px;
                 border: 3px solid #6a4029;
               "
-              alt="foto profile"
+              alt="wait"
             />
           </div>
         </button>
@@ -120,8 +135,15 @@
   <!-- end navbar -->
 </template>
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 export default {
+  data () {
+    return {
+      formContact: {
+        image: ''
+      }
+    }
+  },
   computed: {
     ...mapGetters({
       getAccess: 'auth/getAccess',
@@ -129,6 +151,9 @@ export default {
     })
   },
   methods: {
+    ...mapActions({
+      actionGetProfile: 'auth/getProfile'
+    }),
     profile () {
       this.$router.push('/profile')
     },
@@ -144,6 +169,9 @@ export default {
     search () {
       alert('Searching')
     }
+  },
+  mounted () {
+    // this.actionGetProfile()
   }
 }
 </script>
