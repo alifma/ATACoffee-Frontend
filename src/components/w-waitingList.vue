@@ -1,12 +1,15 @@
 <template>
-  <div style="background-image: url('https://i.ibb.co/jwqkCjf/bg-Checkout.png');background-repeat: no-repeat;background-position: center;">
+  <div
+    style="background-image: url('https://i.ibb.co/jwqkCjf/bg-Checkout.png');background-repeat: no-repeat;background-position: center;">
     <cHeader />
+    <div v-if="pendingOrders.length > 0">
       <div class="container py-4">
-        <h1 class="text-white text-center font-rubik pt-4" style="font-size: 40px;text-shadow: 2px 2px 4px #000000;">Pending Order List</h1>
+        <h1 class="text-white text-center font-rubik pt-4" style="font-size: 40px;text-shadow: 2px 2px 4px #000000;">
+          Pending Order List</h1>
       </div>
       <div class="container mb-4">
         <div class="row">
-          <div v-for="(item, index) in pendingOrders" :key="index"  class="col-lg-4 col-md-6 mb-4">
+          <div v-for="(item, index) in pendingOrders" :key="index" class="col-lg-4 col-md-6 mb-4">
             <div class="card" @click="viewDetails(item.inv)" style="border-radius:25px">
               <div class="card-body">
                 <p class="mb-0 float-right text-danger font-weight-bold">Pending</p>
@@ -23,6 +26,13 @@
           </div>
         </div>
       </div>
+    </div>
+    <div v-else>
+      <div class="container py-4 d-flex justify-content-center" style="height:50vh">
+        <h1 class="text-white text-center my-auto font-rubik" style="font-size: 40px;text-shadow: 2px 2px 4px #000000;">
+          You have no item on your cart</h1>
+      </div>
+    </div>
     <cFooter />
   </div>
 </template>
