@@ -337,7 +337,7 @@ export default {
         gender: '',
         address: '',
         lahir: '',
-        image: '',
+        image: 'defaultUser.png',
         email: ''
       },
       state: false

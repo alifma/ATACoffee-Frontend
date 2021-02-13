@@ -7,8 +7,8 @@
         <h1 class="text-white font-rubik" style="font-size: 40px;text-shadow: 2px 2px 4px #000000;">Finish your customer order
           now.</h1>
       </div>
-      <p>{{detailHead}}</p>
-      <p>{{detailBody}}</p>
+      <!-- <p>{{detailHead}}</p> -->
+      <!-- <p>{{detailBody}}</p> -->
       <div class="container mb-4">
         <div class="row">
           <div class="col-md-12 col-lg-6">
@@ -92,8 +92,8 @@
                 </b-form-group>
               </div>
             </div>
-            <button class="btn btn-brown w-100 mt-4"
-              style="font-size:20px;border-radius:25px;height:60px">Confirm and Pay</button>
+            <button @click="updateDetail()" class="btn btn-brown w-100 mt-4"
+              style="font-size:20px;border-radius:25px;height:60px">Mark as done</button>
           </div>
         </div>
       </div>
@@ -125,18 +125,37 @@ export default {
       detailBody: 'orders/getDetailOrdersBody',
       tax: 'orders/tax',
       totalPrice: 'orders/totalPrice',
-      shipping: 'orders/shipping'
+      shipping: 'orders/shipping',
+      cashier: 'auth/getUserName'
     })
   },
   methods: {
     ...mapActions({
-      getDetailAction: 'orders/actionGetDetailOrders'
+      getDetailAction: 'orders/actionGetDetailOrders',
+      updateDetailAction: 'orders/updateOrders'
     }),
     getDetail () {
       this.getDetailAction(this.inv)
         .then((response) => {
           this.paymentType = response.data.head[0].paymentType
           console.log(response)
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    },
+    updateDetail () {
+      const fixData = {
+        inv: this.inv,
+        info: {
+          cashierName: this.cashier,
+          isPending: 0
+        }
+      }
+      this.updateDetailAction(fixData)
+        .then((res) => {
+          console.log(res)
+          this.$router.push('/waitinglist')
         })
         .catch((err) => {
           console.log(err)
