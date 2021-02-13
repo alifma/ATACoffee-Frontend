@@ -61,10 +61,10 @@
       <section class="main-menu" id="main-menu">
         <div class="row mb-5">
           <div class="col-md-12">
-            <span @click="setOrderQuery('')" class="bt-favorite bt-active mr-5">
+            <span @click="setProductQuery('')" class="bt-favorite bt-active mr-5">
               Favorite Product
             </span>
-            <span v-for="(item, index) in categories" :key="index" @click="setOrderQuery(item.value)" class="bt-vcoffe ml-4 mr-5">{{item.text}}</span>
+            <span v-for="(item, index) in categories" :key="index" @click="setProductQuery(item.value)" class="bt-vcoffe ml-4 mr-5">{{item.text}}</span>
             <!-- <span @click="vnoncoffe()" class="bt-vnoncoffe ml-4 mr-5"
               >Non Coffee</span
             >
@@ -179,7 +179,7 @@ export default {
     addnewproduct () {
       this.$router.push('/product/add')
     },
-    setOrderQuery (id) {
+    setProductQuery (id) {
       this.productQuery.category = id
       console.log(this.productQuery)
       this.getAllProduct(this.productQuery)

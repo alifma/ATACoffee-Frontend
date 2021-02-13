@@ -36,7 +36,6 @@ const moduleOrders = {
   },
   actions: {
     actionGetAllOrders (context, data) {
-      console.log(data)
       axios.get(`${context.state.apiURL}/orders?limit=${data.limit}&user=${data.user}`, { headers: { token: context.state.dataTesting.token } }).then((response) => {
         context.commit('setAllOrders', response.data.data)
       }).catch((error) => {

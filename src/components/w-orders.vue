@@ -108,7 +108,8 @@ export default {
   },
   computed: {
     ...mapGetters({
-      orders: 'orders/getAllOrders'
+      orders: 'orders/getAllOrders',
+      userID: 'auth/getUserID'
     })
   },
   methods: {
@@ -120,6 +121,8 @@ export default {
     }
   },
   mounted () {
+    this.orderQuery.user = Number(this.userID)
+    this.orderQuery.pending = 0
     this.getOrders(this.orderQuery)
   }
 }
