@@ -7,8 +7,6 @@
         <h1 class="text-white font-rubik" style="font-size: 40px;text-shadow: 2px 2px 4px #000000;">Finish your customer order
           now.</h1>
       </div>
-      <!-- <p>{{detailHead}}</p> -->
-      <!-- <p>{{detailBody}}</p> -->
       <div class="container mb-4">
         <div class="row">
           <div class="col-md-12 col-lg-6">
@@ -145,6 +143,7 @@ export default {
         })
     },
     updateDetail () {
+      this.swalLoading('Updating Data ...')
       const fixData = {
         inv: this.inv,
         info: {
@@ -154,10 +153,15 @@ export default {
       }
       this.updateDetailAction(fixData)
         .then((res) => {
-          console.log(res)
-          this.$router.push('/waitinglist')
+          if (res.code === 200) {
+            this.$swal.close()
+            this.swalAlert('Success', 'Payment Confirmed', 'success')
+            this.$router.push('/waitinglist')
+          }
         })
         .catch((err) => {
+          this.$swal.close()
+          this.swalAlert('Confirm Payment Failed', 'err.message', 'Error')
           console.log(err)
         })
     }
