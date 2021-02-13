@@ -11,20 +11,47 @@
         <div class="row">
           <div class="col-md-3 mt-5">
             <div class="card-fotoprofile">
-              <img
-                src="../assets/img/f-profile.png"
-                class="img-f-profile mt-5"
-                alt="foto profile"
-              />
+              <div v-if="getUserDetail.image === 'default.png'">
+                <img
+                  src="../assets/img/f-profile.png"
+                  class="img-f-profile mt-5"
+                  alt="foto profile"
+                />
+              </div>
+              <div v-else>
+                <img
+                  :src="`http://52.91.116.102:3001/image/${getUserDetail.image}`"
+                  class="img-f-profile mt-5"
+                  alt="foto profile"
+                />
+              </div>
+              <span @click="btnChangeFoto()" class="icon-edit-cupon post-img"
+                ><i class="fas fa-pencil-alt"></i
+              ></span>
               <div class="card-body">
-                <h5 class="card-title font-rubik" style="font-size: 2rem">
-                  Zulaikha
-                </h5>
+                <div v-show="state === true">
+                  <input
+                    @change="processFile($event)"
+                    type="file"
+                    class="font-poppins w-70 ml-5 mb-n4"
+                    style="font-size: 12px"
+                  />
+                </div>
+                <div v-if="getUserDetail.username != null">
+                  <h5 class="card-title font-rubik" style="font-size: 2rem">
+                    {{ getUserDetail.username }}
+                  </h5>
+                </div>
+                <div v-else>
+                  <h5 class="card-title font-rubik" style="font-size: 2rem">
+                    Username
+                  </h5>
+                </div>
                 <h6
                   class="card-subtitle mb-2 text-muted font-rubik"
                   style="font-size: 0.8rem"
                 >
-                  zulaikha17@gmail.com
+                  {{ formContact.email }}
                 </h6>
                 <p class="card-text mt-5">Has been ordered 15 products</p>
               </div>
@@ -64,16 +91,16 @@
                     v-model="formContact.email"
                     class="font-poppins contacBorder w-100"
                     type="text"
-                    placeholder="zulaikha17@gmail.com"
+                    placeholder="Edit your email"
                     id="email-contact"
                   />
                 </div>
                 <div class="col-md-6">
                   <input
-                    v-model="formContact.mobilephone"
+                    v-model="formContact.handphone"
                     class="font-poppins contacBorder w-100"
                     type="text"
-                    placeholder="(+62)813456782"
+                    placeholder="Edit your mobile phone (+62)"
                     id="mobile-contact"
                   />
                 </div>
@@ -89,7 +116,7 @@
                     v-model="formContact.address"
                     class="font-poppins contacBorder w-100"
                     type="text"
-                    placeholder="Iskandar Street no. 67 Block A Near Bus Stop"
+                    placeholder="Edit your address"
                     id="address-contact"
                   />
                 </div>
@@ -132,19 +159,20 @@
               <div class="row">
                 <div class="col-md-7">
                   <input
-                    v-model="formDetails.username"
+                    v-model="formContact.username"
                     class="font-poppins contacBorder w-100"
                     type="text"
-                    placeholder="Input user name"
+                    placeholder="Edit user name"
                     id="name-detail"
                   />
                 </div>
                 <div class="col-md-5">
                   <input
-                    v-model="formDetails.date"
-                    class="font-poppins contacBorder w-100"
+                    v-model="formContact.lahir"
                     type="date"
+                    class="font-poppins contacBorder w-100"
                     id="date-detail"
+                    style="background: #fff"
                   />
                 </div>
               </div>
@@ -158,7 +186,7 @@
                 <div class="col-md-5">
                   <div class="form-check">
                     <input
-                      v-model="formDetails.gender"
+                      v-model="formContact.gender"
                       class="form-check-input"
                       type="radio"
                       name="exampleRadios"
@@ -170,7 +198,7 @@
                   </div>
                   <div class="form-check">
                     <input
-                      v-model="formDetails.gender"
+                      v-model="formContact.gender"
                       class="form-check-input"
                       type="radio"
                       name="exampleRadios"
@@ -188,11 +216,11 @@
               <div class="row">
                 <div class="col-md-7">
                   <input
-                    v-model="formDetails.firstname"
+                    v-model="formContact.firstname"
                     class="font-poppins contacBorder w-100"
                     type="text"
                     id="first-name-detail"
-                    placeholder="Input frist name"
+                    placeholder="Edit frist name"
                   />
                 </div>
               </div>
@@ -204,11 +232,11 @@
                 </div>
                 <div class="col-md-7">
                   <input
-                    v-model="formDetails.lastname"
+                    v-model="formContact.lastname"
                     class="font-poppins contacBorder w-100"
                     type="text"
                     id="last-name-detail"
-                    placeholder="Input last name"
+                    placeholder="Edit last name"
                   />
                 </div>
               </div>
@@ -297,32 +325,39 @@
 <script>
 import cheader from '../components/headers'
 import cfooter from '../components/footers'
-import { mapActions } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 export default {
   data () {
     return {
       formContact: {
-        email: '',
-        mobilephone: '',
-        address: ''
-      },
-      formDetails: {
         username: '',
         firstname: '',
         lastname: '',
-        date: '',
-        gender: ''
-      }
+        handphone: '',
+        gender: '',
+        address: '',
+        lahir: '',
+        image: '',
+        email: ''
+      },
+      state: false
     }
   },
   components: {
     cheader,
     cfooter
   },
+  computed: {
+    ...mapGetters({
+      getUserID: 'auth/getUserID',
+      getUserDetail: 'auth/getUserDetail'
+    })
+  },
   methods: {
     ...mapActions({
       signout: 'auth/logout',
-      actionGetProfile: 'auth/getProfile'
+      actionGetProfile: 'auth/getProfile',
+      actionPostProfile: 'auth/postProfile'
     }),
     logout () {
       this.signout().then((response) => {
@@ -331,30 +366,76 @@ export default {
         }
       })
     },
+    btnChangeFoto () {
+      this.state = !this.state
+    },
+    processFile (el) {
+      this.formContact.image = el.target.files[0]
+    },
     savechange () {
-      alert('save change')
+      // console.log(this.formContact)
+      const fd = new FormData()
+      fd.append('name', `${this.formContact.firstname} ${this.formContact.lastname}`)
+      fd.append('username', this.formContact.username)
+      fd.append('firstname', this.formContact.firstname)
+      fd.append('lastname', this.formContact.lastname)
+      fd.append('handphone', this.formContact.handphone)
+      fd.append('gender', this.formContact.gender)
+      fd.append('address', this.formContact.address)
+      fd.append('lahir', this.formContact.lahir)
+      fd.append('image', this.formContact.image)
+      fd.append('email', this.formContact.email)
+      this.actionPostProfile(fd).then((response) => {
+        this.actionGetProfile()
+        this.state = false
+        this.$swal(response, '', 'success')
+      }).catch('')
+      // this.$router.push('/product')
     },
     cancel () {
-      alert('Cancel')
+      this.actionGetProfile().then((response) => {
+        this.formContact.email = response.email
+        this.formContact.handphone = response.handphone
+        this.formContact.address = response.address
+        this.formContact.username = response.username
+        this.formContact.firstname = response.firstname
+        this.formContact.lastname = response.lastname
+        if (response.lahir != null) {
+          this.formContact.lahir = response.lahir.substring(0, 10)
+        } else {
+          this.formContact.lahir = ''
+        }
+        this.formContact.gender = response.gender
+        this.formContact.image = response.image
+      })
+      this.$swal('Cancel', '', 'info')
     },
     editPassword () {
       alert('Edit Password')
     },
     btnContact () {
       alert('form data contact')
-      console.log(this.formContact)
     },
     btnDetails () {
       alert('form details contact')
-      console.log(this.formDetails)
     }
   },
   mounted () {
     this.actionGetProfile()
       .then((response) => {
         this.formContact.email = response.email
-        console.log(response)
-        console.log(this.formDetails.email)
+        this.formContact.handphone = response.handphone
+        this.formContact.address = response.address
+        this.formContact.username = response.username
+        this.formContact.firstname = response.firstname
+        this.formContact.lastname = response.lastname
+        if (response.lahir != null) {
+          this.formContact.lahir = response.lahir.substring(0, 10)
+        } else {
+          this.formContact.lahir = ''
+        }
+        this.formContact.gender = response.gender
+        this.formContact.image = response.image
       })
   }
 }
@@ -367,6 +448,11 @@ section.body-profile {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+}
+
+span.post-img {
+  margin-right: 60px;
+  margin-top: 100px;
 }
 
 div.card-fotoprofile {

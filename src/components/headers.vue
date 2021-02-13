@@ -9,11 +9,37 @@
       <div class="collapse navbar-collapse justify-content-center">
         <div class="navbar-nav">
           <router-link class="nav-link" id="link1" to="/">Home</router-link>
-          <router-link class="nav-link" id="link2" to="/product">Product</router-link>
-          <router-link v-if="getAccess != null" class="nav-link" id="link3" to="/checkout">Your Cart</router-link>
-          <router-link v-if="getAccess == 2" class="nav-link" id="link4" to="/orders">History</router-link>
-          <router-link v-if="getAccess == 1" class="nav-link" id="link5" to="/waitinglist">Orders</router-link>
-          <router-link v-if="getAccess == 1" class="nav-link" id="link6" to="/dashboard">Dashboard</router-link>
+          <router-link class="nav-link" id="link2" to="/product"
+            >Product</router-link
+          >
+          <router-link
+            v-if="getAccess != null"
+            class="nav-link"
+            id="link3"
+            to="/checkout"
+            >Your Cart</router-link
+          >
+          <router-link
+            v-if="getAccess == 2"
+            class="nav-link"
+            id="link4"
+            to="/orders"
+            >History</router-link
+          >
+          <router-link
+            v-if="getAccess == 1"
+            class="nav-link"
+            id="link5"
+            to="/waitinglist"
+            >Orders</router-link
+          >
+          <router-link
+            v-if="getAccess == 1"
+            class="nav-link"
+            id="link6"
+            to="/dashboard"
+            >Dashboard</router-link
+          >
         </div>
       </div>
       <div v-if="getAccess != null" class="justify-conten-end">
@@ -55,16 +81,30 @@
           <img src="../assets/img/chat.png" alt="chat" />
         </button>
         <button @click="profile()" style="background: none; border: none">
-          <img
-            style="
-              border-radius: 50%;
-              width: 45px;
-              height: 45px;
-              border: 3px solid #6a4029;
-            "
-            src="../assets/img/f-profile.png"
-            alt=""
-          />
+          <div v-if="getUserDetail.image === 'default.png'">
+            <img
+              src="../assets/img/f-profile.png"
+              style="
+                border-radius: 50%;
+                width: 45px;
+                height: 45px;
+                border: 3px solid #6a4029;
+              "
+              alt="foto profile"
+            />
+          </div>
+          <div v-else>
+            <img
+              :src="`http://52.91.116.102:3001/image/${getUserDetail.image}`"
+              style="
+                border-radius: 50%;
+                width: 45px;
+                height: 45px;
+                border: 3px solid #6a4029;
+              "
+              alt="foto profile"
+            />
+          </div>
         </button>
       </div>
       <div v-else>
@@ -84,7 +124,8 @@ import { mapGetters } from 'vuex'
 export default {
   computed: {
     ...mapGetters({
-      getAccess: 'auth/getAccess'
+      getAccess: 'auth/getAccess',
+      getUserDetail: 'auth/getUserDetail'
     })
   },
   methods: {

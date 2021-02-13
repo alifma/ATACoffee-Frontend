@@ -63,11 +63,23 @@ const moduleAuth = {
       return new Promise((resolve, reject) => {
         axios.get(`http://52.91.116.102:3001/users/${context.state.id}`, { headers: { token: context.state.token } })
           .then((response) => {
+            context.commit('setUserDetail', response.data.data)
             resolve(response.data.data)
           })
           .catch((err) => {
             reject(err)
           })
+      })
+    },
+    postProfile (context, data) {
+      return new Promise((resolve, reject) => {
+        axios.patch(`http://52.91.116.102:3001/users/${context.state.id}`, data, { headers: { token: context.state.token } }).then((response) => {
+          // console.log(data)
+          // context.commit('setUserDetail', data)
+          resolve(response.data.msg)
+        }).catch((err) => {
+          reject(err)
+        })
       })
     }
   },
