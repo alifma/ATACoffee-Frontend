@@ -6,6 +6,7 @@ const moduleOrders = {
       apiURL: 'http://52.91.116.102:3001',
       orders: [],
       pendingOrders: [],
+      pendingPagination: [],
       userOrders: [],
       dataTesting: {
         id: 7,
@@ -28,7 +29,8 @@ const moduleOrders = {
       state.detailOrdersBody = payload
     },
     setPendingOrders (state, payload) {
-      state.pendingOrders = payload
+      state.pendingOrders = payload.data
+      state.pendingPagination = payload.pagination
     },
     setUserOrders (state, payload) {
       state.userOrders = payload
@@ -38,6 +40,13 @@ const moduleOrders = {
     actionGetAllOrders (context, data) {
       axios.get(`${context.state.apiURL}/orders?limit=${data.limit}&user=${data.user}&pending=${data.pending}`, { headers: { token: context.state.dataTesting.token } }).then((response) => {
         context.commit('setAllOrders', response.data.data)
+      }).catch((error) => {
+        console.log(error)
+      })
+    },
+    actionGetPendingOrders (context, data) {
+      axios.get(`${context.state.apiURL}/orders?limit=${data.limit}&pending=1`, { headers: { token: context.state.dataTesting.token } }).then((response) => {
+        context.commit('setPendingOrders', response.data)
       }).catch((error) => {
         console.log(error)
       })
@@ -72,7 +81,9 @@ const moduleOrders = {
     },
     getDetailOrdersBody (state) {
       return state.detailOrdersBody
-    }
+    },
+    getPendingOrders: state => state.pendingOrders,
+    getPendingPagination: state => state.pendingPagination
   }
 }
 export default moduleOrders

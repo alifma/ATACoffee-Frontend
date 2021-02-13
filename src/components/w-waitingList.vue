@@ -6,14 +6,20 @@
       </div>
       <div class="container mb-4">
         <div class="row">
-          <div class="col-lg-4 col-md-6 mb-4">
+          <div v-for="(item, index) in pendingOrders" :key="index"  class="col-lg-4 col-md-6 mb-4">
             <div class="card" style="border-radius:25px">
               <div class="card-body">
                 <p class="mb-0 float-right text-danger font-weight-bold">Pending</p>
-                <h5 class="font-weight-bold font-poppins">#260598</h5>
-                <p class="mb-0" style="text-align:right">Customer : Mang Jaja</p>
+                <h5 class="font-weight-bold font-poppins">#{{item.inv}}</h5>
+                <p class="mb-0" style="text-align:right">Customer : {{item.customer}}</p>
               </div>
             </div>
+          </div>
+        </div>
+        <div class="card row" style="border-radius:25px">
+          <div class="card-body col w-100 d-flex">
+            <h5 class="font-weight-bold">Page</h5>
+            <p class="mb-0 d-inline" v-for="(item, index) in pendingPagination.totalPages" :key="index">{{item}}</p>
           </div>
         </div>
       </div>
@@ -24,10 +30,28 @@
 <script>
 import cHeader from '../components/headers'
 import cFooter from '../components/footers'
+import { mapGetters, mapActions } from 'vuex'
+import { mixins } from '../helpers/mixin'
 export default {
+  mixins: [mixins],
   components: {
     cHeader,
     cFooter
+  },
+  methods: {
+    ...mapActions({
+      actionGetPending: 'orders/actionGetPendingOrders'
+    })
+  },
+  computed: {
+    ...mapGetters({
+      pendingOrders: 'orders/getPendingOrders',
+      pendingPagination: 'orders/getPendingPagination'
+    })
+  },
+  mounted () {
+    this.actionGetPending(this.pendingQuery)
+    console.log(this.pendingOrders)
   }
 
 }

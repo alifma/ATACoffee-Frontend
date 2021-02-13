@@ -14,6 +14,11 @@ export const mixins = {
         user: localStorage.getItem('id'),
         pending: ''
       },
+      pendingQuery: {
+        limit: 9,
+        user: localStorage.getItem('id'),
+        page: 1
+      },
       productQuery: {
         limit: 12,
         category: ''
