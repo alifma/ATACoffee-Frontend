@@ -8,7 +8,14 @@ export const mixins = {
         showConfirmButton: false,
         timer: 3000,
         timerProgressBar: true
-      })
+      }),
+      orderQuery: {
+        limit: 9
+      },
+      productQuery: {
+        limit: 12,
+        category: ''
+      }
     }
   },
   methods: {

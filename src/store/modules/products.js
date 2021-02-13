@@ -59,8 +59,8 @@ const moduleProducts = {
           })
       })
     },
-    getAllProduct (context) {
-      axios.get(`${context.state.apiURL}/items?limit=12`, { headers: { token: context.state.dataTesting.token } })
+    getAllProduct (context, data) {
+      axios.get(`${context.state.apiURL}/items?limit=${data.limit}&category=${data.category}`, { headers: { token: context.state.dataTesting.token } })
         .then((response) => {
           context.commit('setAllItems', response.data.data)
         }).catch((err) => {

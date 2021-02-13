@@ -61,15 +61,15 @@
       <section class="main-menu" id="main-menu">
         <div class="row mb-5">
           <div class="col-md-12">
-            <span @click="favoritelist()" class="bt-favorite bt-active mr-5">
+            <span @click="setOrderQuery('')" class="bt-favorite bt-active mr-5">
               Favorite Product
             </span>
-            <span @click="vcoffe()" class="bt-vcoffe ml-4 mr-5">Coffee</span>
-            <span @click="vnoncoffe()" class="bt-vnoncoffe ml-4 mr-5"
+            <span v-for="(item, index) in categories" :key="index" @click="setOrderQuery(item.value)" class="bt-vcoffe ml-4 mr-5">{{item.text}}</span>
+            <!-- <span @click="vnoncoffe()" class="bt-vnoncoffe ml-4 mr-5"
               >Non Coffee</span
             >
             <span @click="vfoods()" class="bt-vfoods ml-4 mr-5">Foods</span>
-            <span @click="vaddon()" class="bt-addon ml-4">Add-on</span>
+            <span @click="vaddon()" class="bt-addon ml-4">Add-on</span> -->
           </div>
         </div>
         <!-- menu -->
@@ -137,12 +137,14 @@ export default {
   computed: {
     ...mapGetters({
       getAccess: 'auth/getAccess',
-      allitems: 'products/allitems'
+      allitems: 'products/allitems',
+      categories: 'categories/categories'
     })
   },
   methods: {
     ...mapActions({
-      getAllProduct: 'products/getAllProduct'
+      getAllProduct: 'products/getAllProduct',
+      getCategories: 'categories/getCategories'
     }),
     editProduct (id) {
       this.$router.push(`/product/${id}/edit`)
@@ -176,10 +178,16 @@ export default {
     },
     addnewproduct () {
       this.$router.push('/product/add')
+    },
+    setOrderQuery (id) {
+      this.productQuery.category = id
+      console.log(this.productQuery)
+      this.getAllProduct(this.productQuery)
     }
   },
   mounted () {
-    this.getAllProduct()
+    this.getAllProduct(this.productQuery)
+    this.getCategories()
   }
 }
 </script>

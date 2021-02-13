@@ -27,9 +27,9 @@ const moduleOrders = {
     }
   },
   actions: {
-    actionGetAllOrders (context) {
-      axios.get('http://52.91.116.102:3001/orders', { headers: { token: context.state.dataTesting.token } }).then((response) => {
-        console.log(response.data.data)
+    actionGetAllOrders (context, data) {
+      console.log(data)
+      axios.get(`${context.state.apiURL}/orders?limit=${data.limit}`, { headers: { token: context.state.dataTesting.token } }).then((response) => {
         context.commit('setAllOrders', response.data.data)
       }).catch((error) => {
         console.log(error)
