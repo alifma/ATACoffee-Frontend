@@ -12,7 +12,12 @@ export const mixins = {
       orderQuery: {
         limit: 9,
         user: localStorage.getItem('id'),
-        pending: 1
+        pending: ''
+      },
+      pendingQuery: {
+        limit: 9,
+        user: localStorage.getItem('id'),
+        page: 1
       },
       productQuery: {
         limit: 12,
