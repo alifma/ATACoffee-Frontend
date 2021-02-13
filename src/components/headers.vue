@@ -9,13 +9,11 @@
       <div class="collapse navbar-collapse justify-content-center">
         <div class="navbar-nav">
           <router-link class="nav-link" id="link1" to="/">Home</router-link>
-          <router-link class="nav-link" id="link2" to="/product"
-            >Product</router-link
-          >
-          <router-link class="nav-link" id="link3" to="/checkout"
-            >Your Cart</router-link
-          >
-          <router-link class="nav-link" id="link4" to="/orders">History</router-link>
+          <router-link class="nav-link" id="link2" to="/product">Product</router-link>
+          <router-link v-if="getAccess == 2" class="nav-link" id="link3" to="/checkout">Your Cart</router-link>
+          <router-link v-if="getAccess == 2" class="nav-link" id="link4" to="/orders">History</router-link>
+          <router-link v-if="getAccess == 1" class="nav-link" id="link5" to="/waitinglist">Orders</router-link>
+          <router-link v-if="getAccess == 1" class="nav-link" id="link6" to="/dashboard">Dashboard</router-link>
         </div>
       </div>
       <div v-if="getAccess != null" class="justify-conten-end">
