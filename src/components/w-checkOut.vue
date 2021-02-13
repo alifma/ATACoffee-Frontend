@@ -67,7 +67,7 @@
             <div class="card" style="border-radius:25px">
               <div class="card-body p-4 my-2">
                 <b-form-group>
-                  <b-form-radio-group v-model="headOrder.paymentMethod" :options="headOrder.paymentOptions" size="lg" plain stacked>
+                  <b-form-radio-group v-model="headOrder.paymentType" :options="headOrder.paymentOptions" size="lg" plain stacked>
                   </b-form-radio-group>
                 </b-form-group>
               </div>
@@ -84,7 +84,7 @@
 <script>
 import cHeader from '../components/headers'
 import cFooter from '../components/footers'
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 import { mixins } from '../helpers/mixin'
 export default {
   mixins: [mixins],
@@ -92,7 +92,7 @@ export default {
     return {
       headOrder: {
         inv: 0,
-        paymentMethod: '',
+        paymentType: '',
         paymentOptions: ['Card', 'Bank Account', 'Cash on Delivery']
       }
     }
@@ -110,6 +110,9 @@ export default {
     })
   },
   methods: {
+    ...mapActions({
+      actionOrderPost: 'orders/createOrders'
+    }),
     generateInv () {
       const invBase = Math.floor((Math.random() * 1000) + 1)
       let prefix = invBase + ''
@@ -126,10 +129,22 @@ export default {
       this.generateInv()
       const finalData = this.cart.map((i) => ({
         ...i,
-        paymentMethod: this.headOrder.paymentMethod,
-        inv: this.headOrder
+        paymentType: this.headOrder.paymentType,
+        inv: this.headOrder.inv
       }))
       console.log(finalData)
+      this.actionOrderPost(finalData)
+        .then((response) => {
+          console.log(response)
+          // if (response.code === 200) {
+          //   this.swalAlert('Checkout Success', 'Please wait for your orders :)', 'success')
+          // } else {
+          //   this.swalAlert('Checkout Error', response.msg, 'error')
+          // }
+        })
+        .catch((err) => {
+          console.log(err)
+        })
     }
   }
 }

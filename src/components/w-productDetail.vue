@@ -206,29 +206,34 @@ export default {
       this.fixCart = []
     },
     buildCheckoutData () {
-      const checkoutData = this.fixCart.map((i) => ({
-        userID: this.userID,
-        userName: this.userName,
-        itemName: i.itemName,
-        itemImage: i.itemImage,
-        size: i.size,
-        amount: i.amount,
-        price: i.price,
-        orderType: this.cartHolder.orderType,
-        orderDetails: this.cartHolder.orderDetails,
-        orderPhone: 0
-      }))
-      this.addCartAction(checkoutData)
-      // .then((response) => {
-      //   console.log(response)
-      // })
-      // .catch((err) => {
-      //   console.log(err)
-      // })
-      /*
-      "inv":102070,
-      "paymentType" : "OVO"
-      */
+      if (!this.cartHolder.orderType || !this.cartHolder.orderDetails) {
+        this.swalAlert('Add Checkout Error', 'You should choose delivery type and order details', 'error')
+      } else {
+        const checkoutData = this.fixCart.map((i) => ({
+          userID: this.userID,
+          userName: this.userName,
+          itemName: i.itemName,
+          itemImage: i.itemImage,
+          size: i.size,
+          amount: i.amount,
+          price: i.price,
+          orderType: this.cartHolder.orderType,
+          orderDetails: this.cartHolder.orderDetails,
+          orderPhone: 0
+        }))
+        this.addCartAction(checkoutData)
+        this.swalAlert('Success', 'This item is now on your cart', 'success')
+        // .then((response) => {
+        //   console.log(response)
+        // })
+        // .catch((err) => {
+        //   console.log(err)
+        // })
+        /*
+        "inv":102070,
+        "paymentType" : "OVO"
+        */
+      }
     }
   },
   mounted () {

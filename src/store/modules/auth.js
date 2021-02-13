@@ -6,7 +6,8 @@ const moduleAuth = {
       token: localStorage.getItem('token') || null,
       access: localStorage.getItem('access') || null,
       name: localStorage.getItem('name') || '',
-      id: localStorage.getItem('id') || null
+      id: localStorage.getItem('id') || null,
+      userDetails: {}
     }
   },
   mutations: {
@@ -21,6 +22,9 @@ const moduleAuth = {
     },
     setId (state, payload) {
       state.id = payload
+    },
+    setUserDetail (state, payload) {
+      state.userDetails = payload
     }
   },
   actions: {
@@ -54,12 +58,24 @@ const moduleAuth = {
         context.commit('setId', null)
         resolve(true)
       })
+    },
+    getProfile (context) {
+      return new Promise((resolve, reject) => {
+        axios.get(`http://52.91.116.102:3001/users/${context.state.id}`, { headers: { token: context.state.token } })
+          .then((response) => {
+            resolve(response.data.data)
+          })
+          .catch((err) => {
+            reject(err)
+          })
+      })
     }
   },
   getters: {
     getAccess: state => state.access,
     getUserName: state => state.name,
-    getUserID: state => state.id
+    getUserID: state => state.id,
+    getUserDetail: state => state.userDetails
   }
 }
 export default moduleAuth

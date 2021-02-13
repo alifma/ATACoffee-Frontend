@@ -3,6 +3,7 @@ const moduleOrders = {
   namespaced: true,
   state: () => {
     return {
+      apiURL: 'http://52.91.116.102:3001',
       orders: '',
       dataTesting: {
         id: 7,
@@ -24,6 +25,17 @@ const moduleOrders = {
         context.commit('setAllOrders', response.data.data)
       }).catch((error) => {
         console.log(error)
+      })
+    },
+    createOrders (context, data) {
+      return new Promise((resolve, reject) => {
+        axios.post(`${context.state.apiURL}/orders/`, data, { headers: { token: context.rootState.auth.token } })
+          .then((response) => {
+            resolve(response.data)
+          })
+          .catch((err) => {
+            reject(err)
+          })
       })
     }
   },
