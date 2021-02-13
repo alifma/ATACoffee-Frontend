@@ -42,7 +42,7 @@ const routes = [
     path: '/product',
     name: 'Product',
     component: Product,
-    meta: { auth: true }
+    meta: { auth: false }
   },
   {
     path: '/product/add',
@@ -144,18 +144,18 @@ router.beforeEach((to, from, next) => {
       })
     }
   } else {
-    if (store.getters['auth/getToken']) {
-      Swal.fire({
-        icon: 'info',
-        title: '',
-        text: 'You already logged in!'
-      })
-      next({
-        path: '/product'
-      })
-    } else {
-      next()
-    }
+    // if (store.getters['auth/getToken']) {
+    //   Swal.fire({
+    //     icon: 'info',
+    //     title: '',
+    //     text: 'You already logged in!'
+    //   })
+    //   next({
+    //     path: '/product'
+    //   })
+    // } else {
+    next()
+    // }
   }
 })
 
