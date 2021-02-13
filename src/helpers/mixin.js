@@ -10,7 +10,9 @@ export const mixins = {
         timerProgressBar: true
       }),
       orderQuery: {
-        limit: 9
+        limit: 9,
+        user: localStorage.getItem('id'),
+        pending: 0
       },
       productQuery: {
         limit: 12,
