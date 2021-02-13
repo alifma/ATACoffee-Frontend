@@ -18,7 +18,8 @@ const moduleProducts = {
         access: 1,
         token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywiZW1haWwiOiJhZG1pbkBhdGFjLmNvbSIsImFjY2VzcyI6MSwiaWF0IjoxNjEzMDQwNDM0fQ.FGOETBx3rxQej09x9m2BSxrRg9gEbu_GDPm3aKuiWVY'
       },
-      listItems: []
+      listItems: [],
+      paginationItem: []
     }
   },
   mutations: {
@@ -32,7 +33,8 @@ const moduleProducts = {
       state.detail.size = payload.size.split(',')
     },
     setAllItems (state, payload) {
-      state.listItems = payload
+      state.listItems = payload.data
+      state.paginationItem = payload.pagination
     }
   },
   actions: {
@@ -60,9 +62,9 @@ const moduleProducts = {
       })
     },
     getAllProduct (context, data) {
-      axios.get(`${context.state.apiURL}/items?limit=${data.limit}&category=${data.category}`, { headers: { token: context.state.dataTesting.token } })
+      axios.get(`${context.state.apiURL}/items?limit=${data.limit}&category=${data.category}&page=${data.page}&name=${data.name}`, { headers: { token: context.state.dataTesting.token } })
         .then((response) => {
-          context.commit('setAllItems', response.data.data)
+          context.commit('setAllItems', response.data)
         }).catch((err) => {
           console.log(err)
         })
@@ -92,7 +94,8 @@ const moduleProducts = {
   },
   getters: {
     detail: state => state.detail,
-    allitems: state => state.listItems
+    allitems: state => state.listItems,
+    paginationItem: state => state.paginationItem
   }
 }
 export default moduleProducts

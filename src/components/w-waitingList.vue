@@ -30,7 +30,8 @@
     <div v-else>
       <div class="container py-4 d-flex justify-content-center" style="height:50vh">
         <h1 class="text-white text-center my-auto font-rubik" style="font-size: 40px;text-shadow: 2px 2px 4px #000000;">
-          You have no item on your cart</h1>
+          Everythings Clear!<br/>
+          There Are No Pending Orders</h1>
       </div>
     </div>
     <cFooter />
@@ -64,7 +65,6 @@ export default {
   },
   mounted () {
     this.actionGetPending(this.pendingQuery)
-    console.log(this.pendingOrders)
   }
 }
 </script>

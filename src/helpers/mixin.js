@@ -2,6 +2,7 @@ import Swal from 'sweetalert2'
 export const mixins = {
   data () {
     return {
+      toggleSearch: false,
       Toast: Swal.mixin({
         toast: true,
         position: 'top',
@@ -20,8 +21,10 @@ export const mixins = {
         page: 1
       },
       productQuery: {
-        limit: 12,
-        category: ''
+        limit: 4,
+        category: '',
+        page: 1,
+        name: ''
       }
     }
   },

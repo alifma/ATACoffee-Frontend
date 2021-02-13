@@ -42,9 +42,10 @@
           >
         </div>
       </div>
-      <div v-if="getAccess != null" class="justify-conten-end">
+      <div v-if="getAccess != null" class="justify-content-end">
+        <input v-if="toggleSearch" type="text" style="width:100px">
         <button
-          @click="search()"
+          @click="toggleSearch = !toggleSearch"
           style="
             border: none;
             background: none;
@@ -121,7 +122,9 @@
 </template>
 <script>
 import { mapGetters } from 'vuex'
+import { mixins } from '../helpers/mixin'
 export default {
+  mixins: [mixins],
   computed: {
     ...mapGetters({
       getAccess: 'auth/getAccess',

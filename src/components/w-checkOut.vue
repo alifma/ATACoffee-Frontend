@@ -1,8 +1,7 @@
 <template>
-  <div>
+  <div style="background-image: url('https://i.ibb.co/jwqkCjf/bg-Checkout.png');background-repeat: no-repeat;background-position: center;">
     <cHeader />
-    <div class="pb-4"
-      style="background-image: url('https://i.ibb.co/jwqkCjf/bg-Checkout.png');background-repeat: no-repeat;background-position: center;">
+    <div>
       <div v-if="cart[0].itemName !== ''">
         <div class="container py-4">
           <h1 class="text-white font-rubik" style="font-size: 40px;text-shadow: 2px 2px 4px #000000;">Checkout your item

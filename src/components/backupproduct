@@ -2,14 +2,14 @@
   <div>
     <!-- header -->
     <cHeader />
-    <div class="container-bars">
-      <!-- aside left -->
-      <aside class="left" id="side-left">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 col-md-4">
+        <aside class="left" id="side-left">
         <h3 class="title-aside-promo">Promo for you</h3>
         <p class="info-aside-promo">
           Coupons will be updated every weeks. Check them out!
         </p>
-        <!-- box menu promo -->
         <section class="box-aside-menu" id="aside-menu3">KETIGA</section>
         <section class="box-aside-menu" id="aside-menu2">KEDUA</section>
         <section class="box-aside-menu" id="aside-menu1">
@@ -33,7 +33,6 @@
           <button @click="btnCuppon()" class="btn btn-cupon mt-5">
             Apply Coupon
           </button>
-          <!-- info foot aside -->
           <p class="msg-cupon">Terms and Condition</p>
           <ul class="list-msg-cupon ml-n4">
             <li class="txt-msg-cupon">
@@ -45,7 +44,6 @@
               4. Should make member card to apply coupon
             </li>
           </ul>
-          <!-- button admin -->
           <button
             v-if="getAccess == 1"
             @click="addpromo()"
@@ -54,20 +52,66 @@
             Add New Promo
           </button>
         </section>
-        <!-- end box menu promo -->
       </aside>
-      <!-- and aside left -->
-      <!-- main menu -->
-      <section class="main-menu" id="main-menu">
-        <div class="row mb-5">
-          <div class="col-md-12">
-            <span @click="setProductCategory('')" class="bt-favorite bt-active mr-5">
-              Favorite Product
-            </span>
-            <span v-for="(item, index) in categories" :key="index" @click="setProductCategory(item.value)" class="bt-vcoffe ml-4 mr-5">{{item.text}}</span>
+        </div>
+        <div class="col-lg-8 col-md-8" style="border-left:1px solid #E6E5E4">
+          <div class="row my-5">
+            <div class="col-md-12">
+              <span @click="setProductQuery('')" class="bt-favorite bt-active mr-5">
+                Favorite Product
+              </span>
+              <span v-for="(item, index) in categories" :key="index" @click="setProductQuery(item.value)"
+                class="ml-4 mr-5">{{item.text}}</span>
+            </div>
+          </div>
+          <div class="row">
+          <div
+            class="col-md-3 mt-5 mb-4"
+            v-for="(element, index) in allitems"
+            :key="index"
+          >
+            <div class="card-menu">
+              <img
+                @click="detailProduct(element.id)"
+                :src="`http://52.91.116.102:3001/image/${element.image}`"
+                alt=""
+                class="img-menus"
+              />
+              <div class="card-body">
+                <h5 class="card-title-menus mt-n3">{{ element.name }}</h5>
+                <h6 class="card-subtitle-menus mb-2">
+                  IDR {{ formatPrice(element.price) }}
+                </h6>
+                <span
+                  v-if="getAccess == 1"
+                  @click="editProduct(element.id)"
+                  class="icon-edit-menus"
+                  ><i class="fas fa-pencil-alt"></i
+                ></span>
+              </div>
+            </div>
           </div>
         </div>
-        <!-- menu -->
+        <div class="row mt-4">
+        <div class="col-md-12" v-if="getAccess == 1">
+          <button @click="addnewproduct()" class="btn btn-add-new-product">
+            Add New Product
+          </button>
+        </div>
+      </div>
+        </div>
+      </div>
+      <!-- aside left -->
+      <!-- main menu -->
+      <!-- <section class="main-menu" id="main-menu">
+        <div class="row mb-5">
+          <div class="col-md-12">
+            <span @click="setProductQuery('')" class="bt-favorite bt-active mr-5">
+              Favorite Product
+            </span>
+            <span v-for="(item, index) in categories" :key="index" @click="setProductQuery(item.value)" class="bt-vcoffe ml-4 mr-5">{{item.text}}</span>
+          </div>
+        </div>
         <div class="row">
           <div
             class="col-md-3 mt-5 mb-4"
@@ -96,22 +140,10 @@
             </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col-3 d-flex justify-content-left">
-            <p class="mb-0 my-auto">Current Page : {{productQuery.page}} </p></div>
-          <div class="col-6 d-flex justify-content-center">
-            <p class="mb-0 my-auto">Select Page : </p>
-            <p v-for="(index, page) in pagination.pageResult" :key="index" class="mb-0 btn btn-warning mx-2" @click="setProductPage(page+1)">{{page+1}}</p>
-          </div>
-          <div class="col-3">
-            <b-form-select v-model="productQuery.limit" @change="setProductCategory('')" size="sm" :options="options"></b-form-select>
-          </div>
-        </div>
-        <!-- menu -->
-      </section>
+      </section> -->
       <!-- end main menu -->
-    </div>
-    <section class="button-add">
+    <!-- </div> -->
+    <!-- <section class="button-add">
       <div class="row">
         <div class="col-md-12" v-if="getAccess == 1">
           <button @click="addnewproduct()" class="btn btn-add-new-product">
@@ -119,8 +151,9 @@
           </button>
         </div>
       </div>
-    </section>
+    </section> -->
     <!-- footer -->
+    </div>
     <cFooter />
   </div>
 </template>
@@ -133,13 +166,7 @@ export default {
   mixins: [mixins],
   data () {
     return {
-      stateAdmin: false,
-      options: [
-        { value: 4, text: 'Limit 4' },
-        { value: 6, text: 'Limit 6' },
-        { value: 12, text: 'Limit 12' },
-        { value: 16, text: 'Limit 16', disabled: true }
-      ]
+      stateAdmin: false
     }
   },
   components: {
@@ -150,8 +177,7 @@ export default {
     ...mapGetters({
       getAccess: 'auth/getAccess',
       allitems: 'products/allitems',
-      categories: 'categories/categories',
-      pagination: 'products/paginationItem'
+      categories: 'categories/categories'
     })
   },
   methods: {
@@ -192,21 +218,14 @@ export default {
     addnewproduct () {
       this.$router.push('/product/add')
     },
-    setProductCategory (id) {
+    setProductQuery (id) {
       this.productQuery.category = id
-      this.productQuery.page = 1
-      this.getProduct()
-    },
-    setProductPage (page) {
-      this.productQuery.page = page
-      this.getProduct()
-    },
-    getProduct () {
+      console.log(this.productQuery)
       this.getAllProduct(this.productQuery)
     }
   },
   mounted () {
-    this.getProduct()
+    this.getAllProduct(this.productQuery)
     this.getCategories()
   }
 }
