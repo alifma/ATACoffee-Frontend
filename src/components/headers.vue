@@ -168,6 +168,7 @@ export default {
     },
     search () {
       alert('Searching')
+      // this.$router.push('/waitinglist')
     }
   },
   mounted () {
