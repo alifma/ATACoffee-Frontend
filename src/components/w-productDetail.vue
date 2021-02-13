@@ -1,0 +1,252 @@
+<template>
+  <div style="background:#dedede">
+    <cHeader />
+    <div class="container pt-4">
+      <div id="breadcrumb-productDetails" class="d-inline">
+        <router-link to="/product" class="mb-0 text-secondary font-rubik d-inline">Favorite & Promo</router-link>
+        <router-link :to="`/product/${id}`" class="mb-0 font-weight-bold font-active font-rubik d-inline"> > {{detail.name}}</router-link>
+      </div>
+      <div>
+        <div class="row py-4">
+          <div class="col-md-5 col-lg-5 text-center">
+            <img style="width:75%" class="product-rounded" :src="`http://52.91.116.102:3001/image/${detail.image}`" alt="">
+            <div class="mt-4">
+              <h1 class="font-poppins font-weight-bolder">{{detail.name.toUpperCase()}}</h1>
+              <h5 class="font-poppins font-weight-light">IDR {{formatPrice(detail.price)}}</h5>
+            </div>
+          </div>
+          <div class=" col-md-7 col-lg-7">
+            <div class="container h-100">
+              <section class="info-product p-4">
+                <div class="row p-4">
+                  <div class="col">
+                    <p class="font-poppins brown" style="font-size:20px">Delivery only on <b>Monday to friday</b> at
+                      <b>1 - 7 pm</b></p>
+                    <p class="font-poppins brown" style="text-align:justify; font-size:20px;">{{detail.desc}}</p>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col text-center">
+                    <h5 class="font-weight-bolder font-poppins">Choose a size</h5>
+                    <div>
+                      <!-- <button  v-for="(item, index) in detail.size" :key="index" class="btn btn-warning font-weight-bolder font-poppins mx-3 d-inline" style="border-radius:50px;height:50px;width:50px;font-size:15px;line-height:13px">{{item}}</button> -->
+                      <div>
+                        <b-form-group>
+                          <b-form-radio-group v-model="cartHolder.size" :options="detail.size" buttons button-variant="outline-warning"></b-form-radio-group>
+                        </b-form-group>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-5 col-lg-5 text-center">
+            <div style="width:75%" class="mx-auto d-flex flex-column">
+              <button @click="addToCart()" style="font-size:20px;border-radius:25px;height:60px" class="btn mb-3 btn-brown ">Add to Cart</button>
+              <button @click="editProduct()" style="font-size:20px;border-radius:25px;height:60px" class="btn mb-3 btn-yellow ">Edit Product</button>
+              <button @click="deleteConfirm()" style="font-size:20px;border-radius:25px;height:60px" class="btn mb-3 btn-black ">Delete Menu</button>
+            </div>
+          </div>
+          <div class=" col-md-7 col-lg-7">
+            <div class="container">
+              <div class="row">
+                <div class="col text-center">
+                  <h5 class="font-weight-bolder font-poppins mb-4">Choose Delivery Methods</h5>
+                  <div class="row">
+                    <div class="col">
+                      <!-- <button v-for="(item, index) in detail.delivery" :key="index" style="border-radius:10px" class="btn btn-brown font-weight-bolder font-poppins mx-3">{{item}}</button> -->
+                      <b-form-group>
+                          <b-form-radio-group v-model="cartHolder.orderType" :options="detail.delivery" buttons ></b-form-radio-group>
+                      </b-form-group>
+                    </div>
+                  </div>
+                  <div class="row my-4">
+                    <div class="col">
+                      <form class="form-inline ">
+                        <div class="form-group w-75 mx-auto">
+                          <label class="my-1 mr-2 font-poppins">Set Time : </label>
+                          <input v-model="cartHolder.orderDetails" type="text" class="form-control border-none w-75" style=""
+                            placeholder="Enter the time you’ll arrived">
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
+          </div>
+    </div>
+    <!-- Cart Bottom -->
+    <div class="container my-4">
+      <div class="row">
+        <div class="col-1">
+        </div>
+        <div class="col-7">
+          <div class="card shadow-lg" style="border-radius:25px">
+          <!-- Jika ada itemnya -->
+            <div v-if="fixCart.length > 0" class="row no-gutters" style="height:20vh">
+              <div class="col-md-4 text-center my-auto">
+                <img :src="`http://52.91.116.102:3001/image/${detail.image}`" style="height:100px;width:100px"
+                  class="card-img product-rounded">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="mb-0 card-title font-weight-bold">{{detail.name.toUpperCase()}}</h5>
+                  <span @click="clearFixCart()" class="icon-edit-cupon" style="height:30px;width:30px"><i class="fas fa-times"></i></span>
+                <div style="overflow-y:scroll">
+                    <p class="card-text mb-0" v-for="(item, index) in fixCart" :key="index">x{{item.amount}} ({{item.size}})</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <!-- Jika Tidak ada itemnya -->
+          <div v-else style="height:20vh" class="p-4 d-flex justify-content-center">
+            <h5 class="text-center font-poppins font-weight-bold mb-0 my-auto">Click product size to add product</h5>
+          </div>
+          </div>
+        </div>
+        <div class="col-3">
+          <button @click="buildCheckoutData()" style="font-size:20px;border-radius:25px;"
+            class="text-dark w-100 h-100 btn mb-3 btn-yellow shadow-lg ">CHECKOUT</button>
+        </div>
+        <div class="col-1"></div>
+      </div>
+    </div>
+    <cFooter />
+  </div>
+</template>
+
+<script>
+import cHeader from '../components/headers'
+import cFooter from '../components/footers'
+import { mapGetters, mapActions } from 'vuex'
+import { mixins } from '../helpers/mixin'
+export default {
+  mixins: [mixins],
+  data () {
+    return {
+      id: this.$route.params.id,
+      cartHolder: {
+        orderType: '',
+        orderDetails: '',
+        size: ''
+      },
+      fixCart: []
+    }
+  },
+  components: {
+    cHeader,
+    cFooter
+  },
+  computed: {
+    ...mapGetters({
+      detail: 'products/detail',
+      userID: 'auth/getUserID',
+      userName: 'auth/getUserName'
+    })
+  },
+  methods: {
+    ...mapActions({
+      getDetailAction: 'products/getDetail',
+      deleteAction: 'products/deleteProduct',
+      addCartAction: 'carts/addToCart'
+    }),
+    editProduct () {
+      this.$router.push(`/product/${this.id}/edit`)
+    },
+    deleteConfirm () {
+      // this.$swal('Email Not Registered', 'Please Check your Email ', 'error')
+      this.$swal.fire({
+        text: 'Are you Sure want to delete this product?',
+        showCancelButton: true,
+        confirmButtonColor: '#6A4029',
+        cancelButtonColor: '#FFF',
+        confirmButtonText: 'Yes, delete it!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.deleteAction(this.id)
+            .then((res) => {
+              this.$swal('Delete Success', 'Product has been deleted', 'success')
+              this.$router.push('/product')
+            })
+            .catch((err) => {
+              this.$swal('Delete failed', err.message, 'success')
+            })
+        }
+      })
+    },
+    addToCart () {
+      if (this.cartHolder.size.length === 0) {
+        this.swalAlert('Please Select Size', '', 'error')
+      } else {
+        const buildItemCart = {
+          itemName: this.detail.name,
+          itemImage: this.detail.image,
+          size: this.cartHolder.size,
+          price: this.detail.price,
+          amount: 1
+        }
+        const isInCart = this.fixCart.filter((i) => {
+          return i.size === this.cartHolder.size
+        })
+        if (isInCart.length > 0) {
+          isInCart[0].amount += 1
+        } else {
+          this.fixCart.push(buildItemCart)
+        }
+        this.cartHolder.size = ''
+      }
+    },
+    clearFixCart () {
+      this.fixCart = []
+    },
+    buildCheckoutData () {
+      if (this.fixCart.length === 0) {
+        this.swalAlert('Checkout Error', 'Please add Item', 'error')
+      } else if (!this.cartHolder.orderType || !this.cartHolder.orderDetails) {
+        this.swalAlert('Checkout Error', 'You should choose delivery type and order details', 'error')
+      } else {
+        const checkoutData = this.fixCart.map((i) => ({
+          userID: this.userID,
+          userName: this.userName,
+          itemName: i.itemName,
+          itemImage: i.itemImage,
+          size: i.size,
+          amount: i.amount,
+          price: i.price,
+          orderType: this.cartHolder.orderType,
+          orderDetails: this.cartHolder.orderDetails,
+          orderPhone: '0'
+        }))
+        this.addCartAction(checkoutData)
+        this.fixCart = []
+        this.swalAlert('Success', 'This item is now on your cart', 'success')
+        // .then((response) => {
+        //   console.log(response)
+        // })
+        // .catch((err) => {
+        //   console.log(err)
+        // })
+        /*
+        "inv":102070,
+        "paymentType" : "OVO"
+        */
+      }
+    }
+  },
+  mounted () {
+    this.getDetailAction(this.id)
+  }
+}
+</script>
+
+<style scoped>
+.swal2-cancel.swal2-styled {
+  border:1px solid aquamarine;
+}
+</style>
