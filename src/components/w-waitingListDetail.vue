@@ -146,10 +146,8 @@ export default {
   mounted () {
     this.getDetail()
   }
-
 }
 </script>
 
 <style>
-
 </style>
