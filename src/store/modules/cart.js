@@ -16,11 +16,23 @@ const moduleCarts = {
     setCart (state, payload) {
       state.cart = state.cart.filter((item) => (item.price !== 0))
       state.cart = state.cart.concat(payload)
+    },
+    emptyCart (state) {
+      state.cart = [{
+        price: 0,
+        itemName: '',
+        itemImage: 'defaultFood.png',
+        orderType: '',
+        amount: 0
+      }]
     }
   },
   actions: {
     addToCart (context, data) {
       context.commit('setCart', data)
+    },
+    emptyCart (context) {
+      context.commit('emptyCart')
     }
   },
   getters: {

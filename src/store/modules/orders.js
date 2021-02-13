@@ -4,7 +4,9 @@ const moduleOrders = {
   state: () => {
     return {
       apiURL: 'http://52.91.116.102:3001',
-      orders: '',
+      orders: [],
+      pendingOrders: [],
+      userOrders: [],
       dataTesting: {
         id: 7,
         name: 'admin@atac.com',
@@ -16,6 +18,12 @@ const moduleOrders = {
   mutations: {
     setAllOrders (state, payload) {
       state.orders = payload
+    },
+    setPendingOrders (state, payload) {
+      state.pendingOrders = payload
+    },
+    setUserOrders (state, payload) {
+      state.userOrders = payload
     }
   },
   actions: {
