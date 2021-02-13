@@ -150,6 +150,7 @@ export default {
               this.actionEmptYCart()
               this.swalAlert('Checkout Success', '', 'success')
             } else {
+              console.log(response)
               this.swalAlert('Checkout Error', response.msg, 'error')
             }
           })

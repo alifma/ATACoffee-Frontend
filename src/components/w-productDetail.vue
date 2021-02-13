@@ -25,7 +25,7 @@
                     <p class="font-poppins brown" style="text-align:justify; font-size:20px;">{{detail.desc}}</p>
                   </div>
                 </div>
-                <div class="row">
+                <div v-if="userAccess != null" class="row">
                   <div class="col text-center">
                     <h5 class="font-weight-bolder font-poppins">Choose a size</h5>
                     <div>
@@ -44,13 +44,13 @@
         </div>
         <div class="row">
           <div class="col-md-5 col-lg-5 text-center">
-            <div style="width:75%" class="mx-auto d-flex flex-column">
+            <div v-if="userAccess != null" style="width:75%" class="mx-auto d-flex flex-column">
               <button @click="addToCart()" style="font-size:20px;border-radius:25px;height:60px" class="btn mb-3 btn-brown ">Add to Cart</button>
-              <button @click="editProduct()" style="font-size:20px;border-radius:25px;height:60px" class="btn mb-3 btn-yellow ">Edit Product</button>
-              <button @click="deleteConfirm()" style="font-size:20px;border-radius:25px;height:60px" class="btn mb-3 btn-black ">Delete Menu</button>
+              <button v-if="userAccess == 1" @click="editProduct()" style="font-size:20px;border-radius:25px;height:60px" class="btn mb-3 btn-yellow ">Edit Product</button>
+              <button v-if="userAccess == 1" @click="deleteConfirm()" style="font-size:20px;border-radius:25px;height:60px" class="btn mb-3 btn-black ">Delete Menu</button>
             </div>
           </div>
-          <div class=" col-md-7 col-lg-7">
+          <div v-if="userAccess != null" class=" col-md-7 col-lg-7">
             <div class="container">
               <div class="row">
                 <div class="col text-center">
@@ -82,7 +82,7 @@
           </div>
     </div>
     <!-- Cart Bottom -->
-    <div class="container my-4">
+    <div v-if="userAccess != null" class="container my-4">
       <div class="row">
         <div class="col-1">
         </div>
@@ -147,7 +147,8 @@ export default {
     ...mapGetters({
       detail: 'products/detail',
       userID: 'auth/getUserID',
-      userName: 'auth/getUserName'
+      userName: 'auth/getUserName',
+      userAccess: 'auth/getAccess'
     })
   },
   methods: {

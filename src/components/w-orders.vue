@@ -22,8 +22,9 @@
                     >
                       <i class="fas fa-shopping-bag"></i>
                     </button>
-                    <h4 class="fontstyle">Invoice: {{ item.inv }}</h4>
-                    <p class="fontstyle2">Update : {{ item.update_at }}</p>
+                    <h4 class="fontstyle mb-0">Invoice: {{ item.inv }}</h4>
+                    <p class="fontstyle2 mb-0">Update : {{ new Date(item.created_at).toLocaleDateString() }}</p>
+                    <p v-if="item.isPending === 1" class="text-danger font-weight-bold mb-0">Pending</p>
                   </div>
                 </div>
               </div>
@@ -122,7 +123,6 @@ export default {
   },
   mounted () {
     this.orderQuery.user = Number(this.userID)
-    this.orderQuery.pending = 0
     this.getOrders(this.orderQuery)
   }
 }
