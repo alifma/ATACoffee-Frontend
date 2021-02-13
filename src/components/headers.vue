@@ -43,9 +43,9 @@
         </div>
       </div>
       <div v-if="getAccess != null" class="justify-content-end">
-        <input v-if="toggleSearch" type="text" style="width:100px">
+        <input v-model="productQuery.name" @change="getProduct()" v-if="toggleSearch" type="text" id="productNameSearch" style="width:100px">
         <button
-          @click="toggleSearch = !toggleSearch"
+          @click="switchToggle()"
           style="
             border: none;
             background: none;
@@ -82,7 +82,12 @@
           <img src="../assets/img/chat.png" alt="chat" />
         </button>
         <button @click="profile()" style="background: none; border: none">
-          <div v-if="getUserDetail.image === 'default.png'">
+          <div
+            v-if="
+              getUserDetail.image === 'default.png' ||
+              getUserDetail.image === undefined
+            "
+          >
             <img
               src="../assets/img/f-profile.png"
               style="
@@ -103,7 +108,7 @@
                 height: 45px;
                 border: 3px solid #6a4029;
               "
-              alt="foto profile"
+              alt="wait"
             />
           </div>
         </button>
@@ -121,10 +126,18 @@
   <!-- end navbar -->
 </template>
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 import { mixins } from '../helpers/mixin'
 export default {
   mixins: [mixins],
+  data () {
+    return {
+      toggleSearch: false,
+      formContact: {
+        image: ''
+      }
+    }
+  },
   computed: {
     ...mapGetters({
       getAccess: 'auth/getAccess',
@@ -132,6 +145,10 @@ export default {
     })
   },
   methods: {
+    ...mapActions({
+      actionGetProfile: 'auth/getProfile',
+      allitems: 'products/getAllProduct'
+    }),
     profile () {
       this.$router.push('/profile')
     },
@@ -146,7 +163,17 @@ export default {
     },
     search () {
       alert('Searching')
+    },
+    switchToggle () {
+      this.toggleSearch = !this.toggleSearch
+    },
+    getProduct () {
+      this.productQuery.page = 1
+      this.allitems(this.productQuery)
     }
+  },
+  mounted () {
+    // this.actionGetProfile()
   }
 }
 </script>

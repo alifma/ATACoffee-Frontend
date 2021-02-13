@@ -78,7 +78,7 @@
                     type="text"
                     required
                     class="form-signup-phone"
-                    placeholder="Enter your phone number (62)"
+                    placeholder="Enter your phone number (+62)"
                     id="phone-form"
                   />
                 </div>

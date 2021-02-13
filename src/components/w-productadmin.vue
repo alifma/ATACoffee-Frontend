@@ -195,6 +195,7 @@ export default {
     setProductCategory (id) {
       this.productQuery.category = id
       this.productQuery.page = 1
+      this.productQuery.name = ''
       this.getProduct()
     },
     setProductPage (page) {

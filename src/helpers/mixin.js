@@ -2,7 +2,6 @@ import Swal from 'sweetalert2'
 export const mixins = {
   data () {
     return {
-      toggleSearch: false,
       Toast: Swal.mixin({
         toast: true,
         position: 'top',
