@@ -90,7 +90,7 @@
                 height: 45px;
                 border: 3px solid #6a4029;
               "
-              alt="foto profile"
+              alt="wait"
             />
           </div>
           <div v-else>
