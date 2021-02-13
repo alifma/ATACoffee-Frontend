@@ -478,9 +478,6 @@ export default {
   },
   mounted () {
     document.getElementById('link1').classList.add('active')
-    document.getElementById('link2').classList.remove('active')
-    document.getElementById('link3').classList.remove('active')
-    document.getElementById('link4').classList.remove('active')
   }
 }
 </script>

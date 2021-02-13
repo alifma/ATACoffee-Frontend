@@ -7,7 +7,7 @@
       <div class="container mb-4">
         <div class="row">
           <div v-for="(item, index) in pendingOrders" :key="index"  class="col-lg-4 col-md-6 mb-4">
-            <div class="card" style="border-radius:25px">
+            <div class="card" @click="viewDetails(item.inv)" style="border-radius:25px">
               <div class="card-body">
                 <p class="mb-0 float-right text-danger font-weight-bold">Pending</p>
                 <h5 class="font-weight-bold font-poppins">#{{item.inv}}</h5>
@@ -41,7 +41,10 @@ export default {
   methods: {
     ...mapActions({
       actionGetPending: 'orders/actionGetPendingOrders'
-    })
+    }),
+    viewDetails (inv) {
+      this.$router.push(`/waitinglist/${inv}`)
+    }
   },
   computed: {
     ...mapGetters({
@@ -53,10 +56,8 @@ export default {
     this.actionGetPending(this.pendingQuery)
     console.log(this.pendingOrders)
   }
-
 }
 </script>
 
 <style>
-
 </style>

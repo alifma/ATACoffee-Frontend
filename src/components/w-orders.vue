@@ -23,8 +23,10 @@
                       <i class="fas fa-shopping-bag"></i>
                     </button>
                     <h4 class="fontstyle mb-0">Invoice: {{ item.inv }}</h4>
-                    <p class="fontstyle2 mb-0">Update : {{ new Date(item.created_at).toLocaleDateString() }}</p>
+                    <p class="fontstyle2 mb-0">Created : {{ new Date(item.created_at).toLocaleDateString() }}</p>
+                    <p class="fontstyle2 mb-0">Update : {{ item.updated_at === null ? '-' : new Date().toLocaleDateString() }}</p>
                     <p v-if="item.isPending === 1" class="text-danger font-weight-bold mb-0">Pending</p>
+                    <p v-else class="font-weight-bold mb-0"><span class="text-success">Done</span> (Cashier : {{item.cashier}})</p>
                   </div>
                 </div>
               </div>
@@ -83,7 +85,7 @@
   font-family: Poppins;
   font-style: normal;
   font-weight: normal;
-  font-size: 1.5vw;
+  font-size: 1vw;
   text-align: left;
   color: #895537;
 }
