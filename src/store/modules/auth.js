@@ -84,6 +84,7 @@ const moduleAuth = {
     }
   },
   getters: {
+    getToken: state => state.token,
     getAccess: state => state.access,
     getUserName: state => state.name,
     getUserID: state => state.id,

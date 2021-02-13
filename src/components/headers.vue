@@ -170,6 +170,7 @@ export default {
     getProduct () {
       this.productQuery.page = 1
       this.allitems(this.productQuery)
+      // this.$router.push('/waitinglist')
     }
   },
   mounted () {

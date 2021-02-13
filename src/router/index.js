@@ -14,6 +14,8 @@ import Checkout from '../views/Checkout.vue'
 import WaitingList from '../views/WaitingList.vue'
 import WaitingListDetails from '../views/WaitingListDetails.vue'
 import Dashboard from '../views/Dashboard.vue'
+import store from '../store/index'
+import Swal from 'sweetalert2'
 
 Vue.use(VueRouter)
 
@@ -21,72 +23,86 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: Home,
+    meta: { auth: false }
   },
   {
     path: '/login',
     name: 'SignIn',
-    component: SignIn
+    component: SignIn,
+    meta: { auth: false }
   },
   {
     path: '/signup',
     name: 'SignUp',
-    component: SignUp
+    component: SignUp,
+    meta: { auth: false }
   },
   {
     path: '/product',
     name: 'Product',
-    component: Product
+    component: Product,
+    meta: { auth: true }
   },
   {
     path: '/product/add',
     name: 'ProductAdd',
-    component: ProductAdd
+    component: ProductAdd,
+    meta: { auth: true }
   },
   {
     path: '/product/:id',
     name: 'ProductDetails',
-    component: ProductDetails
+    component: ProductDetails,
+    meta: { auth: true }
   },
   {
     path: '/orders',
     name: 'orders',
-    component: orders
+    component: orders,
+    meta: { auth: true }
   },
   {
     path: '/orders/:inv',
     name: 'detailOrders',
-    component: detailOrders
+    component: detailOrders,
+    meta: { auth: true }
   },
   {
     path: '/product/:id/edit',
     name: 'ProductEdit',
-    component: ProductEdit
+    component: ProductEdit,
+    meta: { auth: true }
   },
   {
     path: '/Profile',
     name: 'Profile',
-    component: Profile
+    component: Profile,
+    meta: { auth: true }
   },
   {
     path: '/checkout',
     name: 'checkout',
-    component: Checkout
+    component: Checkout,
+    meta: { auth: true }
   },
   {
     path: '/waitinglist',
     name: 'waitingList',
-    component: WaitingList
+    component: WaitingList,
+    meta: { auth: true }
   },
   {
     path: '/waitinglist/:inv',
     name: 'waitingList details',
-    component: WaitingListDetails
+    component: WaitingListDetails,
+    meta: { auth: true }
   },
   {
     path: '/dashboard',
     name: 'Dashboard',
-    component: Dashboard
+    component: Dashboard,
+    meta: { auth: true }
   }
 ]
 
@@ -94,6 +110,42 @@ const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
+})
+
+router.beforeEach((to, from, next) => {
+  // console.log(to.matched[0].meta.auth)
+  // console.log(store.getters['auth/getAccess'])
+  if (to.matched[0].meta.auth === true) {
+    if (store.getters['auth/getToken']) {
+      if (to.path === '/waitinglist' || to.path === '/waitinglist/:inv') {
+        if (store.getters['auth/getAccess'] === 1) {
+          next()
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: '',
+            text: 'Access hanya untuk admin!'
+          })
+          // next({
+          //   path: '/product'
+          // })
+        }
+      } else {
+        next()
+      }
+    } else {
+      Swal.fire({
+        icon: 'info',
+        title: '',
+        text: 'Anda belum login!'
+      })
+      next({
+        path: '/login'
+      })
+    }
+  } else {
+    next()
+  }
 })
 
 export default router
