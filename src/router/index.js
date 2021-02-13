@@ -12,6 +12,7 @@ import ProductEdit from '../views/ProductEdit.vue'
 import Profile from '../views/Profile.vue'
 import Checkout from '../views/Checkout.vue'
 import WaitingList from '../views/WaitingList.vue'
+import WaitingListDetails from '../views/WaitingListDetails.vue'
 import Dashboard from '../views/Dashboard.vue'
 
 Vue.use(VueRouter)
@@ -76,6 +77,11 @@ const routes = [
     path: '/waitinglist',
     name: 'waitingList',
     component: WaitingList
+  },
+  {
+    path: '/waitinglist/:inv',
+    name: 'waitingList details',
+    component: WaitingListDetails
   },
   {
     path: '/dashboard',
