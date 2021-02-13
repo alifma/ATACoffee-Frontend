@@ -32,7 +32,7 @@ export const mixins = {
     formatPrice (value) {
       return value.toLocaleString().replace(/,/g, '.')
     },
-    swalToast (title, icon) {
+    swalToast (icon, title) {
       this.Toast.fire({
         icon,
         title

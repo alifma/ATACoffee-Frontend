@@ -56,11 +56,12 @@
               v-model="hold.price"
             />
             <textarea
-              class="form-control mb-2 inputBorder"
-              id="exampleFormControlTextarea1"
+              type="text"
+              class="text-dark form-control mb-2 font-poppins inputBorder"
+              minlength="150"
+              style="font-size: 20px"
               v-model="hold.desc"
-              rows="3"
-            ></textarea>
+            > </textarea>
             <input
               type="text"
               class="text-dark form-control mb-2 font-poppins font-weight-light"
@@ -101,7 +102,9 @@
 import cHeader from '../components/headers'
 import cFooter from '../components/footers'
 import { mapGetters, mapActions } from 'vuex'
+import { mixins } from '../helpers/mixin'
 export default {
+  mixins: [mixins],
   data () {
     return {
       id: this.$route.params.id,
@@ -147,6 +150,7 @@ export default {
       this.hold.image = el.target.files[0]
     },
     updateDetails () {
+      this.swalLoading('Updating Data')
       const fd = new FormData()
       fd.append('name', this.hold.name)
       fd.append('price', this.hold.price)
@@ -162,12 +166,12 @@ export default {
       this.actionUpdate(fixData)
         .then((response) => {
           if (response.data.code === 200) {
+            this.$swal.close()
             this.getDetails()
-            // this.$swal.close()
-            // this.alertToast('success', msg)
+            this.swalAlert('Update Data Success', '', 'success')
           } else {
-            // this.$swal.close()
-            // this.alertToast('error', response.data.msg)
+            this.$swal.close()
+            this.swalAlert('Update Data Failedd', response.data.msg, 'error')
           }
         })
         .catch((err) => {

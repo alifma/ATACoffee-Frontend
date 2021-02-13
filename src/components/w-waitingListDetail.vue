@@ -7,7 +7,7 @@
         <h1 class="text-white font-rubik" style="font-size: 40px;text-shadow: 2px 2px 4px #000000;">Finish your customer order
           now.</h1>
       </div>
-      <div class="container mb-4">
+      <div class="container mb-4 pb-4">
         <div class="row">
           <div class="col-md-12 col-lg-6">
             <div class="card" style="border-radius:25px">

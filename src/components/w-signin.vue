@@ -15,7 +15,7 @@
           <div class="col-md-7">
             <!-- bar -->
             <div class="row mt-5">
-              <div class="col-md-4">
+              <div @click="gotoHome()" class="col-md-4">
                 <img
                   src="../assets/img/icoWeb.png"
                   alt="iconWeb"
@@ -168,6 +168,9 @@ export default {
     },
     createBtn () {
       alert('createNow')
+    },
+    gotoHome () {
+      this.$router.push('/')
     }
   }
 }

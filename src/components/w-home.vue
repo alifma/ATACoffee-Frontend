@@ -458,7 +458,7 @@ export default {
   },
   methods: {
     getStart () {
-      alert('Get Start')
+      this.$router.push('/login')
     },
     select () {
       alert('Select')

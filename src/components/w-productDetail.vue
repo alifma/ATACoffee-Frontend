@@ -47,7 +47,7 @@
             <div v-if="userAccess != null" style="width:75%" class="mx-auto d-flex flex-column">
               <button @click="addToCart()" style="font-size:20px;border-radius:25px;height:60px" class="btn mb-3 btn-brown ">Add to Cart</button>
               <button v-if="userAccess == 1" @click="editProduct()" style="font-size:20px;border-radius:25px;height:60px" class="btn mb-3 btn-yellow ">Edit Product</button>
-              <button v-if="userAccess == 1" @click="deleteConfirm()" style="font-size:20px;border-radius:25px;height:60px" class="btn mb-3 btn-black ">Delete Menu</button>
+              <button v-if="userAccess == 1" @click="$bvModal.show('deleteModal')" style="font-size:20px;border-radius:25px;height:60px" class="btn mb-3 btn-black ">Delete Menu</button>
             </div>
           </div>
           <div v-if="userAccess != null" class=" col-md-7 col-lg-7">
@@ -115,6 +115,17 @@
             class="text-dark w-100 h-100 btn mb-3 btn-yellow shadow-lg ">CHECKOUT</button>
         </div>
         <div class="col-1"></div>
+        <b-modal id="deleteModal" hide-footer hide-header title="Using Component Methods" centered>
+          <div class="p-5">
+            <div class="d-block text-center">
+            <p class="font-poppins font-weight-light" style="font-size:20px;">Are you sure want to delete this product?</p>
+          </div>
+          <div class="w-100">
+          <button class="btn btn-primary text-center float-left mr-3 font-weight-bold" style="width:40%;margin-right:5%;background:#fff;border:3px solid #6A4029;color:#6A4029" @click="$bvModal.hide('deleteModal')">Cancel</button>
+          <button class="btn btn-brown text-center float-right ml-3" style="width:40%;margin-left:5%;border:3px solid #6A4029;" @click="deleteConfirm()">Delete</button>
+          </div>
+          </div>
+        </b-modal>
       </div>
     </div>
     <cFooter />
@@ -161,25 +172,16 @@ export default {
       this.$router.push(`/product/${this.id}/edit`)
     },
     deleteConfirm () {
-      // this.$swal('Email Not Registered', 'Please Check your Email ', 'error')
-      this.$swal.fire({
-        text: 'Are you Sure want to delete this product?',
-        showCancelButton: true,
-        confirmButtonColor: '#6A4029',
-        cancelButtonColor: '#FFF',
-        confirmButtonText: 'Yes, delete it!'
-      }).then((result) => {
-        if (result.isConfirmed) {
-          this.deleteAction(this.id)
-            .then((res) => {
-              this.$swal('Delete Success', 'Product has been deleted', 'success')
-              this.$router.push('/product')
-            })
-            .catch((err) => {
-              this.$swal('Delete failed', err.message, 'success')
-            })
-        }
-      })
+      this.deleteAction(this.id)
+        .then((res) => {
+          this.$bvModal.hide('deleteModal')
+          this.$swal('Delete Success', 'Product has been deleted', 'success')
+          this.$router.push('/product')
+        })
+        .catch((err) => {
+          this.$bvModal.hide('deleteModal')
+          this.$swal('Delete failed', err.message, 'success')
+        })
     },
     addToCart () {
       if (this.cartHolder.size.length === 0) {
@@ -227,16 +229,6 @@ export default {
         this.addCartAction(checkoutData)
         this.fixCart = []
         this.swalAlert('Success', 'This item is now on your cart', 'success')
-        // .then((response) => {
-        //   console.log(response)
-        // })
-        // .catch((err) => {
-        //   console.log(err)
-        // })
-        /*
-        "inv":102070,
-        "paymentType" : "OVO"
-        */
       }
     }
   },

@@ -21,7 +21,7 @@
         <div class="row py-4">
           <div class="col-md-5 col-lg-5">
             <div class="text-center">
-            <img style="width:75%" class="product-rounded" :src="`http://52.91.116.102:3001/image/defaultFood.png`" alt="">
+            <img style="width:75%" class="product-rounded" :src="`https://i.ibb.co/k6XzPrY/default-Food.png`" alt="">
             <button style="font-size:20px;border-radius:25px;height:60px;background:#0B132A" class="w-75 btn mt-4 btn-black ">Take a Picture</button>
             <!-- <button style="font-size:20px;border-radius:25px;height:60px" class="w-75 btn mt-4 btn-yellow ">Choose from gallery</button> -->
             <div class="upload-btn-wrapper w-100">
@@ -31,7 +31,7 @@
             <div class="row w-75 mx-auto">
               <div class="col">
                 <div class="form-group my04">
-                  <label for="exampleInputEmail1">Delivery Hour : </label>
+                  <label class="font-rubik brown" style="font-size:20px">Delivery Hour : </label>
                   <div class="row">
                     <div class="col">
                       <input class="form-control" v-model="newItem.hourStart" type="time">
@@ -43,11 +43,11 @@
                   <div class="form-group my-4">
                     <div class="row">
                       <div class="col">
-                    <label for="exampleInputEmail1">Categories : </label>
+                    <label class="font-rubik brown" style="font-size:20px">Categories : </label>
                     <b-form-select v-model="newItem.categoryID" :options="categories" ></b-form-select>
                       </div>
                       <div class="col">
-                    <label for="exampleInputEmail1">Stock : </label>
+                    <label class="font-rubik brown" style="font-size:20px">Stock : </label>
                     <input v-model="newItem.stock" type="number" class="form-control">
                       </div>
                     </div>
@@ -58,24 +58,24 @@
           </div>
           <div class="col-md-7 col-lg-7">
               <div class="form-group mb-4">
-                <label for="exampleInputEmail1">Name :</label>
+                <label class="font-rubik brown" style="font-size:20px">Name :</label>
                 <input type="text" class="form-control inputBorder" v-model="newItem.name" placeholder="Type product name min. 50 characters">
               </div>
               <div class="form-group mb-4">
-                <label for="exampleInputEmail1">Price : </label>
+                <label class="font-rubik brown" style="font-size:20px">Price : </label>
                 <input type="number" class="form-control inputBorder" v-model="newItem.price" placeholder="Type the price">
               </div>
               <div class="form-group mb-4">
-                <label for="exampleInputEmail1">Description : </label>
+                <label class="font-rubik brown" style="font-size:20px">Description : </label>
                 <input type="text" class="form-control inputBorder " v-model="newItem.description" placeholder="Describe your product min. 150 characters">
               </div>
               <div class="form-group mb-4">
-                <label for="exampleInputEmail1">Input Product Size : </label>
+                <label class="font-rubik brown" style="font-size:20px">Input Product Size : </label>
                 <small id="emailHelp" class="form-text text-muted">Click size you want to use for this product</small>
                 <input type="text" class="form-control inputBorder"  v-model="newItem.size">
               </div>
               <div class="form-group mb-4">
-                <label for="exampleInputEmail1">Input Delivery Method : </label>
+                <label class="font-rubik brown" style="font-size:20px">Input Delivery Method : </label>
                 <small id="emailHelp" class="form-text text-muted">Click methods you want to use for this product</small>
                 <input type="text" class="form-control inputBorder"  v-model="newItem.deliveryMethod">
               </div>
@@ -152,7 +152,7 @@ export default {
           if (response.data.code === 200) {
             this.$swal.close()
             this.$router.push('/product')
-            this.swalToast(response.data.msg, 'success')
+            this.swalToast('success', response.data.msg)
           } else {
             this.$swal.close()
             // this.alertToast('error', response.data.msg)
