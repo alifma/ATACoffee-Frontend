@@ -114,17 +114,17 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   // console.log(to.matched[0].meta.auth)
-  // console.log(store.getters['auth/getAccess'])
+  // console.log(store.getters['auth/getToken'])
   if (to.matched[0].meta.auth === true) {
     if (store.getters['auth/getToken']) {
-      if (to.path === '/waitinglist' || to.path === '/waitinglist/:inv') {
-        if (store.getters['auth/getAccess'] === 1) {
+      if (to.path === '/waitinglist' || to.path === '/waitinglist/:inv' || to.path === '/dashboard') {
+        if (Number(store.getters['auth/getAccess']) === 1) {
           next()
         } else {
           Swal.fire({
             icon: 'error',
             title: '',
-            text: 'Access hanya untuk admin!'
+            text: 'Admin Access Only!'
           })
           // next({
           //   path: '/product'
@@ -137,14 +137,25 @@ router.beforeEach((to, from, next) => {
       Swal.fire({
         icon: 'info',
         title: '',
-        text: 'Anda belum login!'
+        text: 'Please Log-in!'
       })
       next({
         path: '/login'
       })
     }
   } else {
-    next()
+    if (store.getters['auth/getToken']) {
+      Swal.fire({
+        icon: 'info',
+        title: '',
+        text: 'You already logged in!'
+      })
+      next({
+        path: '/product'
+      })
+    } else {
+      next()
+    }
   }
 })
 
