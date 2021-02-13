@@ -3,7 +3,10 @@ const moduleOrders = {
   namespaced: true,
   state: () => {
     return {
-      orders: '',
+      apiURL: 'http://52.91.116.102:3001',
+      orders: [],
+      pendingOrders: [],
+      userOrders: [],
       dataTesting: {
         id: 7,
         name: 'admin@atac.com',
@@ -23,12 +26,18 @@ const moduleOrders = {
     },
     setDetailOrderBody (state, payload) {
       state.detailOrdersBody = payload
+    },
+    setPendingOrders (state, payload) {
+      state.pendingOrders = payload
+    },
+    setUserOrders (state, payload) {
+      state.userOrders = payload
     }
   },
   actions: {
-    actionGetAllOrders (context) {
-      axios.get('http://52.91.116.102:3001/orders', { headers: { token: context.state.dataTesting.token } }).then((response) => {
-        console.log(response.data.data)
+    actionGetAllOrders (context, data) {
+      console.log(data)
+      axios.get(`${context.state.apiURL}/orders?limit=${data.limit}&user=${data.user}`, { headers: { token: context.state.dataTesting.token } }).then((response) => {
         context.commit('setAllOrders', response.data.data)
       }).catch((error) => {
         console.log(error)
@@ -41,6 +50,17 @@ const moduleOrders = {
         context.commit('setDetailOrderBody', response.data.data.body)
       }).catch((error) => {
         console.log(error)
+      })
+    },
+    createOrders (context, data) {
+      return new Promise((resolve, reject) => {
+        axios.post(`${context.state.apiURL}/orders/`, data, { headers: { token: context.rootState.auth.token } })
+          .then((response) => {
+            resolve(response.data)
+          })
+          .catch((err) => {
+            reject(err)
+          })
       })
     }
   },

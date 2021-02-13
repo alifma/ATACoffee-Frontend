@@ -87,7 +87,7 @@
         <div class="col-1">
         </div>
         <div class="col-7">
-          <div class="card">
+          <div class="card shadow-lg" style="border-radius:25px">
           <!-- Jika ada itemnya -->
             <div v-if="fixCart.length > 0" class="row no-gutters" style="height:20vh">
               <div class="col-md-4 text-center my-auto">
@@ -105,14 +105,14 @@
               </div>
             </div>
           <!-- Jika Tidak ada itemnya -->
-          <div v-else style="height:20vh">
-            <h1>This item is not in your shoping cart</h1>
+          <div v-else style="height:20vh" class="p-4 d-flex justify-content-center">
+            <h5 class="text-center font-poppins font-weight-bold mb-0 my-auto">Click product size to add product</h5>
           </div>
           </div>
         </div>
         <div class="col-3">
           <button @click="buildCheckoutData()" style="font-size:20px;border-radius:25px;"
-            class="text-dark w-100 h-100 btn mb-3 btn-yellow ">CHECKOUT</button>
+            class="text-dark w-100 h-100 btn mb-3 btn-yellow shadow-lg ">CHECKOUT</button>
         </div>
         <div class="col-1"></div>
       </div>
@@ -206,29 +206,37 @@ export default {
       this.fixCart = []
     },
     buildCheckoutData () {
-      const checkoutData = this.fixCart.map((i) => ({
-        userID: this.userID,
-        userName: this.userName,
-        itemName: i.itemName,
-        itemImage: i.itemImage,
-        size: i.size,
-        amount: i.amount,
-        price: i.price,
-        orderType: this.cartHolder.orderType,
-        orderDetails: this.cartHolder.orderDetails,
-        orderPhone: 0
-      }))
-      this.addCartAction(checkoutData)
-      // .then((response) => {
-      //   console.log(response)
-      // })
-      // .catch((err) => {
-      //   console.log(err)
-      // })
-      /*
-      "inv":102070,
-      "paymentType" : "OVO"
-      */
+      if (this.fixCart.length === 0) {
+        this.swalAlert('Checkout Error', 'Please add Item', 'error')
+      } else if (!this.cartHolder.orderType || !this.cartHolder.orderDetails) {
+        this.swalAlert('Checkout Error', 'You should choose delivery type and order details', 'error')
+      } else {
+        const checkoutData = this.fixCart.map((i) => ({
+          userID: this.userID,
+          userName: this.userName,
+          itemName: i.itemName,
+          itemImage: i.itemImage,
+          size: i.size,
+          amount: i.amount,
+          price: i.price,
+          orderType: this.cartHolder.orderType,
+          orderDetails: this.cartHolder.orderDetails,
+          orderPhone: '0'
+        }))
+        this.addCartAction(checkoutData)
+        this.fixCart = []
+        this.swalAlert('Success', 'This item is now on your cart', 'success')
+        // .then((response) => {
+        //   console.log(response)
+        // })
+        // .catch((err) => {
+        //   console.log(err)
+        // })
+        /*
+        "inv":102070,
+        "paymentType" : "OVO"
+        */
+      }
     }
   },
   mounted () {

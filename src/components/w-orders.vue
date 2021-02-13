@@ -99,7 +99,9 @@
 import componentHeader from '../components/headers'
 import componentFooter from '../components/footers'
 import { mapActions, mapGetters } from 'vuex'
+import { mixins } from '../helpers/mixin'
 export default {
+  mixins: [mixins],
   components: {
     componentHeader,
     componentFooter
@@ -118,7 +120,7 @@ export default {
     }
   },
   mounted () {
-    this.getOrders()
+    this.getOrders(this.orderQuery)
   }
 }
 </script>

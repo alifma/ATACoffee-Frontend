@@ -58,13 +58,10 @@
           </div>
           <div class="col-12 col-md-6">
             <div class="row">
-              <div class="col-6">
+              <div class="col-12">
                 <h3 class="float-left address">Address detail</h3>
               </div>
-              <div class="col-6">
-                <button class="btn float-right btnedit">edit</button>
-              </div>
-              <div class="col">
+              <div class="col-12">
                 <div class="card cardedit">
                   <div class="card-body">
                     <h5>
@@ -190,7 +187,7 @@
   font-size: 25px;
   line-height: 37px;
   margin-top: 25%;
-  margin-left: 20%;
+  margin-left: 10%;
 
   color: #ffffff;
 

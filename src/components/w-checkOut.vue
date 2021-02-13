@@ -3,7 +3,8 @@
     <cHeader />
     <div class="pb-4"
       style="background-image: url('https://i.ibb.co/jwqkCjf/bg-Checkout.png');background-repeat: no-repeat;background-position: center;">
-      <div class="container py-4">
+      <div v-if="cart[0].itemName !== ''">
+        <div class="container py-4">
         <h1 class="text-white font-rubik" style="font-size: 40px;text-shadow: 2px 2px 4px #000000;">Checkout your item
           now!</h1>
       </div>
@@ -22,7 +23,9 @@
               </div>
               <div class="col-md-8">
                 <div class="card-body">
+                  <p class="float-right mb-0 text-danger font-weight-bold">Remove</p>
                   <h5 class="mb-0 card-title font-weight-bold">{{item.itemName}}</h5>
+                  <p class="float-right mb-0 font-weight-bold">IDR {{formatPrice(item.price)}}</p>
                     <p class="card-text mb-0" >x {{item.amount}} ({{item.size}})</p>
                 </div>
               </div>
@@ -67,7 +70,7 @@
             <div class="card" style="border-radius:25px">
               <div class="card-body p-4 my-2">
                 <b-form-group>
-                  <b-form-radio-group v-model="headOrder.paymentMethod" :options="headOrder.paymentOptions" size="lg" plain stacked>
+                  <b-form-radio-group v-model="headOrder.paymentType" :options="headOrder.paymentOptions" size="lg" plain stacked>
                   </b-form-radio-group>
                 </b-form-group>
               </div>
@@ -75,6 +78,12 @@
             <button @click="buildFinalData()" class="btn btn-brown w-100 mt-4"  style="font-size:20px;border-radius:25px;height:60px">Confirm and Pay</button>
           </div>
         </div>
+      </div>
+      </div>
+      <div v-else>
+        <div class="container py-4 d-flex justify-content-center" style="height:50vh">
+        <h1 class="text-white text-center my-auto font-rubik" style="font-size: 40px;text-shadow: 2px 2px 4px #000000;">You have no item on your cart</h1>
+      </div>
       </div>
     </div>
     <cFooter />
@@ -84,7 +93,7 @@
 <script>
 import cHeader from '../components/headers'
 import cFooter from '../components/footers'
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 import { mixins } from '../helpers/mixin'
 export default {
   mixins: [mixins],
@@ -92,7 +101,7 @@ export default {
     return {
       headOrder: {
         inv: 0,
-        paymentMethod: '',
+        paymentType: '',
         paymentOptions: ['Card', 'Bank Account', 'Cash on Delivery']
       }
     }
@@ -110,6 +119,10 @@ export default {
     })
   },
   methods: {
+    ...mapActions({
+      actionOrderPost: 'orders/createOrders',
+      actionEmptYCart: 'carts/emptyCart'
+    }),
     generateInv () {
       const invBase = Math.floor((Math.random() * 1000) + 1)
       let prefix = invBase + ''
@@ -123,13 +136,29 @@ export default {
       this.headOrder.inv = finalDate
     },
     buildFinalData () {
-      this.generateInv()
-      const finalData = this.cart.map((i) => ({
-        ...i,
-        paymentMethod: this.headOrder.paymentMethod,
-        inv: this.headOrder
-      }))
-      console.log(finalData)
+      if (this.headOrder.paymentType !== '') {
+        this.generateInv()
+        const finalData = this.cart.map((i) => ({
+          ...i,
+          paymentType: this.headOrder.paymentType,
+          inv: this.headOrder.inv
+        }))
+        console.log(finalData)
+        this.actionOrderPost(finalData)
+          .then((response) => {
+            if (response.code === 200) {
+              this.actionEmptYCart()
+              this.swalAlert('Checkout Success', '', 'success')
+            } else {
+              this.swalAlert('Checkout Error', response.msg, 'error')
+            }
+          })
+          .catch((err) => {
+            console.log(err)
+          })
+      } else {
+        this.swalAlert('Checkout Error', 'Please select your payment method', 'error')
+      }
     }
   }
 }

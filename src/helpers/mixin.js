@@ -8,7 +8,16 @@ export const mixins = {
         showConfirmButton: false,
         timer: 3000,
         timerProgressBar: true
-      })
+      }),
+      orderQuery: {
+        limit: 9,
+        user: localStorage.getItem('id'),
+        pending: 0
+      },
+      productQuery: {
+        limit: 12,
+        category: ''
+      }
     }
   },
   methods: {

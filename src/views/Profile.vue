@@ -321,7 +321,8 @@ export default {
   },
   methods: {
     ...mapActions({
-      signout: 'auth/logout'
+      signout: 'auth/logout',
+      actionGetProfile: 'auth/getProfile'
     }),
     logout () {
       this.signout().then((response) => {
@@ -347,6 +348,14 @@ export default {
       alert('form details contact')
       console.log(this.formDetails)
     }
+  },
+  mounted () {
+    this.actionGetProfile()
+      .then((response) => {
+        this.formContact.email = response.email
+        console.log(response)
+        console.log(this.formDetails.email)
+      })
   }
 }
 </script>
