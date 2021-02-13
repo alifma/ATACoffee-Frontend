@@ -47,7 +47,7 @@ const moduleOrders = {
     },
     actionGetPendingOrders (context, data) {
       return new Promise((resolve, reject) => {
-        axios.get(`${context.state.apiURL}/orders?limit=${data.limit}&pending=1`, { headers: { token: context.state.dataTesting.token } }).then((response) => {
+        axios.get(`${context.state.apiURL}/orders?limit=${data.limit}&page=${data.page}&pending=1&sort=${data.sort}`, { headers: { token: context.state.dataTesting.token } }).then((response) => {
           context.commit('setPendingOrders', response.data)
           resolve(response.data)
         }).catch((error) => {

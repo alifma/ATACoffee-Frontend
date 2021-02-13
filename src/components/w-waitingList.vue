@@ -21,8 +21,24 @@
         </div>
         <div class="card row" style="border-radius:25px">
           <div class="card-body col w-100 d-flex">
-            <h5 class="font-weight-bold">Page</h5>
-            <p class="mb-0 d-inline" v-for="(item, index) in pendingPagination.totalPages" :key="index">{{item}}</p>
+            <div class="row w-100">
+              <div class="col-3 d-flex justify-content-left">
+                <p class="mb-0 my-auto">Page : {{pendingQuery.page}} </p>
+              </div>
+              <div class="col-5 d-flex justify-content-center">
+                <p class="mb-0 my-auto">Select : </p>
+                <p v-for="(index, page) in pagination.totalPages" :key="index" class="mb-0 btn btn-warning mx-2"
+                  @click="getPendingPageQuery(page+1)">{{page+1}}</p>
+              </div>
+              <div class="col-2">
+                <b-form-select v-model="pendingQuery.sort" @change="getPendingLimitQuery('')" size="sm" :options="optionSort">
+                </b-form-select>
+              </div>
+              <div class="col-2">
+                <b-form-select v-model="pendingQuery.limit" @change="getPendingLimitQuery('')" size="sm"
+                  :options="options"></b-form-select>
+              </div>
+              </div>
           </div>
         </div>
       </div>
@@ -45,6 +61,20 @@ import { mapGetters, mapActions } from 'vuex'
 import { mixins } from '../helpers/mixin'
 export default {
   mixins: [mixins],
+  data () {
+    return {
+      options: [
+        { value: 3, text: 'Limit 3' },
+        { value: 6, text: 'Limit 6' },
+        { value: 9, text: 'Limit 9' },
+        { value: 12, text: 'Limit 12', disabled: true }
+      ],
+      optionSort: [
+        { value: 'asc', text: 'Ascending' },
+        { value: 'desc', text: 'Descending' }
+      ]
+    }
+  },
   components: {
     cHeader,
     cFooter
@@ -55,16 +85,28 @@ export default {
     }),
     viewDetails (inv) {
       this.$router.push(`/waitinglist/${inv}`)
+    },
+    getPending () {
+      this.actionGetPending(this.pendingQuery)
+    },
+    getPendingPageQuery (page) {
+      this.pendingQuery.page = page
+      // this.getPending()
+      this.actionGetPending(this.pendingQuery)
+    },
+    getPendingLimitQuery () {
+      this.pendingQuery.page = 1
+      this.getPending()
     }
   },
   computed: {
     ...mapGetters({
       pendingOrders: 'orders/getPendingOrders',
-      pendingPagination: 'orders/getPendingPagination'
+      pagination: 'orders/getPendingPagination'
     })
   },
   mounted () {
-    this.actionGetPending(this.pendingQuery)
+    this.getPending()
   }
 }
 </script>

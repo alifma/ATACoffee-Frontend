@@ -97,13 +97,19 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-3 d-flex justify-content-left">
-            <p class="mb-0 my-auto">Current Page : {{productQuery.page}} </p></div>
-          <div class="col-6 d-flex justify-content-center">
-            <p class="mb-0 my-auto">Select Page : </p>
+          <div class="col-2 d-flex justify-content-left">
+            <p class="mb-0 my-auto">Page : {{productQuery.page}} </p></div>
+          <div class="col-4 d-flex justify-content-center">
+            <p class="mb-0 my-auto">Select : </p>
             <p v-for="(index, page) in pagination.pageResult" :key="index" class="mb-0 btn btn-warning mx-2" @click="setProductPage(page+1)">{{page+1}}</p>
           </div>
-          <div class="col-3">
+          <div class="col-2">
+            <b-form-select v-model="productQuery.order" @change="setOrderSort()" size="sm" :options="optionOrder"></b-form-select>
+          </div>
+          <div class="col-2">
+            <b-form-select v-model="productQuery.sort" @change="setOrderSort()" size="sm" :options="optionSort"></b-form-select>
+          </div>
+          <div class="col-2">
             <b-form-select v-model="productQuery.limit" @change="setProductCategory('')" size="sm" :options="options"></b-form-select>
           </div>
         </div>
@@ -139,6 +145,15 @@ export default {
         { value: 6, text: 'Limit 6' },
         { value: 12, text: 'Limit 12' },
         { value: 16, text: 'Limit 16', disabled: true }
+      ],
+      optionSort: [
+        { value: 'asc', text: 'Ascending' },
+        { value: 'desc', text: 'Descending' }
+      ],
+      optionOrder: [
+        { value: 'created_at', text: 'Added' },
+        { value: 'price', text: 'Price' },
+        { value: 'name', text: 'Alphabet' }
       ]
     }
   },
@@ -195,6 +210,10 @@ export default {
     setProductCategory (id) {
       this.productQuery.category = id
       this.productQuery.page = 1
+      this.productQuery.name = ''
+      this.getProduct()
+    },
+    setOrderSort () {
       this.productQuery.name = ''
       this.getProduct()
     },

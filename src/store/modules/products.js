@@ -62,7 +62,7 @@ const moduleProducts = {
       })
     },
     getAllProduct (context, data) {
-      axios.get(`${context.state.apiURL}/items?limit=${data.limit}&category=${data.category}&page=${data.page}&name=${data.name}`, { headers: { token: context.state.dataTesting.token } })
+      axios.get(`${context.state.apiURL}/items?limit=${data.limit}&category=${data.category}&page=${data.page}&name=${data.name}&sort=${data.sort}&order=${data.order}`, { headers: { token: context.state.dataTesting.token } })
         .then((response) => {
           context.commit('setAllItems', response.data)
         }).catch((err) => {

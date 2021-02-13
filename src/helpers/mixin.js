@@ -12,18 +12,22 @@ export const mixins = {
       orderQuery: {
         limit: 9,
         user: localStorage.getItem('id'),
-        pending: ''
+        pending: '',
+        page: 1
       },
       pendingQuery: {
         limit: 9,
         user: localStorage.getItem('id'),
-        page: 1
+        page: 1,
+        sort: 'asc'
       },
       productQuery: {
         limit: 4,
         category: '',
         page: 1,
-        name: ''
+        name: '',
+        sort: 'asc',
+        order: 'created_at'
       }
     }
   },
