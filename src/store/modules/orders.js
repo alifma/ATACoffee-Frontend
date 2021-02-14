@@ -5,6 +5,7 @@ const moduleOrders = {
     return {
       apiURL: 'http://52.91.116.102:3001',
       orders: [],
+      ordersPagination: [],
       pendingOrders: [],
       pendingPagination: [],
       userOrders: [],
@@ -21,7 +22,8 @@ const moduleOrders = {
   },
   mutations: {
     setAllOrders (state, payload) {
-      state.orders = payload
+      state.orders = payload.data
+      state.ordersPagination = payload.pagination
     },
     setDetailOrderHead (state, payload) {
       state.detailOrdersHead = payload
@@ -39,11 +41,13 @@ const moduleOrders = {
   },
   actions: {
     actionGetAllOrders (context, data) {
-      axios.get(`${context.state.apiURL}/orders?limit=${data.limit}&user=${data.user}&pending=${data.pending}`, { headers: { token: context.state.dataTesting.token } }).then((response) => {
-        context.commit('setAllOrders', response.data.data)
-      }).catch((error) => {
-        console.log(error)
-      })
+      axios.get(`${context.state.apiURL}/orders?limit=${data.limit}&user=${data.user}&pending=${data.pending}&page=${data.page}`, { headers: { token: context.state.dataTesting.token } })
+        .then((response) => {
+          context.commit('setAllOrders', response.data)
+          console.log(response)
+        }).catch((error) => {
+          console.log(error)
+        })
     },
     actionGetPendingOrders (context, data) {
       return new Promise((resolve, reject) => {
@@ -95,6 +99,7 @@ const moduleOrders = {
     getAllOrders (state) {
       return state.orders
     },
+    getAllOrdersPagination: state => state.ordersPagination,
     getDetailOrdersHead (state) {
       return state.detailOrdersHead
     },

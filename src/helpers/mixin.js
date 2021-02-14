@@ -13,7 +13,8 @@ export const mixins = {
         limit: 9,
         user: localStorage.getItem('id'),
         pending: '',
-        page: 1
+        page: 1,
+        sort: 'asc'
       },
       pendingQuery: {
         limit: 9,
@@ -22,7 +23,7 @@ export const mixins = {
         sort: 'asc'
       },
       productQuery: {
-        limit: 4,
+        limit: 12,
         category: '',
         page: 1,
         name: '',
