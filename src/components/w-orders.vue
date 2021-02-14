@@ -9,20 +9,17 @@
       <div class="container mb-4">
         <div class="row mb-4">
           <div
-            class="col col-sm-6 col-lg-4"
+            class="col col-sm-6 col-lg-4 mt-2"
             v-for="(item, index) in orders"
             :key="index"
           >
-            <div class="card cardheight">
+           <button class="btnDetail float-right" @click="$bvModal.show('deleteModal')">
+             <i class="fas fa-shopping-bag"></i>
+           </button>
+            <div class="card cardheight " @click="datailOrders(item.inv)">
               <div class="card-body">
                 <div class="row">
                   <div class="col">
-                    <button
-                      class="btnDetail float-right"
-                      @click="datailOrders(item.inv)"
-                    >
-                      <i class="fas fa-shopping-bag"></i>
-                    </button>
                     <h4 class="fontstyle mb-0">Invoice: {{ item.inv }}</h4>
                     <p class="fontstyle2 mb-0">Created : {{ new Date(item.created_at).toLocaleDateString() }}</p>
                     <p class="fontstyle2 mb-0">Update : {{ item.updated_at === null ? '-' : new Date().toLocaleDateString() }}</p>
@@ -105,6 +102,21 @@
     <!-- footer -->
     <componentFooter />
     <!-- end footer -->
+    <b-modal id="deleteModal" hide-footer hide-header title="Using Component Methods" centered>
+      <div class="p-5">
+        <div class="d-block text-center">
+          <p class="font-poppins font-weight-light" style="font-size:20px;">Are you sure want to delete this order?
+          </p>
+        </div>
+        <div class="w-100">
+          <button class="btn btn-primary text-center float-left mr-3 font-weight-bold"
+            style="width:40%;margin-right:5%;background:#fff;border:3px solid #6A4029;color:#6A4029"
+            @click="$bvModal.hide('deleteModal')">Cancel</button>
+          <button class="btn btn-brown text-center float-right ml-3"
+            style="width:40%;margin-left:5%;border:3px solid #6A4029;" @click="deleteConfirm(inv)">Delete</button>
+        </div>
+      </div>
+    </b-modal>
   </div>
 </template>
 
@@ -147,7 +159,8 @@ export default {
   },
   methods: {
     ...mapActions({
-      getOrders: 'orders/actionGetAllOrders'
+      getOrders: 'orders/actionGetAllOrders',
+      deleteOrders: 'orders/deleteOrders'
     }),
     datailOrders (Invoice) {
       this.$router.push('/orders/' + Invoice)
@@ -159,6 +172,22 @@ export default {
     getOrderLimitQuery (page) {
       this.orderQuery.page = page
       this.getAll()
+    },
+    deleteConfirm (inv) {
+      this.deleteOrders(inv)
+        .then((res) => {
+          if (res.code === 200) {
+            this.$bvModal.hide('deleteModal')
+            this.$swal('Delete Success', 'Your order has been deleted', 'success')
+          } else {
+            this.$bvModal.hide('deleteModal')
+            this.$swal('Delete Failed', res.msg, 'error')
+          }
+        })
+        .catch((err) => {
+          this.$bvModal.hide('deleteModal')
+          this.$swal('Delete failed', err.message, 'success')
+        })
     }
   },
   mounted () {
@@ -216,7 +245,9 @@ export default {
   color: #895537;
 }
 .btnDetail {
-  margin-top: -30px;
+  z-index:2;
+  /* margin-top: -30px; */
+  margin-bottom:-100px;
   background: #6a4029;
   border-radius: 50%;
   padding-left: 3%;

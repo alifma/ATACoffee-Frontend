@@ -30,7 +30,7 @@
           <p class="title-codecupon">COUPON CODE</p>
           <h2 class="codecupon-aside">FNPR15RG</h2>
           <p class="sub-codecupon mt-5">Valid untill October 10th 2020</p>
-          <button @click="btnCuppon()" class="btn btn-cupon mt-5">
+          <button v-if="getAccess != null" @click="btnCuppon()" class="btn btn-cupon mt-5">
             Apply Coupon
           </button>
           <!-- info foot aside -->

@@ -93,6 +93,17 @@ const moduleOrders = {
             reject(err)
           })
       })
+    },
+    deleteOrders (context, inv) {
+      return new Promise((resolve, reject) => {
+        axios.delete(`${context.state.apiURL}/orders/${inv}`, { headers: { token: context.rootState.auth.token } })
+          .then((response) => {
+            resolve(response.data)
+          })
+          .catch((err) => {
+            reject(err)
+          })
+      })
     }
   },
   getters: {
