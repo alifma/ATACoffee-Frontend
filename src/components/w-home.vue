@@ -146,7 +146,7 @@
                 </ul>
                 <h3 class="list-idr">IDR 25.000</h3>
                 <button
-                  @click="orderNow()"
+                  @click="select()"
                   class="btn btn-outline-warning bt-order-now"
                 >
                   Order Now
@@ -451,7 +451,9 @@ div.card {
 <script>
 import componentHeader from '../components/headers'
 import componentFooter from '../components/footers'
+import { mixins } from '../helpers/mixin'
 export default {
+  mixins: [mixins],
   components: {
     componentHeader,
     componentFooter
@@ -461,19 +463,16 @@ export default {
       this.$router.push('/login')
     },
     select () {
-      alert('Select')
-    },
-    orderNow () {
-      alert('Order Now')
+      this.swalAlert('Comming Soon', 'You will be able to select our favourite products', 'info')
     },
     arrowLeft () {
-      alert('Left')
+      this.swalAlert('Comming Soon', 'You will be able to navigate left', 'info')
     },
     arrowRight () {
-      alert('Right')
+      this.swalAlert('Comming Soon', 'You will be able to navigate right', 'info')
     },
     promoBtn () {
-      alert('Promo menarik!')
+      this.swalAlert('Comming Soon', 'You will be able to select our best promo!', 'info')
     }
   },
   mounted () {

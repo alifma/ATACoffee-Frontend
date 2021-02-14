@@ -68,7 +68,7 @@ export default {
   mixins: [mixins],
   data () {
     return {
-      loadList: false,
+      loadList: true,
       options: [
         { value: 3, text: 'Limit 3' },
         { value: 6, text: 'Limit 6' },

@@ -39,7 +39,8 @@
               />
             </div>
           </div>
-          <p>Delivery only on Monday to friday at 1 - 7 pm</p>
+          <p v-if="detail.hourEnd === null" class="font-poppins text-justify" style="font-size:20px">Delivery only on <b>Monday </b> to <b>Friday</b> start from <b>{{detail.hourStart}}</b></p>
+          <p v-else class="font-poppins text-justify" style="font-size:20px" >Delivery only on <b>Monday </b> to <b>Friday</b> from <b>{{detail.hourStart}}</b> to <b>{{detail.hourEnd}}</b></p>
         </div>
         <div class="col-lg-6">
           <form action="" @submit.prevent="updateDetails(id)">
@@ -134,8 +135,10 @@ export default {
       actionUpdate: 'products/updateDetail'
     }),
     getDetails () {
+      this.swalLoading('Preparing Data...')
       this.getDetailAction(this.id)
         .then((res) => {
+          this.swalLoadingClose()
           this.hold.name = res.name
           this.hold.price = res.price
           this.hold.desc = res.desc
@@ -144,7 +147,10 @@ export default {
           this.hold.delivery = res.delivery
           this.hold.stock = res.stock
         })
-        .catch('')
+        .catch((err) => {
+          this.swalLoadingClose()
+          console.log(err)
+        })
     },
     processFile (el) {
       this.hold.image = el.target.files[0]
@@ -166,11 +172,11 @@ export default {
       this.actionUpdate(fixData)
         .then((response) => {
           if (response.data.code === 200) {
-            this.$swal.close()
+            this.swalLoadingClose()
             this.getDetails()
             this.swalAlert('Update Data Success', '', 'success')
           } else {
-            this.$swal.close()
+            this.swalLoadingClose()
             this.swalAlert('Update Data Failedd', response.data.msg, 'error')
           }
         })

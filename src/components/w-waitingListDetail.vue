@@ -133,17 +133,19 @@ export default {
       updateDetailAction: 'orders/updateOrders'
     }),
     getDetail () {
+      this.swalLoading('Preparing Data')
       this.getDetailAction(this.inv)
         .then((response) => {
+          this.swalLoadingClose()
           this.paymentType = response.data.head[0].paymentType
-          console.log(response)
         })
         .catch((err) => {
+          this.swalLoadingClose()
           console.log(err)
         })
     },
     updateDetail () {
-      this.swalLoading('Updating Data ...')
+      this.swalLoading('Confirming Payment')
       const fixData = {
         inv: this.inv,
         info: {
@@ -154,13 +156,13 @@ export default {
       this.updateDetailAction(fixData)
         .then((res) => {
           if (res.code === 200) {
-            this.$swal.close()
+            this.swalLoadingClose()
             this.swalAlert('Success', 'Payment Confirmed', 'success')
             this.$router.push('/waitinglist')
           }
         })
         .catch((err) => {
-          this.$swal.close()
+          this.swalLoadingClose()
           this.swalAlert('Confirm Payment Failed', 'err.message', 'Error')
           console.log(err)
         })

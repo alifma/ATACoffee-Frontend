@@ -53,12 +53,15 @@ export const mixins = {
     swalLoading (title) {
       Swal.fire({
         title: title,
-        allowOutsideClick: true,
+        allowOutsideClick: false,
         showConfirmButton: false,
         willOpen: () => {
           Swal.showLoading()
         }
       })
+    },
+    swalLoadingClose () {
+      Swal.close()
     }
   }
 }

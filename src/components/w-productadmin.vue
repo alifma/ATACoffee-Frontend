@@ -189,28 +189,13 @@ export default {
       this.$router.push(`/product/${id}/edit`)
     },
     test () {
-      alert('TEST')
-    },
-    favoritelist () {
-      alert('Menu Favorite')
-    },
-    vcoffe () {
-      alert('Menu Coffee')
-    },
-    vnoncoffe () {
-      alert('Menu Non Coffee')
-    },
-    vfoods () {
-      alert('Menu Foods')
-    },
-    vaddon () {
-      alert('Add on')
+      this.swalAlert('Comming Soon', 'You will be able to edit coupon', 'info')
     },
     btnCuppon () {
-      alert('apply cupon')
+      this.swalAlert('Comming Soon', 'You will be able to use coupon', 'info')
     },
     addpromo () {
-      alert('add promo')
+      this.swalAlert('Comming Soon', 'You will be able to add promo', 'info')
     },
     detailProduct (id) {
       this.$router.push(`/product/${id}`)

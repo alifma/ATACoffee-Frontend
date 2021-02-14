@@ -20,8 +20,12 @@
               <section class="info-product p-4">
                 <div class="row p-4">
                   <div class="col">
-                    <p class="font-poppins brown" style="font-size:20px">Delivery only on <b>Monday to friday</b> at
-                      <b>1 - 7 pm</b></p>
+                    <p v-if="detail.hourEnd === null" class="font-poppins text-justify brown" style="font-size:20px">Delivery only on
+                      <b>Monday </b> to <b> friday</b> start from
+                      <b>{{detail.hourStart}}</b></p>
+                    <p v-else class="font-poppins text-justify brown" style="font-size:20px">Delivery only on <b>Monday </b> to <b>
+                        friday</b> at
+                      <b>{{detail.hourStart}}</b> to <b>{{detail.hourEnd}}</b></p>
                     <p class="font-poppins brown" style="text-align:justify; font-size:20px;">{{detail.desc}}</p>
                   </div>
                 </div>
@@ -230,10 +234,22 @@ export default {
         this.fixCart = []
         this.swalAlert('Success', 'This item is now on your cart', 'success')
       }
+    },
+    getDetails () {
+      this.swalLoading('Preparing Data')
+      this.getDetailAction(this.id)
+        .then((res) => {
+          this.swalLoadingClose()
+          console.log(res)
+        })
+        .catch((err) => {
+          this.swalLoadingClose()
+          console.log(err)
+        })
     }
   },
   mounted () {
-    this.getDetailAction(this.id)
+    this.getDetails()
   }
 }
 </script>

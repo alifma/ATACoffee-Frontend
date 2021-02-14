@@ -166,7 +166,7 @@ export default {
       this.$router.push('/signup')
     },
     chating () {
-      alert('chating')
+      this.swalAlert('Comming Soon', 'You will be able to chat with our cashier', 'info')
     },
     search () {
       alert('Searching')

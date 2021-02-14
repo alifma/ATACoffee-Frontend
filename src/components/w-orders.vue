@@ -17,14 +17,7 @@
           Let's see what you have bought!
         </h1>
       </div>
-      <div class="container mb-4">
-        <div class="row mb-4">
-          <div
-            class="col col-sm-6 col-lg-4 mt-2"
-            v-for="(item, index) in orders"
-            :key="index"
-          >
-            <!-- modal delete order -->
+       <!-- modal delete order -->
 
             <b-modal
               id="deleteModal"
@@ -70,8 +63,14 @@
                 </div>
               </div>
             </b-modal>
-
             <!-- end modal delete order -->
+      <div class="container mb-4">
+        <div class="row mb-4">
+          <div
+            class="col col-sm-6 col-lg-4 mt-2"
+            v-for="(item, index) in orders"
+            :key="index"
+          >
             <!--  -->
             <div class="card cardheight">
               <div class="card-body">
