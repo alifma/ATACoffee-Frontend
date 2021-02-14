@@ -76,9 +76,9 @@
                     <div class="col">
                       <form class="form-inline ">
                         <div class="form-group w-75 mx-auto">
-                          <label class="my-1 mr-2 font-poppins">Set Time : </label>
+                          <label class="my-1 mr-2 font-poppins">Order Details : </label>
                           <input v-model="cartHolder.orderDetails" type="text" class="form-control border-none w-75" style=""
-                            placeholder="Enter the time you’ll arrived">
+                            placeholder="Enter your order details">
                         </div>
                       </form>
                     </div>
@@ -168,14 +168,17 @@ export default {
       detail: 'products/detail',
       userID: 'auth/getUserID',
       userName: 'auth/getUserName',
-      userAccess: 'auth/getAccess'
+      userAccess: 'auth/getAccess',
+      userDetail: 'auth/getUserDetail'
+
     })
   },
   methods: {
     ...mapActions({
       getDetailAction: 'products/getDetail',
       deleteAction: 'products/deleteProduct',
-      addCartAction: 'carts/addToCart'
+      addCartAction: 'carts/addToCart',
+      userProfile: 'auth/getProfile'
     }),
     editProduct () {
       this.$router.push(`/product/${this.id}/edit`)
@@ -233,7 +236,7 @@ export default {
           price: i.price,
           orderType: this.cartHolder.orderType,
           orderDetails: this.cartHolder.orderDetails,
-          orderPhone: '0'
+          orderPhone: this.userDetail.handphone
         }))
         this.addCartAction(checkoutData)
         this.fixCart = []
@@ -255,6 +258,7 @@ export default {
   },
   mounted () {
     this.getDetails()
+    this.userProfile(this.userID)
   }
 }
 </script>

@@ -88,7 +88,7 @@
           </div>
           <button @click="gotoOrder()" class="btn btn-brown font-poppins w-100 mt-4"
             style="font-size:20px;border-radius:25px;height:60px">Back to Order</button>
-          <button @click="gotoDashboard()" class="btn btn-warning font-weight-bold font-poppins w-100 mt-4"
+          <button v-if="userAccess === 1" @click="gotoDashboard()" class="btn btn-warning font-weight-bold font-poppins w-100 mt-4"
             style="font-size:20px;border-radius:25px;height:60px">Go to Dashboard</button>
         </div>
       </div>
@@ -121,7 +121,8 @@ export default {
       detailOrdersBody: 'orders/getDetailOrdersBody',
       totalPrice: 'orders/totalPrice',
       tax: 'orders/tax',
-      shipping: 'orders/shipping'
+      shipping: 'orders/shipping',
+      userAccess: 'auth/getAccess'
     })
   },
   methods: {

@@ -148,7 +148,7 @@
              <div class="progress mx-4">
                 <div class="progress-bar bg-warning" role="progressbar" style="width: 76%" ></div>
               </div>
-              <h3>80%</h3>
+              <h3>76%</h3>
               </div>
             </div>
           </div>
@@ -202,7 +202,7 @@ export default {
         { value: 1, text: 'Pending' },
         { value: 0, text: 'Done' }
       ],
-      toggleChart: false,
+      toggleChart: true,
       formData: {
         name: '',
         image: 'https://free-icon-rainbow.com/i/icon_02035/icon_020350_256.png',
@@ -234,7 +234,7 @@ export default {
       this.loadDashboard = true
       this.actionGetReport(this.reportQuery)
         .then((res) => {
-          console.log(res)
+          // console.log(res)
           this.loadDashboard = false
         })
         .catch((err) => {
