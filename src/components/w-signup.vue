@@ -129,7 +129,9 @@
 <script>
 import componentFooter from '../components/footers'
 import { mapActions } from 'vuex'
+import { mixins } from '../helpers/mixin'
 export default {
+  mixins: [mixins],
   data () {
     return {
       formData: {
@@ -147,15 +149,17 @@ export default {
       actionregister: 'register/actionRegister'
     }),
     login () {
-      // alert('LOGIN')
       this.$router.push('/login')
     },
     sigupForm () {
+      this.swalLoading('Signup...')
       this.actionregister(this.formData).then((response) => {
         console.log(response)
         if (response === 'Email Exist') {
+          this.$swal.close()
           this.$swal('Email registed', 'Please Change Email ', 'error')
         } else {
+          this.$swal.close()
           this.$swal('Register Email Success', 'You can Login Now ', 'success')
           this.$router.push('/login')
         }
