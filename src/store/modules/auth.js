@@ -30,7 +30,7 @@ const moduleAuth = {
   actions: {
     login (context, data) {
       return new Promise((resolve, reject) => {
-        axios.post('http://52.91.116.102:3001/login', data).then((response) => {
+        axios.post(`${context.rootState.apiURL}/login`, data).then((response) => {
           localStorage.setItem('token', response.data.token)
           localStorage.setItem('access', response.data.access)
           localStorage.setItem('name', response.data.name)
@@ -61,7 +61,7 @@ const moduleAuth = {
     },
     getProfile (context) {
       return new Promise((resolve, reject) => {
-        axios.get(`http://52.91.116.102:3001/users/${context.state.id}`, { headers: { token: context.state.token } })
+        axios.get(`${context.rootState.apiURL}/users/${context.state.id}`, { headers: { token: context.state.token } })
           .then((response) => {
             context.commit('setUserDetail', response.data.data)
             resolve(response.data.data)
@@ -73,7 +73,7 @@ const moduleAuth = {
     },
     postProfile (context, data) {
       return new Promise((resolve, reject) => {
-        axios.patch(`http://52.91.116.102:3001/users/${context.state.id}`, data, { headers: { token: context.state.token } }).then((response) => {
+        axios.patch(`${context.rootState.apiURL}/users/${context.state.id}`, data, { headers: { token: context.state.token } }).then((response) => {
           // console.log(data)
           // context.commit('setUserDetail', data)
           resolve(response.data.msg)

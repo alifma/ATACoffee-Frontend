@@ -10,7 +10,7 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
   state () {
     return {
-      apiURL: 'http://52.91.116.102:3001'
+      apiURL: process.env.VUE_APP_APIURL
     }
   },
   getters: {

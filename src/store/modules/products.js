@@ -3,7 +3,6 @@ const moduleProducts = {
   namespaced: true,
   state: () => {
     return {
-      apiURL: 'http://52.91.116.102:3001',
       detail: {
         name: '',
         image: 'defaultFood.png',
@@ -40,7 +39,7 @@ const moduleProducts = {
   actions: {
     getDetail (context, id) {
       return new Promise((resolve, reject) => {
-        axios.get(`${context.state.apiURL}/items/${id}`, { headers: { token: context.state.dataTesting.token } })
+        axios.get(`${context.rootState.apiURL}/items/${id}`, { headers: { token: context.state.dataTesting.token } })
           .then((response) => {
             context.commit('setDetail', response.data.data[0])
             resolve(response.data.data[0])
@@ -52,7 +51,7 @@ const moduleProducts = {
     },
     updateDetail (context, data) {
       return new Promise((resolve, reject) => {
-        axios.patch(`${context.state.apiURL}/items/${data.id}`, data.fd, { headers: { token: context.state.dataTesting.token } })
+        axios.patch(`${context.rootState.apiURL}/items/${data.id}`, data.fd, { headers: { token: context.state.dataTesting.token } })
           .then((response) => {
             resolve(response)
           })
@@ -63,7 +62,7 @@ const moduleProducts = {
     },
     getAllProduct (context, data) {
       return new Promise((resolve, reject) => {
-        const sql = `${context.state.apiURL}/items?limit=${data.limit}&category=${data.category}&page=${data.page}&name=${data.name}&sort=${data.sort}&order=${data.order}`
+        const sql = `${context.rootState.apiURL}/items?limit=${data.limit}&category=${data.category}&page=${data.page}&name=${data.name}&sort=${data.sort}&order=${data.order}`
         axios.get(sql, { headers: { token: context.state.dataTesting.token } })
           .then((response) => {
             resolve(response.data)
@@ -76,7 +75,7 @@ const moduleProducts = {
     },
     deleteProduct (context, id) {
       return new Promise((resolve, reject) => {
-        axios.delete(`${context.state.apiURL}/items/${id}`, { headers: { token: context.state.dataTesting.token } })
+        axios.delete(`${context.rootState.apiURL}/items/${id}`, { headers: { token: context.state.dataTesting.token } })
           .then((response) => {
             resolve(response)
           })
@@ -87,7 +86,7 @@ const moduleProducts = {
     },
     addProduct (context, data) {
       return new Promise((resolve, reject) => {
-        axios.post(`${context.state.apiURL}/items/`, data, { headers: { token: context.rootState.auth.token } })
+        axios.post(`${context.rootState.apiURL}/items/`, data, { headers: { token: context.rootState.auth.token } })
           .then((response) => {
             resolve(response)
           })

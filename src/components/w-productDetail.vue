@@ -9,7 +9,7 @@
       <div>
         <div class="row py-4">
           <div class="col-md-5 col-lg-5 text-center">
-            <img style="width:75%" class="product-rounded" :src="`http://52.91.116.102:3001/image/${detail.image}`" alt="">
+            <img style="width:75%" class="product-rounded" :src="`${webURL}/image/${detail.image}`" alt="">
             <div class="mt-4">
               <h1 class="font-poppins font-weight-bolder">{{detail.name.toUpperCase()}}</h1>
               <h5 class="font-poppins font-weight-light">IDR {{formatPrice(detail.price)}}</h5>
@@ -100,7 +100,7 @@
           <!-- Jika ada itemnya -->
             <div v-if="fixCart.length > 0" class="row no-gutters" style="height:20vh">
               <div class="col-md-4 text-center my-auto">
-                <img :src="`http://52.91.116.102:3001/image/${detail.image}`" style="height:100px;width:100px"
+                <img :src="`${webURL}/image/${detail.image}`" style="height:100px;width:100px"
                   class="card-img product-rounded">
               </div>
               <div class="col-md-8">

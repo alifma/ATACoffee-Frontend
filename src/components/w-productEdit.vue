@@ -25,7 +25,7 @@
         <div class="col-lg-6">
           <div class="text-center">
             <img
-              :src="`http://52.91.116.102:3001/image/${detail.image}`"
+              :src="`${webURL}/image/${detail.image}`"
               alt=""
               class="img-fluid w-100"
             />

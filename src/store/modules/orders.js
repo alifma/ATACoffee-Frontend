@@ -3,7 +3,6 @@ const moduleOrders = {
   namespaced: true,
   state: () => {
     return {
-      apiURL: 'http://52.91.116.102:3001',
       orders: [],
       ordersPagination: [],
       pendingOrders: [],
@@ -48,7 +47,7 @@ const moduleOrders = {
   actions: {
     actionGetAllOrders (context, data) {
       return new Promise((resolve, reject) => {
-        axios.get(`${context.state.apiURL}/orders?limit=${data.limit}&user=${data.user}&pending=${data.pending}&page=${data.page}`, { headers: { token: context.state.dataTesting.token } })
+        axios.get(`${context.rootState.apiURL}/orders?limit=${data.limit}&user=${data.user}&pending=${data.pending}&page=${data.page}`, { headers: { token: context.state.dataTesting.token } })
           .then((response) => {
             context.commit('setAllOrders', response.data)
             resolve(response.data)
@@ -61,7 +60,7 @@ const moduleOrders = {
     },
     actionGetPendingOrders (context, data) {
       return new Promise((resolve, reject) => {
-        axios.get(`${context.state.apiURL}/orders?limit=${data.limit}&page=${data.page}&pending=1&sort=${data.sort}`, { headers: { token: context.state.dataTesting.token } }).then((response) => {
+        axios.get(`${context.rootState.apiURL}/orders?limit=${data.limit}&page=${data.page}&pending=1&sort=${data.sort}`, { headers: { token: context.state.dataTesting.token } }).then((response) => {
           context.commit('setPendingOrders', response.data)
           resolve(response.data)
         }).catch((error) => {
@@ -72,7 +71,7 @@ const moduleOrders = {
     },
     actionGetDetailOrders (context, inv) {
       return new Promise((resolve, reject) => {
-        axios.get(`http://52.91.116.102:3001/orders/${inv}`, { headers: { token: context.state.dataTesting.token } }).then((response) => {
+        axios.get(`${context.rootState.apiURL}/orders/${inv}`, { headers: { token: context.state.dataTesting.token } }).then((response) => {
           context.commit('setDetailOrderHead', response.data.data.head[0])
           context.commit('setDetailOrderBody', response.data.data.body)
           resolve(response.data)
@@ -84,7 +83,7 @@ const moduleOrders = {
     },
     createOrders (context, data) {
       return new Promise((resolve, reject) => {
-        axios.post(`${context.state.apiURL}/orders/`, data, { headers: { token: context.rootState.auth.token } })
+        axios.post(`${context.rootState.apiURL}/orders/`, data, { headers: { token: context.rootState.auth.token } })
           .then((response) => {
             resolve(response.data)
           })
@@ -95,7 +94,7 @@ const moduleOrders = {
     },
     updateOrders (context, data) {
       return new Promise((resolve, reject) => {
-        axios.patch(`${context.state.apiURL}/orders/${data.inv}`, data.info, { headers: { token: context.rootState.auth.token } })
+        axios.patch(`${context.rootState.apiURL}/orders/${data.inv}`, data.info, { headers: { token: context.rootState.auth.token } })
           .then((response) => {
             resolve(response.data)
           })
@@ -106,7 +105,7 @@ const moduleOrders = {
     },
     deleteOrders (context, inv) {
       return new Promise((resolve, reject) => {
-        axios.delete(`${context.state.apiURL}/orders/${inv}`, { headers: { token: context.rootState.auth.token } })
+        axios.delete(`${context.rootState.apiURL}/orders/${inv}`, { headers: { token: context.rootState.auth.token } })
           .then((response) => {
             // console.log(response)
             resolve(response.data)
@@ -118,7 +117,7 @@ const moduleOrders = {
     },
     actionGetReport (context, data) {
       return new Promise((resolve, reject) => {
-        axios.get(`${context.state.apiURL}/orders?limit=${data.limit}&pending=${data.pending}&page=${data.page}&range=${data.range}`, { headers: { token: context.state.dataTesting.token } })
+        axios.get(`${context.rootState.apiURL}/orders?limit=${data.limit}&pending=${data.pending}&page=${data.page}&range=${data.range}`, { headers: { token: context.state.dataTesting.token } })
           .then((response) => {
             context.commit('setReport', response.data)
             resolve(response.data)

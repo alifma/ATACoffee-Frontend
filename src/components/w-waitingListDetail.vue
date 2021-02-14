@@ -17,7 +17,7 @@
                 <div style="max-height:40vh;overflow-y:scroll">
                   <div v-for="(item, index) in detailBody" :key="index" class="row no-gutters" style="height:18vh">
                     <div class="col-md-4 text-center my-auto">
-                      <img :src="`http://52.91.116.102:3001/image/${item.image}`"
+                      <img :src="`${webURL}/image/${item.image}`"
                         style="height:100px;width:100px;object-fit:cover;border-radius:25%" class="card-img">
                     </div>
                     <div class="col-md-8">

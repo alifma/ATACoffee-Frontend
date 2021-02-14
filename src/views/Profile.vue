@@ -25,7 +25,7 @@
               </div>
               <div v-else>
                 <img
-                  :src="`http://52.91.116.102:3001/image/${getUserDetail.image}`"
+                  :src="`${webURL}/image/${getUserDetail.image}`"
                   class="img-f-profile mt-5"
                   alt="foto profile"
                 />
