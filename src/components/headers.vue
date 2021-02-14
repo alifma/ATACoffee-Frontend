@@ -43,7 +43,14 @@
         </div>
       </div>
       <div v-if="getAccess != null" class="justify-content-end">
-        <input v-model="productQuery.name" @change="getProduct()" v-if="toggleSearch" type="text" id="productNameSearch" style="width:100px">
+        <input
+          v-model="productQuery.name"
+          @change="getProduct()"
+          v-if="toggleSearch"
+          type="text"
+          id="productNameSearch"
+          style="width: 100px"
+        />
         <button
           @click="switchToggle()"
           style="
@@ -89,7 +96,7 @@
             "
           >
             <img
-              src="../assets/img/f-profile.png"
+              src="../assets/img/avatar.png"
               style="
                 border-radius: 50%;
                 width: 45px;

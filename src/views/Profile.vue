@@ -18,7 +18,7 @@
                 "
               >
                 <img
-                  src="../assets/img/f-profile.png"
+                  src="../assets/img/avatar.png"
                   class="img-f-profile mt-5"
                   alt="foto profile"
                 />
@@ -331,7 +331,9 @@
 import cheader from '../components/headers'
 import cfooter from '../components/footers'
 import { mapGetters, mapActions } from 'vuex'
+import { mixins } from '../helpers/mixin'
 export default {
+  mixins: [mixins],
   data () {
     return {
       formContact: {
@@ -379,6 +381,7 @@ export default {
     },
     savechange () {
       // console.log(this.formContact)
+      this.swalLoading('Updating Data')
       const fd = new FormData()
       fd.append('name', `${this.formContact.firstname} ${this.formContact.lastname}`)
       fd.append('username', this.formContact.username)
@@ -391,11 +394,13 @@ export default {
       fd.append('image', this.formContact.image)
       fd.append('email', this.formContact.email)
       this.actionPostProfile(fd).then((response) => {
+        this.$swal.close()
         this.actionGetProfile()
         this.state = false
         this.$swal(response, '', 'success')
-      }).catch('')
-      // this.$router.push('/product')
+      }).catch((err) => {
+        console.log(err)
+      })
     },
     cancel () {
       this.actionGetProfile().then((response) => {

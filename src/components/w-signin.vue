@@ -125,7 +125,9 @@
 <script>
 import { mapActions } from 'vuex'
 import componentFooter from '../components/footers'
+import { mixins } from '../helpers/mixin'
 export default {
+  mixins: [mixins],
   data () {
     return {
       formData: {
@@ -143,6 +145,7 @@ export default {
     }),
     loginForm () {
       // alert('check console')
+      this.swalLoading('Login...')
       const dataLogin = {
         email: this.formData.email,
         password: this.formData.password
@@ -150,10 +153,13 @@ export default {
       this.actionLogin(dataLogin).then((response) => {
         console.log(response)
         if (response === 'Email Not Registered') {
+          this.$swal.close()
           this.$swal('Email Not Registered', 'Please Check your Email ', 'error')
         } else if (response === 'Wrong Password') {
+          this.$swal.close()
           this.$swal('Wrong Password', 'Please Check your Password ', 'error')
         } else {
+          this.$swal.close()
           this.$swal('Login Success', ' ', 'success')
           this.$router.push('/product')
         }
