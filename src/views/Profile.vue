@@ -58,7 +58,14 @@
                 >
                   {{ formContact.email }}
                 </h6>
-                <p class="card-text mt-5">Has been ordered 15 products</p>
+                <div v-if="pagination.errorMsg === '0 Result'">
+                  <p class="card-text mt-5">Has been ordered 0 products</p>
+                </div>
+                <div v-else>
+                  <p class="card-text mt-5">
+                    Has been ordered {{ pagination.totalResult }} products
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -356,6 +363,7 @@ export default {
   },
   computed: {
     ...mapGetters({
+      pagination: 'orders/getAllOrdersPagination',
       getUserID: 'auth/getUserID',
       getUserDetail: 'auth/getUserDetail'
     })
@@ -364,10 +372,16 @@ export default {
     ...mapActions({
       signout: 'auth/logout',
       actionGetProfile: 'auth/getProfile',
-      actionPostProfile: 'auth/postProfile'
+      actionPostProfile: 'auth/postProfile',
+      getOrders: 'orders/actionGetAllOrders'
     }),
+    getAllOrders () {
+      this.orderQuery.user = Number(this.getUserID)
+      this.getOrders(this.orderQuery)
+    },
     logout () {
       this.signout().then((response) => {
+        this.swalAlert('Logout Success', 'See you next time!', 'success')
         if (response) {
           this.$router.push('/')
         }
@@ -431,6 +445,7 @@ export default {
     }
   },
   mounted () {
+    this.getAllOrders()
     this.actionGetProfile()
       .then((response) => {
         this.formContact.email = response.email

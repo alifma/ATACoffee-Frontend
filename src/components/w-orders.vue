@@ -18,7 +18,6 @@
         </h1>
       </div>
        <!-- modal delete order -->
-
             <b-modal
               id="deleteModal"
               hide-footer
@@ -215,6 +214,43 @@
     <!-- footer -->
     <componentFooter />
     <!-- end footer -->
+    <b-modal
+      id="deleteModal"
+      hide-footer
+      hide-header
+      title="Using Component Methods"
+      centered
+    >
+      <div class="p-5">
+        <div class="d-block text-center">
+          <p class="font-poppins font-weight-light" style="font-size: 20px">
+            Are you sure want to delete this order?
+          </p>
+        </div>
+        <div class="w-100">
+          <button
+            class="btn btn-primary text-center float-left mr-3 font-weight-bold"
+            style="
+              width: 40%;
+              margin-right: 5%;
+              background: #fff;
+              border: 3px solid #6a4029;
+              color: #6a4029;
+            "
+            @click="$bvModal.hide('deleteModal')"
+          >
+            Cancel
+          </button>
+          <button
+            class="btn btn-brown text-center float-right ml-3"
+            style="width: 40%; margin-left: 5%; border: 3px solid #6a4029"
+            @click="deleteConfirm(inv)"
+          >
+            Delete
+          </button>
+        </div>
+      </div>
+    </b-modal>
   </div>
 </template>
 
