@@ -7,9 +7,10 @@
  - Vuex
  
  ### Materi
-Silahkan klik [disini]
+Silahkan klik [disini] atau [didrive]
 
 [disini]: https://github.com/alifma/ATACoffee-Frontend/tree/materi/materi
+[drive]: https://drive.google.com/file/d/1ZQFLyfo2Wutq5tAR2vNB_NI5j1eaXRCc/view?usp=sharing
  
  ---
  
