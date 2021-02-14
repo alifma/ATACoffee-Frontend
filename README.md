@@ -3,9 +3,17 @@
  - Axios
  - Bootstrap-vue
  - Sweetalert2
- - fontawesome (cek di header file HTML)
+ - fontawesome
  - Vuex
  
+ ### Materi
+Silahkan klik [disini]
+
+[disini]: https://github.com/alifma/ATACoffee-Frontend/tree/materi/materi
+ 
+ ---
+ 
+
 ## Project setup
 ```
 npm install
