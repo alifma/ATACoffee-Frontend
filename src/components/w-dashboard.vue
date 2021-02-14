@@ -8,7 +8,7 @@
             See how your store progress so far
           </h1>
         </div>
-        <div class="col-8">
+        <div class="col-12 col-sm-12 col-md-8">
           <div class="card cardmo">
             <div class="body-card">
               <div class="row">
@@ -17,7 +17,11 @@
                   <p>Last 6 months</p>
                 </div>
                 <div class="col-2">
-                  <img src="../assets/img/more.png" alt="" class="mt-4" />
+                  <img
+                    src="../assets/img/more.png"
+                    alt=""
+                    class="imgmore mt-4"
+                  />
                 </div>
                 <div class="col-12">
                   <img src="../assets/img/Chart.png" alt="" class="imgchart" />
@@ -36,23 +40,24 @@
             <h3>Download Report</h3>
           </button>
         </div>
-        <div class="col-4">
+        <div class="col-12 col-sm-12 col-md-4">
           <div class="row">
-            <div class="col-12">
+            <div class="col">
               <div class="card cardbody">
                 <div class="card-body">
                   <div class="row">
                     <div class="col-4">
                       <img
-                        src="../assets/img/bg-Profile.png"
+                        :src="`http://52.91.116.102:3001/image/${formData.image}`"
                         alt=""
                         class="imgprofile"
                       />
                     </div>
                     <div class="col-8">
-                      <h5 class="textleft">cheryn laurent</h5>
+                      <h5 class="textleft">{{ formData.name }}</h5>
                       <p>
-                        Cheryn Laurent Keep up the good work and spread love!
+                        {{ formData.name }} Laurent Keep up the good work and
+                        spread love!
                       </p>
                     </div>
                   </div>
@@ -106,6 +111,10 @@
 </template>
 
 <style scoped>
+.imgmore {
+  max-width: 50px;
+  width: 100%;
+}
 .btnreport {
   margin-top: 6%;
   margin-bottom: 2%;
@@ -140,6 +149,9 @@
 }
 .imgchart {
   margin-top: 10%;
+  max-width: 800px;
+  width: 100%;
+  padding-right: 10%;
 }
 .borders {
   border: 1px solid #d6d9dc;
@@ -228,7 +240,8 @@
   color: #000000;
 }
 .imgprofile {
-  width: 100px;
+  max-width: 100px;
+  width: 100%;
   border-radius: 50%;
 }
 .textleft {
@@ -244,11 +257,37 @@
 <script>
 import cHeader from '../components/headers'
 import cFooter from '../components/footers'
+import { mapActions, mapGetters } from 'vuex'
 export default {
   components: {
     cHeader,
     cFooter
+  },
+  data () {
+    return {
+      formData: {
+        name: '',
+        image: ''
+      }
+    }
+  },
+  computed: {
+    ...mapGetters({
+      getUser: 'auth/getUserDetail'
+    })
+  },
+  methods: {
+    ...mapActions({
+      actionGetUser: 'auth/getProfile'
+    })
+  },
+  mounted () {
+    this.actionGetUser()
+      .then((response) => {
+        console.log(response)
+        this.formData.name = response.firstname
+        this.formData.image = response.image
+      })
   }
-
 }
 </script>
