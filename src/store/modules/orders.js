@@ -41,13 +41,17 @@ const moduleOrders = {
   },
   actions: {
     actionGetAllOrders (context, data) {
-      axios.get(`${context.state.apiURL}/orders?limit=${data.limit}&user=${data.user}&pending=${data.pending}&page=${data.page}`, { headers: { token: context.state.dataTesting.token } })
-        .then((response) => {
-          context.commit('setAllOrders', response.data)
-          // console.log(response)
-        }).catch((error) => {
-          console.log(error)
-        })
+      return new Promise((resolve, reject) => {
+        axios.get(`${context.state.apiURL}/orders?limit=${data.limit}&user=${data.user}&pending=${data.pending}&page=${data.page}`, { headers: { token: context.state.dataTesting.token } })
+          .then((response) => {
+            context.commit('setAllOrders', response.data)
+            resolve(response.data)
+            // console.log(response)
+          }).catch((error) => {
+            console.log(error)
+            reject(error)
+          })
+      })
     },
     actionGetPendingOrders (context, data) {
       return new Promise((resolve, reject) => {

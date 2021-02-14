@@ -241,10 +241,21 @@ export default {
     }),
     gotoOrder () {
       this.$router.push('/orders')
+    },
+    getDetail () {
+      this.swalLoading('Preparing Data')
+      this.actionGetDetail(this.paramInv)
+        .then((res) => {
+          this.swalLoadingClose()
+        })
+        .catch((err) => {
+          this.swalLoadingClose()
+          console.log(err)
+        })
     }
   },
   mounted () {
-    this.actionGetDetail(this.paramInv)
+    this.getDetail()
   }
 }
 </script>
