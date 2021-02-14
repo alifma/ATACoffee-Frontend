@@ -108,7 +108,7 @@
           </div>
           <div v-else>
             <img
-              :src="`http://52.91.116.102:3001/image/${getUserDetail.image}`"
+              :src="`${webURL}/image/${getUserDetail.image}`"
               style="
                 border-radius: 50%;
                 width: 45px;

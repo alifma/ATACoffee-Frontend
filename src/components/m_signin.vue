@@ -45,7 +45,6 @@ export default {
       if (!this.formLogin.email || !this.formLogin.password) {
         this.swalAlert('Input Failed', 'Please Fill All Required', 'error')
       } else {
-        console.log(this.formLogin)
         this.$router.push('/')
       }
     },

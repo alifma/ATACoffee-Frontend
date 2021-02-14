@@ -156,14 +156,12 @@ export default {
           paymentType: this.headOrder.paymentType,
           inv: this.headOrder.inv
         }))
-        // console.log(finalData)
         this.actionOrderPost(finalData)
           .then((response) => {
             if (response.code === 200) {
               this.actionEmptYCart()
               this.swalAlert('Checkout Success', '', 'success')
             } else {
-              // console.log(response)
               this.swalAlert('Checkout Error', response.msg, 'error')
             }
           })
