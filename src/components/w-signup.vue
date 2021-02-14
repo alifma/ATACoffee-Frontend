@@ -155,7 +155,7 @@ export default {
       if (this.formData.email !== '' && this.formData.handphone !== '' && this.formData.password !== '') {
         this.swalLoading('Signup...')
         this.actionregister(this.formData).then((response) => {
-          console.log(response)
+          // console.log(response)
           if (response === 'Email Exist') {
             this.$swal.close()
             this.$swal('Email registed', 'Please Change Email ', 'error')

@@ -44,7 +44,7 @@ const moduleOrders = {
       axios.get(`${context.state.apiURL}/orders?limit=${data.limit}&user=${data.user}&pending=${data.pending}&page=${data.page}`, { headers: { token: context.state.dataTesting.token } })
         .then((response) => {
           context.commit('setAllOrders', response.data)
-          console.log(response)
+          // console.log(response)
         }).catch((error) => {
           console.log(error)
         })
@@ -98,7 +98,7 @@ const moduleOrders = {
       return new Promise((resolve, reject) => {
         axios.delete(`${context.state.apiURL}/orders/${inv}`, { headers: { token: context.rootState.auth.token } })
           .then((response) => {
-            console.log(response)
+            // console.log(response)
             resolve(response.data)
           })
           .catch((err) => {

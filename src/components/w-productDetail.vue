@@ -20,12 +20,17 @@
               <section class="info-product p-4">
                 <div class="row p-4">
                   <div class="col">
-                    <p v-if="detail.hourEnd === null" class="font-poppins text-justify brown" style="font-size:20px">Delivery only on
-                      <b>Monday </b> to <b> friday</b> start from
-                      <b>{{detail.hourStart}}</b></p>
-                    <p v-else class="font-poppins text-justify brown" style="font-size:20px">Delivery only on <b>Monday </b> to <b>
+                    <p v-if="detail.hourEnd !== null && detail.hourStart !== null"
+                      class="font-poppins text-justify brown" style="font-size:20px">Delivery only on <b>Monday </b> to
+                      <b>
                         friday</b> at
                       <b>{{detail.hourStart}}</b> to <b>{{detail.hourEnd}}</b></p>
+                    <p v-else-if="detail.hourEnd !== null" class="font-poppins text-justify brown"
+                      style="font-size:20px">Delivery only on
+                      <b>Monday </b> to <b> friday</b> start from
+                      <b>{{detail.hourStart}}</b></p>
+                    <p v-else class="font-poppins text-justify brown" style="font-size:20px">Available
+                      <b>Everytime!</b></p>
                     <p class="font-poppins brown" style="text-align:justify; font-size:20px;">{{detail.desc}}</p>
                   </div>
                 </div>
@@ -240,7 +245,7 @@ export default {
       this.getDetailAction(this.id)
         .then((res) => {
           this.swalLoadingClose()
-          console.log(res)
+          // console.log(res)
         })
         .catch((err) => {
           this.swalLoadingClose()
