@@ -152,26 +152,30 @@ export default {
       this.$router.push('/login')
     },
     sigupForm () {
-      this.swalLoading('Signup...')
-      this.actionregister(this.formData).then((response) => {
-        console.log(response)
-        if (response === 'Email Exist') {
-          this.$swal.close()
-          this.$swal('Email registed', 'Please Change Email ', 'error')
-        } else {
-          this.$swal.close()
-          this.$swal('Register Email Success', 'You can Login Now ', 'success')
-          this.$router.push('/login')
-        }
-      }).catch((error) => {
-        console.log(error)
-      })
+      if (this.formData.email !== '' && this.formData.handphone !== '' && this.formData.password !== '') {
+        this.swalLoading('Signup...')
+        this.actionregister(this.formData).then((response) => {
+          console.log(response)
+          if (response === 'Email Exist') {
+            this.$swal.close()
+            this.$swal('Email registed', 'Please Change Email ', 'error')
+          } else {
+            this.$swal.close()
+            this.$swal('Register Email Success', 'You can Login Now ', 'success')
+            this.$router.push('/login')
+          }
+        }).catch((error) => {
+          console.log(error)
+        })
+      } else {
+        this.swalAlert('Signup error', 'Please fill all required!', 'error')
+      }
     },
     signupGoogle () {
-      alert('Sign up Google')
+      this.swalAlert('Comming Soon', 'You will be able to signup with yor google Account', 'info')
     },
     createBtn () {
-      alert('createNow')
+      window.scrollTo(0, 0)
     },
     gotoHome () {
       this.$router.push('/')

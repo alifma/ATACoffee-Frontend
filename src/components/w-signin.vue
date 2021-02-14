@@ -170,10 +170,10 @@ export default {
       this.$router.push('/signup')
     },
     loginGoogle () {
-      alert('Login Google')
+      this.$swal('Comming Soon', 'You will be able to login with your google account', 'info')
     },
     createBtn () {
-      alert('createNow')
+      window.scrollTo(0, 0)
     },
     gotoHome () {
       this.$router.push('/')

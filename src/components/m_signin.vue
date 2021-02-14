@@ -29,7 +29,9 @@
   </div>
 </template>
 <script>
+import { mixins } from '../helpers/mixin'
 export default {
+  mixins: [mixins],
   data () {
     return {
       formLogin: {
@@ -41,14 +43,14 @@ export default {
   methods: {
     onLogin () {
       if (!this.formLogin.email || !this.formLogin.password) {
-        alert('Oops! Isi dahulu ya!')
+        this.swalAlert('Input Failed', 'Please Fill All Required', 'error')
       } else {
         console.log(this.formLogin)
         this.$router.push('/')
       }
     },
     onGoogle () {
-      alert('google')
+      this.swalAlert('Comming Soon', 'You will be able to signin with your google account!', 'info')
     }
   }
 }

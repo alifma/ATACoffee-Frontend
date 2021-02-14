@@ -29,16 +29,6 @@ export default {
   },
   components: {
     componentSignFrom
-  },
-  methods: {
-    create () {
-      this.stateBtn = !this.stateBtn
-      // alert(this.stateBtn)
-    },
-    login () {
-      // alert('login')
-      this.$router.push('/login')
-    }
   }
 }
 </script>
