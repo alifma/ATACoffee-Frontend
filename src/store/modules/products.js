@@ -62,12 +62,17 @@ const moduleProducts = {
       })
     },
     getAllProduct (context, data) {
-      axios.get(`${context.state.apiURL}/items?limit=${data.limit}&category=${data.category}&page=${data.page}&name=${data.name}&sort=${data.sort}&order=${data.order}`, { headers: { token: context.state.dataTesting.token } })
-        .then((response) => {
-          context.commit('setAllItems', response.data)
-        }).catch((err) => {
-          console.log(err)
-        })
+      return new Promise((resolve, reject) => {
+        const sql = `${context.state.apiURL}/items?limit=${data.limit}&category=${data.category}&page=${data.page}&name=${data.name}&sort=${data.sort}&order=${data.order}`
+        axios.get(sql, { headers: { token: context.state.dataTesting.token } })
+          .then((response) => {
+            resolve(response.data)
+            context.commit('setAllItems', response.data)
+          }).catch((err) => {
+            console.log(err)
+            reject(err)
+          })
+      })
     },
     deleteProduct (context, id) {
       return new Promise((resolve, reject) => {

@@ -34,6 +34,18 @@
               <div class="card-body">
                 <div class="row">
                   <div class="col">
+                    <button
+                      class="btndelete float-right"
+                      @click="$bvModal.show('deleteModal')"
+                    >
+                      <i class="fas fa-times"></i>
+                    </button>
+                    <button
+                      class="btnDetail float-right"
+                      @click="datailOrders(item.inv)"
+                    >
+                      <i class="fas fa-shopping-bag"></i>
+                    </button>
                     <h4 class="fontstyle mb-0">Invoice: {{ item.inv }}</h4>
                     <p class="fontstyle2 mb-0">
                       Created :
@@ -278,6 +290,25 @@ export default {
 </script>
 
 <style scoped>
+.btndelete {
+  z-index: 2;
+  /* margin-top: -30px; */
+  margin-top: -13%;
+  background: #ffba33;
+  border-radius: 50%;
+  padding-left: 3%;
+  padding-right: 3%;
+}
+.btnDetail {
+  z-index: 2;
+  /* margin-top: -30px; */
+  margin-top: -13%;
+  background: #6a4029;
+  border-radius: 50%;
+  padding-left: 3%;
+  padding-right: 3%;
+  margin-right: 15%;
+}
 .tittle {
   font-family: Rubik;
   font-style: normal;
@@ -324,14 +355,5 @@ export default {
   font-size: 1vw;
   text-align: left;
   color: #895537;
-}
-.btnDetail {
-  z-index: 2;
-  /* margin-top: -30px; */
-  margin-bottom: -100px;
-  background: #6a4029;
-  border-radius: 50%;
-  padding-left: 3%;
-  padding-right: 3%;
 }
 </style>

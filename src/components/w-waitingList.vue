@@ -8,7 +8,12 @@
           Pending Order List</h1>
       </div>
       <div class="container mb-4">
-        <div class="row">
+        <div v-if="loadList" class="row w-100">
+           <div class="w-100 text-center p-4 m-4">
+            <b-spinner variant="warning"  style="width: 3rem; height: 3rem;"  label="Loading..."></b-spinner>
+          </div>
+        </div>
+        <div v-else class="row">
           <div v-for="(item, index) in pendingOrders" :key="index" class="col-lg-4 col-md-6 mb-4">
             <div class="card" @click="viewDetails(item.inv)" style="border-radius:25px">
               <div class="card-body">
@@ -63,6 +68,7 @@ export default {
   mixins: [mixins],
   data () {
     return {
+      loadList: false,
       options: [
         { value: 3, text: 'Limit 3' },
         { value: 6, text: 'Limit 6' },
@@ -87,12 +93,20 @@ export default {
       this.$router.push(`/waitinglist/${inv}`)
     },
     getPending () {
+      this.loadList = true
       this.actionGetPending(this.pendingQuery)
+        .then((res) => {
+          this.loadList = false
+        })
+        .catch((err) => {
+          this.loadList = false
+          console.log(err)
+        })
     },
     getPendingPageQuery (page) {
       this.pendingQuery.page = page
       // this.getPending()
-      this.actionGetPending(this.pendingQuery)
+      this.getPending()
     },
     getPendingLimitQuery () {
       this.pendingQuery.page = 1

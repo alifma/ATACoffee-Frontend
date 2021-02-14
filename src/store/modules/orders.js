@@ -98,6 +98,7 @@ const moduleOrders = {
       return new Promise((resolve, reject) => {
         axios.delete(`${context.state.apiURL}/orders/${inv}`, { headers: { token: context.rootState.auth.token } })
           .then((response) => {
+            console.log(response)
             resolve(response.data)
           })
           .catch((err) => {
