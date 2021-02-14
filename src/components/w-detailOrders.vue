@@ -86,8 +86,10 @@
               </b-form-group>
             </div>
           </div>
-          <button @click="gotoOrder()" class="btn btn-brown w-100 mt-4"
+          <button @click="gotoOrder()" class="btn btn-brown font-poppins w-100 mt-4"
             style="font-size:20px;border-radius:25px;height:60px">Back to Order</button>
+          <button @click="gotoDashboard()" class="btn btn-warning font-weight-bold font-poppins w-100 mt-4"
+            style="font-size:20px;border-radius:25px;height:60px">Go to Dashboard</button>
         </div>
       </div>
     </div>
@@ -241,6 +243,9 @@ export default {
     }),
     gotoOrder () {
       this.$router.push('/orders')
+    },
+    gotoDashboard () {
+      this.$router.push('/dashboard')
     },
     getDetail () {
       this.swalLoading('Preparing Data')

@@ -29,6 +29,15 @@ export const mixins = {
         name: '',
         sort: 'asc',
         order: 'created_at'
+      },
+      reportQuery: {
+        limit: 10,
+        page: 1,
+        cashier: '',
+        range: 'YEAR',
+        rangeDisplay: 'Yearly',
+        sort: 'desc',
+        pending: 0
       }
     }
   },

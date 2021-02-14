@@ -17,10 +17,16 @@ const moduleOrders = {
       },
       detailOrdersHead: {},
       detailOrdersBody: [],
-      shipping: 10000
+      shipping: 10000,
+      report: [],
+      reportPagination: []
     }
   },
   mutations: {
+    setReport (state, payload) {
+      state.report = payload.data
+      state.reportPagination = payload.pagination
+    },
     setAllOrders (state, payload) {
       state.orders = payload.data
       state.ordersPagination = payload.pagination
@@ -109,16 +115,27 @@ const moduleOrders = {
             reject(err)
           })
       })
+    },
+    actionGetReport (context, data) {
+      return new Promise((resolve, reject) => {
+        axios.get(`${context.state.apiURL}/orders?limit=${data.limit}&pending=${data.pending}&page=${data.page}&range=${data.range}`, { headers: { token: context.state.dataTesting.token } })
+          .then((response) => {
+            context.commit('setReport', response.data)
+            resolve(response.data)
+            // console.log(response)
+          }).catch((error) => {
+            console.log(error)
+            reject(error)
+          })
+      })
     }
   },
   getters: {
-    getAllOrders (state) {
-      return state.orders
-    },
+    report: state => state.report,
+    reportPagination: state => state.reportPagination,
+    getAllOrders: state => state.orders,
     getAllOrdersPagination: state => state.ordersPagination,
-    getDetailOrdersHead (state) {
-      return state.detailOrdersHead
-    },
+    getDetailOrdersHead: state => state.detailOrdersHead,
     getDetailOrdersBody (state) {
       return state.detailOrdersBody
     },
