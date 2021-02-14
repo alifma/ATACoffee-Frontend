@@ -68,7 +68,17 @@
           </div>
         </div>
         <!-- menu -->
-        <div class="row">
+        <div v-if="loadProduct" class="row w-100">
+           <div class="w-100 text-center p-4 m-4">
+            <b-spinner variant="warning"  style="width: 3rem; height: 3rem;"  label="Loading..."></b-spinner>
+          </div>
+        </div>
+        <div v-else-if="allitems.length === 0" class="row w-100">
+          <div class="w-100 text-center p-4 m-4">
+            <h1>No items</h1>
+          </div>
+        </div>
+        <div v-else class="row">
           <div
             class="col-md-3 mt-5 mb-4"
             v-for="(element, index) in allitems"
@@ -139,6 +149,7 @@ export default {
   mixins: [mixins],
   data () {
     return {
+      loadProduct: false,
       stateAdmin: false,
       options: [
         { value: 4, text: 'Limit 4' },
@@ -222,7 +233,15 @@ export default {
       this.getProduct()
     },
     getProduct () {
+      this.loadProduct = true
       this.getAllProduct(this.productQuery)
+        .then((res) => {
+          this.loadProduct = false
+        })
+        .catch((err) => {
+          this.loadProduct = false
+          console.log(err)
+        })
     }
   },
   mounted () {
