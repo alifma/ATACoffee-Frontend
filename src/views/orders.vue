@@ -1,5 +1,5 @@
 <template>
-  <div class="website">
+  <div>
     <componentOrders />
   </div>
 </template>

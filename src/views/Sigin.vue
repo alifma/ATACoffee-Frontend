@@ -1,20 +1,15 @@
 <template>
   <div>
-    <div class="website">
+    <div>
       <componentSigninWeb />
-    </div>
-    <div class="mobile">
-      <componentSignin />
     </div>
   </div>
 </template>
 <script>
 import componentSigninWeb from '../components/w-signin'
-import componentSignin from '../components/m_signin'
 export default {
   components: {
-    componentSigninWeb,
-    componentSignin
+    componentSigninWeb
   }
 }
 </script>

@@ -1,11 +1,6 @@
 <template>
   <div>
-    <!-- <div class="website"> -->
-      <ctWebProductDetail />
-    <!-- </div> -->
-    <!-- <div class="mobile">
-      <cMobileProduct />
-    </div> -->
+    <ctWebProductDetail />
   </div>
 </template>
 <script>

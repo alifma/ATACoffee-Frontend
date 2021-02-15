@@ -1,5 +1,5 @@
 <template>
-  <div class="website">
+  <div>
     <cheader />
     <section class="body-profile">
       <div class="container">

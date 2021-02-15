@@ -1,8 +1,6 @@
 <template>
   <div>
-    <div class="website">
-      <ctWebProductAdm />
-    </div>
+    <ctWebProductAdm />
   </div>
 </template>
 <script>

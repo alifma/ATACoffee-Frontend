@@ -1,11 +1,6 @@
 <template>
   <div>
-    <!-- <div class="website"> -->
     <productAdd />
-    <!-- </div> -->
-    <!-- <div class="mobile">
-      <cMobileProduct />
-    </div> -->
   </div>
 </template>
 <script>
