@@ -1,4 +1,4 @@
-# coffeeshop
+# ATACoffee-Frontend
 
 Kami tim ATA membuat aplikasi web penjualan kopi yang bertujuan untuk memudahkan penjualan, membantu memperluas bisnis dan membantu merekap data penjualan.
 Aplikasi web coffee shipe ini mempunyai 2 role access yakni customer (multi-user) dan cashier. Pada intinya project ini mengacu pada 1 penjual dan multi pembeli.
@@ -30,7 +30,7 @@ Silahkan klik [disini]
  ### List Order
  ![img11](https://user-images.githubusercontent.com/43200304/107892969-fef2d900-6f5a-11eb-98bd-9fe223769d63.PNG)
  
- ### Dasbort
+ ### Dasboard
  ![img12](https://user-images.githubusercontent.com/43200304/107893021-4d07dc80-6f5b-11eb-9b06-f2cde603c38e.PNG)
  
  ### Profile
