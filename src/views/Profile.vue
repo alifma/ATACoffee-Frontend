@@ -476,8 +476,9 @@ section.body-profile {
 }
 
 span.post-img {
-  margin-right: 60px;
-  margin-top: 100px;
+  position: relative;
+  top: -1.4rem;
+  margin-right: -3.6em;
   background: #6a4029;
   color: #fff;
   padding: 8px 10px;
@@ -516,6 +517,7 @@ span.post-img-c {
   color: #fff;
   padding: 8px 10px;
   border-radius: 50%;
+  margin-left: 3rem;
   cursor: pointer;
 }
 
@@ -539,6 +541,35 @@ span.ico-bt-right {
   top: 32px;
   right: 35px;
 }
+
+p.card-text {
+  font-size: 16px;
+  margin-top: 1.6em !important;
+}
+
+@media (min-width: 993px) and (max-width: 1199px) {
+  div.card-contact-profile {
+    font-size: 18px;
+    width: 90%;
+    margin-left: 10%;
+  }
+
+  input.img-input {
+    position: relative;
+    /* left: -3em; */
+    margin-bottom: 0;
+  }
+
+  p.card-text {
+    font-size: 14px;
+    margin-top: 1.6em !important;
+  }
+
+  span.post-img-c {
+    margin-left: 2.5rem;
+  }
+}
+
 @media (min-width: 768px) and (max-width: 992px) {
   div.card-fotoprofile {
     width: 15rem;
@@ -554,6 +585,21 @@ span.ico-bt-right {
     font-size: 18px;
     width: 85%;
     margin-left: 15%;
+  }
+
+  input.img-input {
+    position: relative;
+    left: -3em;
+    margin-bottom: 0;
+  }
+
+  p.card-text {
+    font-size: 14px;
+    margin-top: 1.6em !important;
+  }
+
+  span.post-img-c {
+    margin-left: 1rem;
   }
 }
 
@@ -575,12 +621,7 @@ span.ico-bt-right {
   }
 
   span.post-img {
-    position: absolute;
-    top: -2.8em;
-    margin-left: 20px;
-    font-size: 12px;
-    padding: 8px 10px;
-    border-radius: 50%;
+    font-size: 14px;
   }
 
   input.img-input {
@@ -605,6 +646,7 @@ span.ico-bt-right {
   span.post-img-c {
     font-size: 12px;
     padding: 8px 10px;
+    margin-left: 2rem;
   }
 
   div.card-detail-profile {
@@ -646,12 +688,7 @@ span.ico-bt-right {
   }
 
   span.post-img {
-    position: absolute;
-    top: -2.8em;
-    margin-left: 20px;
     font-size: 12px;
-    padding: 8px 10px;
-    border-radius: 50%;
   }
 
   input.img-input {
@@ -676,6 +713,7 @@ span.ico-bt-right {
   span.post-img-c {
     font-size: 12px;
     padding: 8px 10px;
+    margin-left: 2rem;
   }
 
   div.card-detail-profile {
