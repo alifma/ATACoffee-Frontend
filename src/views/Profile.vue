@@ -70,7 +70,7 @@
             </div>
           </div>
           <div class="col-md-9 mt-5">
-            <div class="card-contact-profile w-100">
+            <div class="card-contact-profile">
               <div class="row">
                 <div class="col-10 col-md-10">
                   <h3
@@ -467,7 +467,7 @@ export default {
 </script>
 <style scoped>
 section.body-profile {
-  width: 104%;
+  width: 100%;
   height: 1150px;
   background-image: url("../assets/img/bg-Profile.png");
   background-repeat: no-repeat;
@@ -539,11 +539,99 @@ span.ico-bt-right {
   top: 32px;
   right: 35px;
 }
+@media (min-width: 768px) and (max-width: 992px) {
+  div.card-fotoprofile {
+    width: 15rem;
+    height: 21rem;
+    background: #fff;
+    text-align: center;
+    border-radius: 10px;
+    border-bottom: 10px solid #6a4029;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.8);
+  }
+
+  div.card-contact-profile {
+    font-size: 18px;
+    width: 85%;
+    margin-left: 15%;
+  }
+}
+
+@media (min-width: 577px) and (max-width: 767px) {
+  section.body-profile {
+    width: 102.5%;
+    overflow: hidden;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  div.card-fotoprofile {
+    margin-top: -2em;
+    width: 100%;
+    border-radius: 10px;
+    border-bottom: 10px solid #6a4029;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.8);
+    margin-bottom: -20px !important;
+  }
+
+  span.post-img {
+    position: absolute;
+    top: -2.8em;
+    margin-left: 20px;
+    font-size: 12px;
+    padding: 8px 10px;
+    border-radius: 50%;
+  }
+
+  input.img-input {
+    margin-bottom: 1.6em !important;
+  }
+
+  img.img-f-profile {
+    margin-top: 2em !important;
+  }
+
+  div.card-contact-profile {
+    text-align: left;
+    margin-left: 0;
+    height: 250px;
+    margin-bottom: -60px;
+  }
+
+  div.row-delivery {
+    margin-top: 10px !important;
+  }
+
+  span.post-img-c {
+    font-size: 12px;
+    padding: 8px 10px;
+  }
+
+  div.card-detail-profile {
+    text-align: left;
+    padding: 20px 30px;
+  }
+
+  label.lb-contact {
+    font-size: 16px;
+  }
+
+  button.btn-brown {
+    background: #6a4029;
+    color: #fff;
+    font-weight: 500;
+  }
+
+  button.bt-bawah {
+    margin-bottom: 50px;
+  }
+}
 
 @media (max-width: 576px) {
   section.body-profile {
     overflow-y: scroll;
     overflow-x: visible;
+    width: 104%;
     text-align: center;
     margin-bottom: 20px;
   }
