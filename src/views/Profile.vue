@@ -4,7 +4,7 @@
     <section class="body-profile">
       <div class="container">
         <div class="row">
-          <div class="col mt-5 font-rubik">
+          <div class="col-12 mt-5 font-rubik">
             <h2 style="color: #fff; font-size: 2.2rem">User Profile</h2>
           </div>
         </div>
@@ -30,7 +30,7 @@
                   alt="foto profile"
                 />
               </div>
-              <span @click="btnChangeFoto()" class="icon-edit-cupon post-img"
+              <span @click="btnChangeFoto()" class="post-img"
                 ><i class="fas fa-pencil-alt"></i
               ></span>
               <div class="card-body">
@@ -38,7 +38,7 @@
                   <input
                     @change="processFile($event)"
                     type="file"
-                    class="font-poppins w-70 ml-5 mb-n4"
+                    class="font-poppins w-70 ml-5 mb-n4 img-input"
                     style="font-size: 12px"
                   />
                 </div>
@@ -72,33 +72,33 @@
           <div class="col-md-9 mt-5">
             <div class="card-contact-profile w-100">
               <div class="row">
-                <div class="col-md-10">
+                <div class="col-10 col-md-10">
                   <h3
-                    class="font-poppins font-weight-bold"
+                    class="font-poppins font-weight-bold ttl-left"
                     style="color: #4f5665; font-size: 25px"
                   >
                     Contacts
                   </h3>
                 </div>
-                <div class="col-md-2">
-                  <span @click="btnContact()" class="icon-edit-cupon mt-n3 mr-2"
+                <div class="col-2 col-md-2">
+                  <span @click="btnContact()" class="post-img-c mt-n3 mr-2"
                     ><i class="fas fa-pencil-alt"></i
                   ></span>
                 </div>
               </div>
               <!-- form contacts -->
               <div class="row mt-2">
-                <div class="col-md-6">
+                <div class="col-6 col-md-6">
                   <label class="font-poppins lb-contact" for="email-contact"
                     >Email adress :
                   </label>
                 </div>
-                <div class="col-md-6">
+                <div class="col-6 col-md-6">
                   <label class="font-poppins lb-contact" for="mobile-contact"
                     >Mobile number :</label
                   >
                 </div>
-                <div class="col-md-6">
+                <div class="col-6 col-md-6">
                   <input
                     v-model="formContact.email"
                     class="font-poppins contacBorder w-100"
@@ -107,7 +107,7 @@
                     id="email-contact"
                   />
                 </div>
-                <div class="col-md-6">
+                <div class="col-6 col-md-6">
                   <input
                     v-model="formContact.handphone"
                     class="font-poppins contacBorder w-100"
@@ -117,13 +117,13 @@
                   />
                 </div>
               </div>
-              <div class="row mt-5">
-                <div class="col-md-12">
+              <div class="row mt-5 row-delivery">
+                <div class="col-12 col-md-12">
                   <label class="font-poppins lb-contact" for="address-contact"
                     >Delivery adress :</label
                   >
                 </div>
-                <div class="col-md-6">
+                <div class="col-12 col-md-6">
                   <input
                     v-model="formContact.address"
                     class="font-poppins contacBorder w-100"
@@ -141,7 +141,7 @@
           <div class="col-md-8 mt-5">
             <div class="card-detail-profile w-100">
               <div class="row">
-                <div class="col-md-10">
+                <div class="col-10 col-md-10">
                   <h3
                     class="font-poppins font-weight-bold"
                     style="color: #4f5665; font-size: 25px"
@@ -149,27 +149,27 @@
                     Details
                   </h3>
                 </div>
-                <div class="col-md-2">
-                  <span @click="btnDetails()" class="icon-edit-cupon mt-n3 mr-2"
+                <div class="col-2 col-md-2">
+                  <span @click="btnDetails()" class="post-img-c mt-n3 mr-2"
                     ><i class="fas fa-pencil-alt"></i
                   ></span>
                 </div>
               </div>
               <!-- form details -->
               <div class="row mt-3">
-                <div class="col-md-7">
+                <div class="col-6 col-md-7">
                   <label class="font-poppins lb-contact" for="name-detail"
                     >Display name :</label
                   >
                 </div>
-                <div class="col-md-5">
+                <div class="col-6 col-md-5">
                   <label class="font-poppins lb-contact" for="date-detail"
                     >DD/MM/YY</label
                   >
                 </div>
               </div>
               <div class="row">
-                <div class="col-md-7">
+                <div class="col-6 col-md-7">
                   <input
                     v-model="formContact.username"
                     class="font-poppins contacBorder w-100"
@@ -178,7 +178,7 @@
                     id="name-detail"
                   />
                 </div>
-                <div class="col-md-5">
+                <div class="col-6 col-md-5">
                   <input
                     v-model="formContact.lahir"
                     type="date"
@@ -189,14 +189,14 @@
                 </div>
               </div>
               <div class="row mt-4">
-                <div class="col-md-7">
+                <div class="col-6 col-md-7">
                   <label class="font-poppins lb-contact" for="first-name-detail"
                     >First name :</label
                   >
                 </div>
                 <!-- radio -->
-                <div class="col-md-5">
-                  <div class="form-check">
+                <div class="col-6 col-md-5">
+                  <div class="form-check col-11">
                     <input
                       v-model="formContact.gender"
                       class="form-check-input"
@@ -208,7 +208,7 @@
                     />
                     <label class="form-check-label" for="male"> Male </label>
                   </div>
-                  <div class="form-check">
+                  <div class="form-check col-12">
                     <input
                       v-model="formContact.gender"
                       class="form-check-input"
@@ -226,7 +226,7 @@
                 <!-- end radio -->
               </div>
               <div class="row">
-                <div class="col-md-7">
+                <div class="col-6 col-md-7">
                   <input
                     v-model="formContact.firstname"
                     class="font-poppins contacBorder w-100"
@@ -237,12 +237,12 @@
                 </div>
               </div>
               <div class="row mt-4">
-                <div class="col-md-7">
+                <div class="col-12 col-md-7">
                   <label class="font-poppins lb-contact" for="last-name-detail"
                     >Last name :</label
                   >
                 </div>
-                <div class="col-md-7">
+                <div class="col-6 col-md-7">
                   <input
                     v-model="formContact.lastname"
                     class="font-poppins contacBorder w-100"
@@ -310,7 +310,7 @@
               <div class="col-12">
                 <button
                   @click="logout()"
-                  class="btn btn-light font-poppins font-weight-bold p-3 w-100 mt-3"
+                  class="btn btn-light font-poppins font-weight-bold p-3 w-100 mt-3 bt-bawah"
                   style="
                     border-radius: 15px;
                     border: none;
@@ -467,7 +467,7 @@ export default {
 </script>
 <style scoped>
 section.body-profile {
-  width: 100%;
+  width: 104%;
   height: 1150px;
   background-image: url("../assets/img/bg-Profile.png");
   background-repeat: no-repeat;
@@ -478,6 +478,11 @@ section.body-profile {
 span.post-img {
   margin-right: 60px;
   margin-top: 100px;
+  background: #6a4029;
+  color: #fff;
+  padding: 8px 10px;
+  border-radius: 50%;
+  cursor: pointer;
 }
 
 div.card-fotoprofile {
@@ -506,6 +511,14 @@ div.card-contact-profile {
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.8);
 }
 
+span.post-img-c {
+  background: #6a4029;
+  color: #fff;
+  padding: 8px 10px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
 label.lb-contact {
   font-weight: 500;
   font-size: 20px;
@@ -525,5 +538,75 @@ span.ico-bt-right {
   position: absolute;
   top: 32px;
   right: 35px;
+}
+
+@media (max-width: 576px) {
+  section.body-profile {
+    overflow-y: scroll;
+    overflow-x: visible;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  div.card-fotoprofile {
+    margin-top: -2em;
+    width: 100%;
+    border-radius: 10px;
+    border-bottom: 10px solid #6a4029;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.8);
+    margin-bottom: -20px !important;
+  }
+
+  span.post-img {
+    position: absolute;
+    top: -2.8em;
+    margin-left: 20px;
+    font-size: 12px;
+    padding: 8px 10px;
+    border-radius: 50%;
+  }
+
+  input.img-input {
+    margin-bottom: 1.6em !important;
+  }
+
+  img.img-f-profile {
+    margin-top: 2em !important;
+  }
+
+  div.card-contact-profile {
+    text-align: left;
+    margin-left: 0;
+    height: 250px;
+    margin-bottom: -60px;
+  }
+
+  div.row-delivery {
+    margin-top: 10px !important;
+  }
+
+  span.post-img-c {
+    font-size: 12px;
+    padding: 8px 10px;
+  }
+
+  div.card-detail-profile {
+    text-align: left;
+    padding: 20px 30px;
+  }
+
+  label.lb-contact {
+    font-size: 16px;
+  }
+
+  button.btn-brown {
+    background: #6a4029;
+    color: #fff;
+    font-weight: 500;
+  }
+
+  button.bt-bawah {
+    margin-bottom: 50px;
+  }
 }
 </style>
