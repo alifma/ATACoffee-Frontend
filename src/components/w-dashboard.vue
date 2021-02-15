@@ -114,7 +114,7 @@
           <div class="card-body">
             <div class="row no-gutters">
               <div class="col-md-4">
-                <img  :src="`http://52.91.116.102:3001/image/${user.image}`" class="card-img product-rounded" alt="...">
+                <img  :src="`${webURL}/image/${user.image}`" class="card-img product-rounded" alt="...">
               </div>
               <div class="col-md-8">
                 <div class="card-body">
@@ -148,7 +148,7 @@
              <div class="progress mx-4">
                 <div class="progress-bar bg-warning" role="progressbar" style="width: 76%" ></div>
               </div>
-              <h3>80%</h3>
+              <h3>76%</h3>
               </div>
             </div>
           </div>
@@ -168,111 +168,6 @@
       </div>
     </div>
   </div>
-    <!-- <div class="container" style="background: #dedede">
-      <div class="row">
-        <div class="col-12">
-          <h1 class="text-center textheader">
-            See how your store progress so far
-          </h1>
-        </div>
-        <div class="col-12 col-sm-12 col-md-8">
-          <div class="card cardmo">
-            <div class="body-card">
-              <div class="row">
-                <div class="col-10">
-                  <h3 class="cardtext mt-3">Monthly Report</h3>
-                  <p>Last 6 months</p>
-                </div>
-                <div class="col-2">
-                  <img
-                    src="../assets/img/more.png"
-                    alt=""
-                    class="imgmore mt-4"
-                  />
-                </div>
-                <div class="col-12">
-                  <img src="../assets/img/Chart.png" alt="" class="imgchart" />
-                  <div class="borders"></div>
-                  <div class="list-inline mb-4">
-                    <div class="list-inline-item spot1"></div>
-                    <p class="list-inline-item ml-3">income</p>
-                    <div class="list-inline-item spot2"></div>
-                    <p class="list-inline-item ml-3">Outcome</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <button class="btn btn-block btn-primary btnreport">
-            <h3>Download Report</h3>
-          </button>
-        </div>
-        <div class="col-12 col-sm-12 col-md-4">
-          <div class="row">
-            <div class="col">
-              <div class="card cardbody">
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-4">
-                      <img
-                        :src="`http://52.91.116.102:3001/image/${formData.image}`"
-                        alt=""
-                        class="imgprofile"
-                      />
-                    </div>
-                    <div class="col-8">
-                      <h5 class="textleft">{{ formData.name }}</h5>
-                      <p>
-                        {{ formData.name }} Laurent Keep up the good work and
-                        spread love!
-                      </p>
-                    </div>
-                  </div>
-                  <div class="borderside"></div>
-                  <div class="row">
-                    <div class="col-12">
-                      <h4 class="textbest text-center">
-                        Best Staff of the Month
-                      </h4>
-                    </div>
-                    <div class="col-12">
-                      <h1 class="text-center textprecent">80%</h1>
-                    </div>
-                    <div class="col-12">
-                      <h3 class="textach">
-                        Achieved 3.5M of total 5M 478 Customer
-                      </h3>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-12">
-              <div class="card cardbody">
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-12">
-                      <h1 class="text-center textleft">GOALs</h1>
-                      <h3 class="textach">
-                        Your goals is still on 76%. Keep up the good work!
-                      </h3>
-                    </div>
-                    <div class="col-12">
-                      <h1 class="text-center per">76%</h1>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-12">
-              <button class="btn btn-block btn-primary mb-1 btnshere">
-                <h3>SHERE REPORT</h3>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div> -->
     <hr>
     <cFooter />
   </div>
@@ -307,7 +202,7 @@ export default {
         { value: 1, text: 'Pending' },
         { value: 0, text: 'Done' }
       ],
-      toggleChart: false,
+      toggleChart: true,
       formData: {
         name: '',
         image: 'https://free-icon-rainbow.com/i/icon_02035/icon_020350_256.png',
@@ -339,7 +234,7 @@ export default {
       this.loadDashboard = true
       this.actionGetReport(this.reportQuery)
         .then((res) => {
-          console.log(res)
+          // console.log(res)
           this.loadDashboard = false
         })
         .catch((err) => {

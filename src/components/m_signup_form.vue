@@ -53,7 +53,7 @@ export default {
         alert('kosong, diisi dulu ya!')
       } else {
         alert('lihat console dan tekan F5 blm di arahin ke laman lain soalnya')
-        console.log(this.formCreate)
+        // console.log(this.formCreate)
       }
     }
   }

@@ -87,7 +87,7 @@
             <div class="card-menu">
               <img
                 @click="detailProduct(element.id)"
-                :src="`http://52.91.116.102:3001/image/${element.image}`"
+                :src="`${webURL}/image/${element.image}`"
                 alt=""
                 class="img-menus"
               />

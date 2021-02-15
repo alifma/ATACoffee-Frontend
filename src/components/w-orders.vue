@@ -14,7 +14,7 @@
             Let's see what you have bought!
           </h1>
         </div>
-        <b-modal id="deleteModal" hide-footer hide-header title="Using Component Methods" centered>
+        <!-- <b-modal id="deleteModal" hide-footer hide-header title="Using Component Methods" centered>
           <div class="p-5">
             <div class="d-block text-center">
               <p class="font-poppins font-weight-light" style="font-size: 20px">
@@ -40,7 +40,7 @@
               </button>
             </div>
           </div>
-        </b-modal>
+        </b-modal> -->
         <div class="container mb-4">
             <div v-if="lostOrder" class="row w-100">
               <div class="w-100 text-center p-4 m-4">
@@ -53,7 +53,7 @@
                 <div class="card-body">
                   <div class="row">
                     <div class="col">
-                      <button class="btndelete float-right" @click="$bvModal.show('deleteModal')">
+                      <button class="btndelete float-right" @click="passDeleteInv(item.inv)">
                         <i class="fas fa-times"></i>
                       </button>
                       <button class="btnDetail float-right" @click="datailOrders(item.inv)">
@@ -147,7 +147,7 @@
               Cancel
             </button>
             <button class="btn btn-brown text-center float-right ml-3"
-              style="width: 40%; margin-left: 5%; border: 3px solid #6a4029" @click="deleteConfirm(inv)">
+              style="width: 40%; margin-left: 5%; border: 3px solid #6a4029" @click="deleteConfirm()">
               Delete
             </button>
           </div>
@@ -164,6 +164,7 @@ import { mixins } from '../helpers/mixin'
 export default {
   data () {
     return {
+      invHolder: '',
       lostOrder: true,
       options: [
         { value: 3, text: 'Limit 3' },
@@ -218,19 +219,27 @@ export default {
       this.orderQuery.page = page
       this.getAll()
     },
-    deleteConfirm (inv) {
-      this.deleteOrders(inv)
+    passDeleteInv (inv) {
+      this.$bvModal.show('deleteModal')
+      this.invHolder = inv
+    },
+    deleteConfirm () {
+      this.swalLoading('Removing Your Data')
+      this.deleteOrders(this.invHolder)
         .then((res) => {
           if (res.code === 200) {
             this.$bvModal.hide('deleteModal')
+            this.swalLoadingClose()
             this.$swal('Delete Success', 'Your order has been deleted', 'success')
           } else {
             this.$bvModal.hide('deleteModal')
+            this.swalLoadingClose()
             this.$swal('Delete Failed', res.msg, 'error')
           }
         })
         .catch((err) => {
           this.$bvModal.hide('deleteModal')
+          this.swalLoadingClose()
           this.$swal('Delete failed', err.message, 'success')
         })
     }

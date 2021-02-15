@@ -2,6 +2,7 @@ import Swal from 'sweetalert2'
 export const mixins = {
   data () {
     return {
+      webURL: process.env.VUE_APP_WEBURL,
       Toast: Swal.mixin({
         toast: true,
         position: 'top',

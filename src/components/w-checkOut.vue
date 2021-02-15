@@ -17,7 +17,7 @@
                     <!-- Jika ada itemnya -->
                     <div v-for="(item, index) in cart" :key="index" class="row no-gutters" style="height:18vh">
                       <div class="col-md-4 text-center my-auto">
-                        <img :src="`http://52.91.116.102:3001/image/${item.itemImage}`"
+                        <img :src="`${webURL}/image/${item.itemImage}`"
                           style="height:100px;width:100px;object-fit:cover;border-radius:25%" class="card-img">
                       </div>
                       <div class="col-md-8">
@@ -156,14 +156,12 @@ export default {
           paymentType: this.headOrder.paymentType,
           inv: this.headOrder.inv
         }))
-        // console.log(finalData)
         this.actionOrderPost(finalData)
           .then((response) => {
             if (response.code === 200) {
               this.actionEmptYCart()
               this.swalAlert('Checkout Success', '', 'success')
             } else {
-              // console.log(response)
               this.swalAlert('Checkout Error', response.msg, 'error')
             }
           })

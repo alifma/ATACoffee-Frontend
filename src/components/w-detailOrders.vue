@@ -19,7 +19,7 @@
                 <!-- Jika ada itemnya -->
                 <div v-for="(item, index) in detailOrdersBody" :key="index" class="row no-gutters" style="height:18vh">
                   <div class="col-md-4 text-center my-auto">
-                    <img :src="`http://52.91.116.102:3001/image/${item.image}`"
+                    <img :src="`${webURL}/image/${item.image}`"
                       style="height:100px;width:100px;object-fit:cover;border-radius:25%" class="card-img">
                   </div>
                   <div class="col-md-8">
@@ -88,124 +88,11 @@
           </div>
           <button @click="gotoOrder()" class="btn btn-brown font-poppins w-100 mt-4"
             style="font-size:20px;border-radius:25px;height:60px">Back to Order</button>
-          <button @click="gotoDashboard()" class="btn btn-warning font-weight-bold font-poppins w-100 mt-4"
+          <button v-if="userAccess === 1" @click="gotoDashboard()" class="btn btn-warning font-weight-bold font-poppins w-100 mt-4"
             style="font-size:20px;border-radius:25px;height:60px">Go to Dashboard</button>
         </div>
       </div>
     </div>
-    <!-- <div class="jumbotron jumbotron-fluid">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-12 col-md-6">
-            <h5 class="tittle">Finish your customer Order now.</h5>
-            <div class="card cardorder">
-              <div class="card-body scroll">
-                <h3 class="ordertext">Delivery Order</h3>
-                <p class="nameorder">for {{ detailOrdersHead.customer }}</p>
-                <div
-                  class="row"
-                  v-for="(item, index) in detailOrdersBody"
-                  :key="index"
-                >
-                  <div class="col-3">
-                    <img
-                      :src="`http://52.91.116.102:3001/image/${item.image}`"
-                      class="imgcard"
-                      alt=""
-                    />
-                  </div>
-                  <div class="col-6">
-                    <p class="nameorder">
-                      {{ item.item }} x {{ item.amount }} {{ item.size }}
-                    </p>
-                  </div>
-                  <div class="col-3">
-                    <p class="nameorder">IDR {{ item.price }}</p>
-                  </div>
-                </div>
-                <div class="footertest"></div>
-                <div class="fontsubtotal">
-                  <h5 class="float-left">SUBTOTAL</h5>
-                  <h5 class="float-right">IDR 120.000</h5>
-                </div>
-                <div class="fontsubtotal">
-                  <h5 class="float-left">TAX & FEES</h5>
-                  <h5 class="float-right">IDR 20.000</h5>
-                </div>
-                <div class="fontsubtotal">
-                  <h5 class="float-left">SHIPPING</h5>
-                  <h5 class="float-right">IDR 10.000</h5>
-                </div>
-                <div class="fonttotal">
-                  <h3 class="float-left font-weight-bold">TOTAL</h3>
-                  <h3 class="float-right font-weight-bold">
-                    IDR {{ detailOrdersHead.total }}
-                  </h3>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-12 col-md-6">
-            <div class="row">
-              <div class="col-12">
-                <h3 class="float-left address">Address detail</h3>
-              </div>
-              <div class="col-12">
-                <div class="card cardedit">
-                  <div class="card-body">
-                    <h5>
-                      <span class="font-weight-bold">{{
-                        detailOrdersHead.orderType
-                      }}</span>
-                      to iskandar street
-                    </h5>
-                    <div class="borderedit"></div>
-                    <div>
-                      <h5>
-                        {{ detailOrdersHead.orderDetails }}
-                      </h5>
-                    </div>
-                    <div class="borderedit"></div>
-                    <div>
-                      <h5>{{ detailOrdersHead.orderPhone }}</h5>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-12">
-                <h3 class="float-left payment">payment</h3>
-              </div>
-              <div class="col-12">
-                <div class="card cardedit">
-                  <div class="card-body">
-                    <div class="borderedit"></div>
-                    <div class="form-check">
-                      <input
-                        class="form-check-input"
-                        type="radio"
-                        name="exampleRadios"
-                        id="exampleRadios1"
-                        value="option1"
-                      />
-                      <label
-                        class="form-check-label fontpayment"
-                        for="exampleRadios1"
-                      >
-                        {{ detailOrdersHead.paymentType }}
-                      </label>
-                    </div>
-                    <div class="borderedit"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div> -->
-    <!-- footer -->
     <componentFooter />
     <!-- end footer -->
   </div>
@@ -234,7 +121,8 @@ export default {
       detailOrdersBody: 'orders/getDetailOrdersBody',
       totalPrice: 'orders/totalPrice',
       tax: 'orders/tax',
-      shipping: 'orders/shipping'
+      shipping: 'orders/shipping',
+      userAccess: 'auth/getAccess'
     })
   },
   methods: {

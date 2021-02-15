@@ -9,7 +9,7 @@
       <div>
         <div class="row py-4">
           <div class="col-md-5 col-lg-5 text-center">
-            <img style="width:75%" class="product-rounded" :src="`http://52.91.116.102:3001/image/${detail.image}`" alt="">
+            <img style="width:75%" class="product-rounded" :src="`${webURL}/image/${detail.image}`" alt="">
             <div class="mt-4">
               <h1 class="font-poppins font-weight-bolder">{{detail.name.toUpperCase()}}</h1>
               <h5 class="font-poppins font-weight-light">IDR {{formatPrice(detail.price)}}</h5>
@@ -76,9 +76,9 @@
                     <div class="col">
                       <form class="form-inline ">
                         <div class="form-group w-75 mx-auto">
-                          <label class="my-1 mr-2 font-poppins">Set Time : </label>
+                          <label class="my-1 mr-2 font-poppins">Order Details : </label>
                           <input v-model="cartHolder.orderDetails" type="text" class="form-control border-none w-75" style=""
-                            placeholder="Enter the time you’ll arrived">
+                            placeholder="Enter your order details">
                         </div>
                       </form>
                     </div>
@@ -100,7 +100,7 @@
           <!-- Jika ada itemnya -->
             <div v-if="fixCart.length > 0" class="row no-gutters" style="height:20vh">
               <div class="col-md-4 text-center my-auto">
-                <img :src="`http://52.91.116.102:3001/image/${detail.image}`" style="height:100px;width:100px"
+                <img :src="`${webURL}/image/${detail.image}`" style="height:100px;width:100px"
                   class="card-img product-rounded">
               </div>
               <div class="col-md-8">
@@ -168,14 +168,17 @@ export default {
       detail: 'products/detail',
       userID: 'auth/getUserID',
       userName: 'auth/getUserName',
-      userAccess: 'auth/getAccess'
+      userAccess: 'auth/getAccess',
+      userDetail: 'auth/getUserDetail'
+
     })
   },
   methods: {
     ...mapActions({
       getDetailAction: 'products/getDetail',
       deleteAction: 'products/deleteProduct',
-      addCartAction: 'carts/addToCart'
+      addCartAction: 'carts/addToCart',
+      userProfile: 'auth/getProfile'
     }),
     editProduct () {
       this.$router.push(`/product/${this.id}/edit`)
@@ -233,7 +236,7 @@ export default {
           price: i.price,
           orderType: this.cartHolder.orderType,
           orderDetails: this.cartHolder.orderDetails,
-          orderPhone: '0'
+          orderPhone: this.userDetail.handphone
         }))
         this.addCartAction(checkoutData)
         this.fixCart = []
@@ -255,6 +258,7 @@ export default {
   },
   mounted () {
     this.getDetails()
+    this.userProfile(this.userID)
   }
 }
 </script>
