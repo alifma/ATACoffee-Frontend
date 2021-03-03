@@ -59,5 +59,10 @@ npm run build
 npm run lint
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## Backend
+Backend dari aplikasi ini dapat dicek pada tautan berikut [ATA-Backend]
+
+## Team Structure
+- Project Manager: [Alif Maulana Arifin](http://github.com/alifma)
+- Frontend Developer: [Tomi Mandala Putra](http://github.com/tomimandalap)
+- Backend Developer: [Ari Dwi Sukmawan](http://github.com/aridwi27)
