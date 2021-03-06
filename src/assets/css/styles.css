@@ -151,18 +151,6 @@
     text-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
   }
 
-  button.bt-start {
-    background: #FFBA33;
-    border-radius: 10px;
-    width: 250px;
-    height: 60px;
-    color: #6A4029;
-    font-weight: 700;
-  }
-
-  button.bt-start:hover {
-    color: #6A4029;
-  }
 
   /* end jumbotron */
 
@@ -349,7 +337,7 @@
   /* start favorite */
   section.favorite {
     /* background: #eee; */
-    height: 1200px;
+    /* height: 1200px; */
   }
 
   h3.title-favorite {
@@ -378,8 +366,8 @@
     width: 128px;
     height: 128px;
     border-radius: 50%;
-    margin-left: 26%;
-    margin-top: 50px;
+    /* margin-left: 26%; */
+    /* margin-top: 50px; */
     box-shadow: 0 15px 20px rgba(0, 0, 0, 0.2);
   }
 
@@ -417,7 +405,6 @@
   }
 
   button.bt-order-now {
-    position: absolute;
     width: 177.88px;
     height: 45px;
     left: 18%;
@@ -488,11 +475,9 @@
 
   /* react customer */
   section.react-customer {
-    height: 550px;
   }
 
   h3.title-react-cus {
-    position: absolute;
     width: 447.81px;
     left: 345px;
     top: -50px;
@@ -506,7 +491,6 @@
   }
 
   p.info-react-cus {
-    position: absolute;
     width: 555px;
     left: 305px;
     top: 65px;
@@ -523,7 +507,6 @@
   div.card-review {
     width: 360px;
     height: 230px;
-    margin-top: 180px;
     background: #FFFFFF;
     border-radius: 10px;
     padding: 20px 20px;
@@ -545,7 +528,6 @@
   }
 
   h5.card-title-review {
-    position: absolute;
     width: 200px;
     height: 18px;
     left: 28%;
@@ -667,38 +649,15 @@
   }
 
   h2.title-promo {
-    width: 371.61px;
     height: 80px;
     font-family: Rubik;
     font-style: normal;
     font-weight: 500;
     font-size: 35px;
     line-height: 45px;
-    display: flex;
-    text-align: left;
     color: #0B132A;
   }
 
-  button.btn-promo {
-    width: 250px;
-    height: 60px;
-    background: #FFBA33;
-    border-radius: 10px;
-    font-family: Rubik;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 16px;
-    line-height: 25px;
-    color: #6A4029;
-    float: right;
-    margin-top: 30px;
-    margin-right: 30px;
-  }
-
-  .btn-promo:hover {
-    color: #6A4029;
-    background: #fcaf16;
-  }
 
   /* end box promo */
 
@@ -1415,3 +1374,48 @@
 
   /* end MAIN MENU */
 }
+
+.shadowText {
+  text-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+ button.bt-start {
+    background: #FFBA33;
+    border-radius: 10px;
+    width: 250px;
+    height: 60px;
+    color: #6A4029;
+    font-weight: 700;
+  }
+
+  button.bt-start:hover {
+    color: #6A4029;
+  }
+
+  .fw-500 {
+    font-weight: 500;
+  }
+
+  .lh-140{
+    line-height:140%;
+  }
+
+
+  button.btn-promo {
+    width: 250px;
+    height: 60px;
+    background: #FFBA33;
+    border-radius: 10px;
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 25px;
+    color: #6A4029;
+    margin-top: 30px;
+  }
+
+  .btn-promo:hover {
+    color: #6A4029;
+    background: #fcaf16;
+  }

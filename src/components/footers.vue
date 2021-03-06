@@ -1,6 +1,7 @@
 <template>
   <!-- footer -->
-  <section class="footer bg-white">
+<div>
+    <section class="footer bg-white d-lg-block d-md-block d-none">
     <div class="container co-footer">
       <div class="row">
         <div class="col-md-6 col-12">
@@ -48,6 +49,30 @@
       </div>
     </div>
   </section>
+  <div class="d-block py-5 d-lg-none d-md-none">
+    <div class="container bg-white">
+      <div class="text-center">
+          <h3 class="mb-0 font-rubik font-weight-bold"><img
+            src="../assets/img/icoWeb.png"
+            alt="iconWeb"
+            class=""
+          /> Coffee Shop</h3>
+          <div class="my-3">
+               <button class="btn btn-warning mx-2">
+            <i class="fab fa-facebook-f"></i>
+          </button>
+          <button class="btn btn-warning mx-2">
+            <i class="fab fa-twitter"></i>
+          </button>
+          <button class="btn btn-warning mx-2">
+            <i class="fab fa-instagram"></i>
+          </button>
+          </div>
+          <p class="text-secondary">&copy;2020CoffeeStore</p>
+      </div>
+    </div>
+  </div>
+</div>
   <!-- end footer -->
 </template>
 <script>
