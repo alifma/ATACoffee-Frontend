@@ -238,42 +238,11 @@
     color: #6a4029
   }
 
-  .font-rubik {
-    font-family: 'Rubik';
-  }
 
-  .font-poppins {
-    font-family: 'Poppins';
-  }
 
   img.product-rounded {
     object-fit: cover;
     border-radius: 50%;
-  }
-
-  button.btn-brown {
-    background: #6A4029;
-    color: #fff;
-    font-family: 'Poppins';
-    font-weight: bold;
-  }
-
-  button.btn-yellow {
-    background: #FFBA33;
-    color: #6A4029;
-    font-family: 'Poppins';
-    font-weight: bold;
-  }
-
-  button.btn-black {
-    background: #000;
-    color: #fff;
-    font-family: 'Poppins';
-    font-weight: bold;
-  }
-
-  .brown {
-    color: #6A4029;
   }
 
   /* End Produc Details */
@@ -474,8 +443,7 @@
   /* end our partner */
 
   /* react customer */
-  section.react-customer {
-  }
+  section.react-customer {}
 
   h3.title-react-cus {
     width: 447.81px;
@@ -1379,43 +1347,78 @@
   text-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
 }
 
- button.bt-start {
-    background: #FFBA33;
-    border-radius: 10px;
-    width: 250px;
-    height: 60px;
-    color: #6A4029;
-    font-weight: 700;
-  }
+button.bt-start {
+  background: #FFBA33;
+  border-radius: 10px;
+  width: 250px;
+  height: 60px;
+  color: #6A4029;
+  font-weight: 700;
+}
 
-  button.bt-start:hover {
-    color: #6A4029;
-  }
+button.bt-start:hover {
+  color: #6A4029;
+}
 
-  .fw-500 {
-    font-weight: 500;
-  }
+.fw-500 {
+  font-weight: 500;
+}
 
-  .lh-140{
-    line-height:140%;
-  }
+.lh-140 {
+  line-height: 140%;
+}
 
 
-  button.btn-promo {
-    width: 250px;
-    height: 60px;
-    background: #FFBA33;
-    border-radius: 10px;
-    font-family: Rubik;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 16px;
-    line-height: 25px;
-    color: #6A4029;
-    margin-top: 30px;
-  }
+button.btn-promo {
+  width: 250px;
+  height: 60px;
+  background: #FFBA33;
+  border-radius: 10px;
+  font-family: Rubik;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 25px;
+  color: #6A4029;
+  margin-top: 30px;
+}
 
-  .btn-promo:hover {
-    color: #6A4029;
-    background: #fcaf16;
-  }
+.btn-promo:hover {
+  color: #6A4029;
+  background: #fcaf16;
+}
+
+button.btn-brown {
+  background: #6A4029;
+  color: #fff;
+  font-family: 'Poppins';
+  font-weight: bold;
+}
+
+
+.font-rubik {
+  font-family: 'Rubik';
+}
+
+.font-poppins {
+  font-family: 'Poppins';
+}
+
+button.btn-yellow {
+  background: #FFBA33;
+  color: #6A4029;
+  font-family: 'Poppins';
+  font-weight: bold;
+} 
+
+
+button.btn-black {
+  background: #000;
+  color: #fff;
+  font-family: 'Poppins';
+  font-weight: bold;
+}
+
+.brown {
+  color: #6A4029;
+}

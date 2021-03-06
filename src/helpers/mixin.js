@@ -72,6 +72,9 @@ export const mixins = {
     },
     swalLoadingClose () {
       Swal.close()
+    },
+    linkTo (params) {
+      this.$router.push(`/${params}`).catch()
     }
   }
 }
