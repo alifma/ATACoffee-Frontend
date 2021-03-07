@@ -19,26 +19,30 @@
       <div v-else>
         <div v-if="orders.length > 0" class="row">
           <div class="col-12 mb-3" v-for="(item, index) in orders" :key="index">
-          <div class="card" style="border-radius:15px">
-            <div class="card-body">
-              <p class="mb-0 font-weight-bold font-poppins">#{{ item.inv }}</p>
-              <p class="font-poppins brown mb-0">
-                Created :
-                {{ new Date(item.created_at).toLocaleDateString() }}
-              </p>
-              <p class="font-poppins brown mb-0">
-                Updated : {{ item.updated_at === null ? "-" : new Date().toLocaleDateString() }}
-              </p>
-              <p v-if="item.isPending === 1" class="text-danger font-weight-bold mb-0">
-                Pending
-              </p>
-              <p v-else class="font-weight-bold mb-0">
-                <span class="text-success">Done</span> (Cashier :
-                {{ item.cashier }})
-              </p>
+            <div class="card" style="border-radius:15px">
+              <div class="card-body">
+                <div class="float-right">
+                <p @click="passDeleteInv(item.inv)" class="mb-0 font-weight-bold font-poppins text-danger">Delete</p>
+                <p @click="detailOrders(item.inv)" class="mb-0 font-weight-bold font-poppins text-info">Details</p>
+                </div>
+                <p class="mb-0 font-weight-bold font-poppins">#{{ item.inv }}</p>
+                <p class="font-poppins brown mb-0">
+                  Created :
+                  {{ new Date(item.created_at).toLocaleDateString() }}
+                </p>
+                <p class="font-poppins brown mb-0">
+                  Updated : {{ item.updated_at === null ? "-" : new Date().toLocaleDateString() }}
+                </p>
+                <p v-if="item.isPending === 1" class="text-danger font-weight-bold mb-0">
+                  Pending
+                </p>
+                <p v-else class="font-weight-bold mb-0">
+                  <span class="text-success">Done</span> (Cashier :
+                  {{ item.cashier }})
+                </p>
+              </div>
             </div>
           </div>
-        </div>
         </div>
         <div v-else>
           <div class="container py-4 d-flex justify-content-center" style="height: 50vh">
@@ -72,6 +76,30 @@
         </div>
       </div>
     </div>
+      <b-modal id="deleteModalM" hide-footer hide-header title="Using Component Methods" centered>
+        <div class="p-5">
+          <div class="d-block text-center">
+            <p class="font-poppins font-weight-light" style="font-size: 20px">
+              Are you sure want to delete this order?
+            </p>
+          </div>
+          <div class="w-100">
+            <button class="btn btn-primary text-center float-left mr-3 font-weight-bold" style="
+              width: 40%;
+              margin-right: 5%;
+              background: #fff;
+              border: 3px solid #6a4029;
+              color: #6a4029;
+            " @click="$bvModal.hide('deleteModal')">
+              Cancel
+            </button>
+            <button class="btn btn-brown text-center float-right ml-3"
+              style="width: 40%; margin-left: 5%; border: 3px solid #6a4029" @click="deleteConfirm()">
+              Delete
+            </button>
+          </div>
+        </div>
+      </b-modal>
   </div>
 </template>
 
@@ -113,7 +141,7 @@ export default {
       getOrders: 'orders/actionGetAllOrders',
       deleteOrders: 'orders/deleteOrders'
     }),
-    datailOrders (Invoice) {
+    detailOrders (Invoice) {
       this.$router.push('/orders/' + Invoice)
     },
     getAll () {
@@ -133,7 +161,7 @@ export default {
       this.getAll()
     },
     passDeleteInv (inv) {
-      this.$bvModal.show('deleteModal')
+      this.$bvModal.show('deleteModalM')
       this.invHolder = inv
     },
     deleteConfirm () {
@@ -141,18 +169,21 @@ export default {
       this.deleteOrders(this.invHolder)
         .then((res) => {
           if (res.code === 200) {
-            this.$bvModal.hide('deleteModal')
+            this.$bvModal.hide('deleteModalM')
             this.swalLoadingClose()
+            this.getAll()
             this.$swal('Delete Success', 'Your order has been deleted', 'success')
           } else {
-            this.$bvModal.hide('deleteModal')
+            this.$bvModal.hide('deleteModalM')
             this.swalLoadingClose()
+            this.getAll()
             this.$swal('Delete Failed', res.msg, 'error')
           }
         })
         .catch((err) => {
-          this.$bvModal.hide('deleteModal')
+          this.$bvModal.hide('deleteModalM')
           this.swalLoadingClose()
+          this.getAll()
           this.$swal('Delete failed', err.message, 'success')
         })
     }
