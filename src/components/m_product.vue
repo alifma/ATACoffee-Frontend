@@ -12,7 +12,7 @@
           </div>
           <input v-model="productQuery.name" @change="getProduct()" type="text"
             class="font-poppins form-control bg-gray border-left-0"
-            style="border-top-right-radius:25px;border-bottom-right-radius:25px" placeholder="Username">
+            style="border-top-right-radius:25px;border-bottom-right-radius:25px" placeholder="Product Name">
         </div>
         <!-- Menunya -->
         <div>
@@ -59,24 +59,23 @@
                 </div>
               </div>
             </div>
-            <div class="row" style="height:12vh;overflow-y:scroll">
-              <div class="col-12 mb-3 justify-content-left">
-                <p v-for="(index, page) in pagination.pageResult" :key="index" class="mb-0 btn btn-warning mx-2"
-                  @click="setProductPage(page+1)">{{page+1}}</p>
-              </div>
-              <div class="col-4">
-                <b-form-select v-model="productQuery.order" @change="setOrderSort()" size="sm" :options="optionOrder">
-                </b-form-select>
-              </div>
-              <div class="col-4">
-                <b-form-select v-model="productQuery.sort" @change="setOrderSort()" size="sm" :options="optionSort">
-                </b-form-select>
-              </div>
-              <div class="col-4">
-                <b-form-select v-model="productQuery.limit" @change="setProductCategory('')" size="sm"
-                  :options="options">
-                </b-form-select>
-              </div>
+          </div>
+          <div class="row" style="height:12vh;overflow-y:scroll">
+            <div class="col-12 mb-3 justify-content-left">
+              <p v-for="(index, page) in pagination.pageResult" :key="index" class="mb-0 btn btn-warning mx-2"
+                @click="setProductPage(page+1)">{{page+1}}</p>
+            </div>
+            <div class="col-4">
+              <b-form-select v-model="productQuery.order" @change="setOrderSort()" size="sm" :options="optionOrder">
+              </b-form-select>
+            </div>
+            <div class="col-4">
+              <b-form-select v-model="productQuery.sort" @change="setOrderSort()" size="sm" :options="optionSort">
+              </b-form-select>
+            </div>
+            <div class="col-4">
+              <b-form-select v-model="productQuery.limit" @change="setProductCategory('')" size="sm" :options="options">
+              </b-form-select>
             </div>
           </div>
         </div>
