@@ -6,9 +6,11 @@
           <i class="fas fa-lg mx-4 fa-home"></i>
         </p>
       </div>
-      <div class="col-9">
-        <p class="text-right">
-          <i class="far fa-lg fa-user mx-4"></i>
+      <div class="col-9 text-right">
+        <p class="text-right d-inline" @click="linkTo('profile')">
+          <i class="far fa-lg fa-user mx-4" ></i>
+        </p>
+        <p class="text-right d-inline">
           <i class="far fa-lg fa-comment-dots mx-4"></i>
         </p>
       </div>
@@ -17,7 +19,9 @@
 </template>
 
 <script>
+import { mixins } from '../helpers/mixin'
 export default {
+  mixins: [mixins]
 
 }
 </script>

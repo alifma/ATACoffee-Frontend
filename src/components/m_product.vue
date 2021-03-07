@@ -84,6 +84,40 @@
     </div>
     <!-- Footer 8vh -->
     <mFooters />
+    <!-- Sidebar -->
+    <b-sidebar id="sidebar-1" title="Sidebar" shadow no-header backdrop>
+      <div class="px-3 py-2 h-100 text-white align-middle" style="background:#6A4029">
+        <div class="row h-100">
+          <div class="col-12 my-auto">
+            <ul class="list-group">
+              <li style="background:#6A4029" @click="linkTo('profile')"
+                class="list-group-item border-top-0 border-left-0 border-right-0 border-bottom border-white">
+                <p class="mb-0"><i class="far mr-4 fa-user-circle"></i> Profile</p>
+              </li>
+              <li style="background:#6A4029" @click="linkTo('orders')"
+                class="list-group-item border-top-0 border-left-0 border-right-0 border-bottom border-white">
+                <p class="mb-0"><i class="fas fa-cart-arrow-down mr-4 "></i> Orders</p>
+              </li>
+              <li style="background:#6A4029"
+                class="list-group-item border-top-0 border-left-0 border-right-0 border-bottom border-white">
+                <p class="mb-0"><i class="fas fa-cog mr-4 "></i> Settings</p>
+              </li>
+              <li style="background:#6A4029"
+                class="list-group-item border-top-0 border-left-0 border-right-0 border-bottom border-white">
+                <p class="mb-0"><i class="far fa-file-alt mr-4 "></i> Privacy policy</p>
+              </li>
+              <li style="background:#6A4029" class="list-group-item border-0 mb-5 pb-5">
+                <p class="mb-0"><i class="fas fa-shield-alt mr-4 "></i> Security</p>
+              </li>
+              <li @click="logout()" style="background:#6A4029" class="list-group-item border-0 mt-5 pt-5">
+                <p class="mb-0">Sign-out<i class="fas fa-arrow-right ml-3"></i></p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </b-sidebar>
+    <!-- End Sidebar -->
   </div>
 </template>
 
@@ -129,6 +163,7 @@ export default {
   },
   methods: {
     ...mapActions({
+      signout: 'auth/logout',
       getAllProduct: 'products/getAllProduct',
       getCategories: 'categories/getCategories'
     }),
@@ -174,6 +209,14 @@ export default {
           this.loadProduct = false
           console.log(err)
         })
+    },
+    logout () {
+      this.signout().then((response) => {
+        this.swalAlert('Logout Success', 'See you next time!', 'success')
+        if (response) {
+          this.$router.push('/')
+        }
+      })
     }
   },
   mounted () {
