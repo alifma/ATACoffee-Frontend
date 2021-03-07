@@ -1,15 +1,21 @@
 <template>
   <div>
-    <componentOrders />
+    <div class="d-none d-lg-block d-md-block">
+      <componentOrders />
+    </div>
+    <div class="d-block d-lg-none d-md-none">
+      <mobileOrders />
+    </div>
   </div>
 </template>
 
 <script>
 import componentOrders from '../components/w-orders'
+import mobileOrders from '../components/m_orders'
 export default {
-  name: 'Home',
   components: {
-    componentOrders
+    componentOrders,
+    mobileOrders
   }
 }
 </script>

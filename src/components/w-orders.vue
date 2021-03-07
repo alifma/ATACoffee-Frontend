@@ -48,7 +48,7 @@
               </div>
             </div>
           <div v-else class="row mb-4">
-            <div class="col col-sm-6 col-lg-4 mt-2" v-for="(item, index) in orders" :key="index">
+            <div class="col-12 col-sm-6 col-lg-4 mt-2" v-for="(item, index) in orders" :key="index">
               <div class="card cardheight">
                 <div class="card-body">
                   <div class="row">
