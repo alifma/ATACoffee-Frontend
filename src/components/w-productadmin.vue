@@ -13,14 +13,8 @@
         <section class="box-aside-menu" id="aside-menu3">KETIGA</section>
         <section class="box-aside-menu" id="aside-menu2">KEDUA</section>
         <section class="box-aside-menu" id="aside-menu1">
-          <span v-if="getAccess == 1" @click="test()" class="icon-edit-cupon"
-            ><i class="fas fa-pencil-alt"></i
-          ></span>
-          <img
-            src="../assets/img/menu-Img4.png"
-            alt="img4"
-            class="img-aside-promo mt-5"
-          />
+          <span v-if="getAccess == 1" @click="test()" class="icon-edit-cupon"><i class="fas fa-pencil-alt"></i></span>
+          <img src="../assets/img/menu-Img4.png" alt="img4" class="img-aside-promo mt-5" />
           <h3 class="title-menu-aside mb-3">Beef Spaghetti</h3>
           <h3 class="discon-menu-aside mt-n2">20% OFF</h3>
           <p class="info-discon-aside">
@@ -46,11 +40,7 @@
             </li>
           </ul>
           <!-- button admin -->
-          <button
-            v-if="getAccess == 1"
-            @click="addpromo()"
-            class="btn btn-warning bt-addpromo"
-          >
+          <button v-if="getAccess == 1" @click="addpromo()" class="btn btn-warning bt-addpromo">
             Add New Promo
           </button>
         </section>
@@ -64,13 +54,14 @@
             <span @click="setProductCategory('')" class="bt-favorite bt-active mr-5">
               Favorite Product
             </span>
-            <span v-for="(item, index) in categories" :key="index" @click="setProductCategory(item.value)" class="bt-vcoffe ml-4 mr-5">{{item.text}}</span>
+            <span v-for="(item, index) in categories" :key="index" @click="setProductCategory(item.value)"
+              class="bt-vcoffe ml-4 mr-5">{{item.text}}</span>
           </div>
         </div>
         <!-- menu -->
         <div v-if="loadProduct" class="row w-100">
-           <div class="w-100 text-center p-4 m-4">
-            <b-spinner variant="warning"  style="width: 3rem; height: 3rem;"  label="Loading..."></b-spinner>
+          <div class="w-100 text-center p-4 m-4">
+            <b-spinner variant="warning" style="width: 3rem; height: 3rem;" label="Loading..."></b-spinner>
           </div>
         </div>
         <div v-else-if="allitems.length === 0" class="row w-100">
@@ -79,48 +70,41 @@
           </div>
         </div>
         <div v-else class="row">
-          <div
-            class="col-md-3 mt-5 mb-4"
-            v-for="(element, index) in allitems"
-            :key="index"
-          >
+          <div class="col-md-3 mt-5 mb-4" v-for="(element, index) in allitems" :key="index">
             <div class="card-menu">
-              <img
-                @click="detailProduct(element.id)"
-                :src="`${webURL}/image/${element.image}`"
-                alt=""
-                class="img-menus"
-              />
+              <img @click="detailProduct(element.id)" :src="`${webURL}/image/${element.image}`" alt=""
+                class="img-menus" />
               <div class="card-body">
                 <h5 class="card-title-menus mt-n3">{{ element.name }}</h5>
                 <h6 class="card-subtitle-menus mb-2">
                   IDR {{ formatPrice(element.price) }}
                 </h6>
-                <span
-                  v-if="getAccess == 1"
-                  @click="editProduct(element.id)"
-                  class="icon-edit-menus"
-                  ><i class="fas fa-pencil-alt"></i
-                ></span>
+                <span v-if="getAccess == 1" @click="editProduct(element.id)" class="icon-edit-menus"><i
+                    class="fas fa-pencil-alt"></i></span>
               </div>
             </div>
           </div>
         </div>
         <div class="row">
           <div class="col-2 d-flex justify-content-left">
-            <p class="mb-0 my-auto">Page : {{productQuery.page}} </p></div>
+            <p class="mb-0 my-auto">Page : {{productQuery.page}} </p>
+          </div>
           <div class="col-4 d-flex justify-content-center">
             <p class="mb-0 my-auto">Select : </p>
-            <p v-for="(index, page) in pagination.pageResult" :key="index" class="mb-0 btn btn-warning mx-2" @click="setProductPage(page+1)">{{page+1}}</p>
+            <p v-for="(index, page) in pagination.pageResult" :key="index" class="mb-0 btn btn-warning mx-2"
+              @click="setProductPage(page+1)">{{page+1}}</p>
           </div>
           <div class="col-2">
-            <b-form-select v-model="productQuery.order" @change="setOrderSort()" size="sm" :options="optionOrder"></b-form-select>
+            <b-form-select v-model="productQuery.order" @change="setOrderSort()" size="sm" :options="optionOrder">
+            </b-form-select>
           </div>
           <div class="col-2">
-            <b-form-select v-model="productQuery.sort" @change="setOrderSort()" size="sm" :options="optionSort"></b-form-select>
+            <b-form-select v-model="productQuery.sort" @change="setOrderSort()" size="sm" :options="optionSort">
+            </b-form-select>
           </div>
           <div class="col-2">
-            <b-form-select v-model="productQuery.limit" @change="setProductCategory('')" size="sm" :options="options"></b-form-select>
+            <b-form-select v-model="productQuery.limit" @change="setProductCategory('')" size="sm" :options="options">
+            </b-form-select>
           </div>
         </div>
         <!-- menu -->

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="d-none d-md-block d-lg-none">
+    <div class="d-none d-md-block d-lg-block">
       <componentSigninWeb />
     </div>
     <div class="d-block d-md-none d-lg-none">

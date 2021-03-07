@@ -1290,21 +1290,6 @@
     color: #6A4029;
   }
 
-  span.icon-edit-menus {
-    position: absolute;
-    padding: 5px 8px;
-    background: #6A4029;
-    color: #FFF;
-    border-radius: 50%;
-    cursor: pointer;
-    /* top: 10px; */
-    right: 35px;
-    bottom: -15px;
-  }
-
-  .icon-edit-menus:hover {
-    background: #8a563a;
-  }
 
   /* end menu */
 
@@ -1422,3 +1407,30 @@ button.btn-black {
 .brown {
   color: #6A4029;
 }
+
+.bg-gray {
+  background: #F2F2F2
+}
+.center-cropped {
+  object-fit: cover; /* Do not scale the image */
+  object-position: center; /* Center the image within the element */
+  height: 18vh;
+  width: 18vh;
+  border-radius:25px
+}
+
+  span.icon-edit-menus {
+    position: absolute;
+    padding: 5px 8px;
+    background: #6A4029;
+    color: #FFF;
+    border-radius: 50%;
+    cursor: pointer;
+    /* top: 10px; */
+    right: 35px;
+    bottom: -15px;
+  }
+
+  .icon-edit-menus:hover {
+    background: #8a563a;
+  }

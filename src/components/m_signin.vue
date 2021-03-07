@@ -2,7 +2,7 @@
   <div class="container" style="height:100vh;background:#F2F2F2;">
     <div class="div" style="height:5vh"></div>
     <div class="row px-3" style="height:50vh">
-      <div class="col-6 my-auto">
+      <div class="col-6 my-auto text-right">
       <img class="img-fluid" src="../assets/img/img4.png" alt="img4" />
       </div>
       <div class="col-6 my-auto mx-0">

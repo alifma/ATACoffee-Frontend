@@ -1,7 +1,7 @@
 <template>
   <div class="container" style="height:100vh;background:#f2f2f2">
     <div style="height:15vh"></div>
-    <div class="px-3" style="height:40vh">
+    <div class="px-3 text-center" style="height:40vh">
       <img src="https://i.ibb.co/txKrVcL/girl-chilling-exploring-on-the-phone-1.png" class="img-fluid" alt="">
     </div>
     <form action="" @submit.prevent="signupForm()" class="px-3 pt-5" style="height:45vh">

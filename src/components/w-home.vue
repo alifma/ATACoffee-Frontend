@@ -15,7 +15,7 @@
                   <div class="input-group-prepend">
                     <span class="input-group-text" id="addon-wrapping"><i class="fas fa-search"></i></span>
                   </div>
-                  <input type="text" class="form-controls" placeholder="Search" />
+                  <input type="text" class="form-controls shadow-none" placeholder="Search" />
                 </div>
               </div>
             </div>
