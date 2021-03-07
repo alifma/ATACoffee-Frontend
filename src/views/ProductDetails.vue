@@ -1,15 +1,20 @@
 <template>
   <div>
-    <ctWebProductDetail />
+    <div class="d-none d-lg-block d-md-block">
+      <ctWebProductDetail />
+    </div>
+    <div class="d-block d-lg-none d-md-none">
+      <mProductDetail />
+    </div>
   </div>
 </template>
 <script>
 import ctWebProductDetail from '../components/w-productDetail'
-// import cMobileProduct from '../components/m_product'
+import mProductDetail from '../components/m_ProductDetail'
 export default {
   components: {
-    ctWebProductDetail
-    // cMobileProduct
+    ctWebProductDetail,
+    mProductDetail
   }
 }
 </script>

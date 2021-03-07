@@ -4,7 +4,8 @@
     <div class="container pt-4">
       <div id="breadcrumb-productDetails" class="d-inline">
         <router-link to="/product" class="mb-0 text-secondary font-rubik d-inline">Favorite & Promo</router-link>
-        <router-link :to="`/product/${id}`" class="mb-0 font-weight-bold font-active font-rubik d-inline"> > {{detail.name}}</router-link>
+        <router-link :to="`/product/${id}`" class="mb-0 font-weight-bold font-active font-rubik d-inline"> >
+          {{detail.name}}</router-link>
       </div>
       <div>
         <div class="row py-4">
@@ -38,10 +39,10 @@
                   <div class="col text-center">
                     <h5 class="font-weight-bolder font-poppins">Choose a size</h5>
                     <div>
-                      <!-- <button  v-for="(item, index) in detail.size" :key="index" class="btn btn-warning font-weight-bolder font-poppins mx-3 d-inline" style="border-radius:50px;height:50px;width:50px;font-size:15px;line-height:13px">{{item}}</button> -->
                       <div>
                         <b-form-group>
-                          <b-form-radio-group v-model="cartHolder.size" :options="detail.size" buttons button-variant="outline-warning"></b-form-radio-group>
+                          <b-form-radio-group v-model="cartHolder.size" :options="detail.size" buttons
+                            button-variant="outline-warning"></b-form-radio-group>
                         </b-form-group>
                       </div>
                     </div>
@@ -54,9 +55,12 @@
         <div class="row">
           <div class="col-md-5 col-lg-5 text-center">
             <div v-if="userAccess != null" style="width:75%" class="mx-auto d-flex flex-column">
-              <button @click="addToCart()" style="font-size:20px;border-radius:25px;height:60px" class="btn mb-3 btn-brown ">Add to Cart</button>
-              <button v-if="userAccess == 1" @click="editProduct()" style="font-size:20px;border-radius:25px;height:60px" class="btn mb-3 btn-yellow ">Edit Product</button>
-              <button v-if="userAccess == 1" @click="$bvModal.show('deleteModal')" style="font-size:20px;border-radius:25px;height:60px" class="btn mb-3 btn-black ">Delete Menu</button>
+              <button @click="addToCart()" style="font-size:20px;border-radius:25px;height:60px"
+                class="btn mb-3 btn-brown ">Add to Cart</button>
+              <button v-if="userAccess == 1" @click="editProduct()"
+                style="font-size:20px;border-radius:25px;height:60px" class="btn mb-3 btn-yellow ">Edit Product</button>
+              <button v-if="userAccess == 1" @click="$bvModal.show('deleteModal')"
+                style="font-size:20px;border-radius:25px;height:60px" class="btn mb-3 btn-black ">Delete Menu</button>
             </div>
           </div>
           <div v-if="userAccess != null" class=" col-md-7 col-lg-7">
@@ -66,9 +70,9 @@
                   <h5 class="font-weight-bolder font-poppins mb-4">Choose Delivery Methods</h5>
                   <div class="row">
                     <div class="col">
-                      <!-- <button v-for="(item, index) in detail.delivery" :key="index" style="border-radius:10px" class="btn btn-brown font-weight-bolder font-poppins mx-3">{{item}}</button> -->
                       <b-form-group>
-                          <b-form-radio-group v-model="cartHolder.orderType" :options="detail.delivery" buttons ></b-form-radio-group>
+                        <b-form-radio-group v-model="cartHolder.orderType" :options="detail.delivery" buttons>
+                        </b-form-radio-group>
                       </b-form-group>
                     </div>
                   </div>
@@ -77,8 +81,8 @@
                       <form class="form-inline ">
                         <div class="form-group w-75 mx-auto">
                           <label class="my-1 mr-2 font-poppins">Order Details : </label>
-                          <input v-model="cartHolder.orderDetails" type="text" class="form-control border-none w-75" style=""
-                            placeholder="Enter your order details">
+                          <input v-model="cartHolder.orderDetails" type="text" class="form-control border-none w-75"
+                            style="" placeholder="Enter your order details">
                         </div>
                       </form>
                     </div>
@@ -87,8 +91,8 @@
               </div>
             </div>
           </div>
-          </div>
-          </div>
+        </div>
+      </div>
     </div>
     <!-- Cart Bottom -->
     <div v-if="userAccess != null" class="container my-4">
@@ -97,7 +101,7 @@
         </div>
         <div class="col-7">
           <div class="card shadow-lg" style="border-radius:25px">
-          <!-- Jika ada itemnya -->
+            <!-- Jika ada itemnya -->
             <div v-if="fixCart.length > 0" class="row no-gutters" style="height:20vh">
               <div class="col-md-4 text-center my-auto">
                 <img :src="`${webURL}/image/${detail.image}`" style="height:100px;width:100px"
@@ -106,17 +110,19 @@
               <div class="col-md-8">
                 <div class="card-body">
                   <h5 class="mb-0 card-title font-weight-bold">{{detail.name.toUpperCase()}}</h5>
-                  <span @click="clearFixCart()" class="icon-edit-cupon" style="height:30px;width:30px"><i class="fas fa-times"></i></span>
-                <div style="overflow-y:scroll">
-                    <p class="card-text mb-0" v-for="(item, index) in fixCart" :key="index">x{{item.amount}} ({{item.size}})</p>
+                  <span @click="clearFixCart()" class="icon-edit-cupon" style="height:30px;width:30px"><i
+                      class="fas fa-times"></i></span>
+                  <div style="overflow-y:scroll">
+                    <p class="card-text mb-0" v-for="(item, index) in fixCart" :key="index">x{{item.amount}}
+                      ({{item.size}})</p>
                   </div>
                 </div>
               </div>
             </div>
-          <!-- Jika Tidak ada itemnya -->
-          <div v-else style="height:20vh" class="p-4 d-flex justify-content-center">
-            <h5 class="text-center font-poppins font-weight-bold mb-0 my-auto">Click product size to add product</h5>
-          </div>
+            <!-- Jika Tidak ada itemnya -->
+            <div v-else style="height:20vh" class="p-4 d-flex justify-content-center">
+              <h5 class="text-center font-poppins font-weight-bold mb-0 my-auto">Click product size to add product</h5>
+            </div>
           </div>
         </div>
         <div class="col-3">
@@ -127,12 +133,16 @@
         <b-modal id="deleteModal" hide-footer hide-header title="Using Component Methods" centered>
           <div class="p-5">
             <div class="d-block text-center">
-            <p class="font-poppins font-weight-light" style="font-size:20px;">Are you sure want to delete this product?</p>
-          </div>
-          <div class="w-100">
-          <button class="btn btn-primary text-center float-left mr-3 font-weight-bold" style="width:40%;margin-right:5%;background:#fff;border:3px solid #6A4029;color:#6A4029" @click="$bvModal.hide('deleteModal')">Cancel</button>
-          <button class="btn btn-brown text-center float-right ml-3" style="width:40%;margin-left:5%;border:3px solid #6A4029;" @click="deleteConfirm()">Delete</button>
-          </div>
+              <p class="font-poppins font-weight-light" style="font-size:20px;">Are you sure want to delete this
+                product?</p>
+            </div>
+            <div class="w-100">
+              <button class="btn btn-primary text-center float-left mr-3 font-weight-bold"
+                style="width:40%;margin-right:5%;background:#fff;border:3px solid #6A4029;color:#6A4029"
+                @click="$bvModal.hide('deleteModal')">Cancel</button>
+              <button class="btn btn-brown text-center float-right ml-3"
+                style="width:40%;margin-left:5%;border:3px solid #6A4029;" @click="deleteConfirm()">Delete</button>
+            </div>
           </div>
         </b-modal>
       </div>
