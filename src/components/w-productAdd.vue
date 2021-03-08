@@ -16,8 +16,7 @@
         >
       </div>
       <div>
-            <form action="" @submit.prevent="addProduct()">
-
+        <form action="" @submit.prevent="addProduct()">
         <div class="row py-4">
           <div class="col-md-5 col-lg-5">
             <div class="text-center">
