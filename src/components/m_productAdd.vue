@@ -1,7 +1,6 @@
 <template>
   <div style="height:100vh;background:#F2F2F2">
-    <div class="container">
-      <div class="row mx-0 my-0 p-4" style="height:10vh">
+    <div class="row mx-0 my-0 p-4" style="height:10vh">
         <div class="col-2">
           <p class="mb-0 brown" @click="linkTo('product')"><i class="fas fa-angle-left"></i></p>
         </div>
@@ -10,6 +9,7 @@
         </div>
         <div class="col-2"></div>
       </div>
+    <div class="container">
       <form action="" @submit.prevent="addProduct()">
         <div class="row" style="height:75vh;overflow-y:scroll">
           <div class="col-12 text-center" style="height:35vh">
