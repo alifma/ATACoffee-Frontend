@@ -110,7 +110,7 @@
             <img
               :src="`${webURL}/image/${getUserDetail.image === 'default.png' ? 'default.png' : getUserDetail.image === undefined ? 'default.png' : getUserDetail.image }`"
               class="" style="height:20vh;width:20vh;object-fit:cover;border-radius:50%" alt="foto profile" />
-              <input  type="file" class="form-control px-0 border-top-0 border-right-0 border-left-0 px-5"
+              <input @change="processFile($event)"  type="file" class="form-control px-0 border-top-0 border-right-0 border-left-0 px-5"
                 style="background:#F2f2f2" i>
           </div>
           <div class="col-12 pt-5">
@@ -171,7 +171,7 @@
       <div class="container" style="height:10vh">
         <div class="row">
           <div class="col-12 my-auto">
-            <button @click="linkTo('product')" style="font-size:20px;border-radius:25px;height:8vh"
+            <button @click="savechange()" style="font-size:20px;border-radius:25px;height:8vh"
               class="w-100 btn btn-brown shadow-lg ">Save Change</button>
           </div>
         </div>
@@ -190,8 +190,6 @@ export default {
       showEdit: true,
       formContact: {
         username: '',
-        firstname: '',
-        lastname: '',
         handphone: '',
         gender: '',
         address: '',
@@ -216,6 +214,34 @@ export default {
       actionPostProfile: 'auth/postProfile',
       getOrders: 'orders/actionGetAllOrders'
     }),
+    savechange () {
+      // console.log(this.formContact)
+      this.swalLoading('Updating Data')
+      const fd = new FormData()
+      fd.append('name', `${this.formContact.firstname} ${this.formContact.lastname}`)
+      fd.append('username', this.formContact.username)
+      fd.append('handphone', this.formContact.handphone)
+      fd.append('gender', this.formContact.gender)
+      fd.append('address', this.formContact.address)
+      fd.append('lahir', this.formContact.lahir)
+      fd.append('image', this.formContact.image)
+      fd.append('email', this.formContact.email)
+      this.actionPostProfile(fd).then((response) => {
+        if (response.code !== 400) {
+          this.swalLoadingClose()
+          this.actionGetProfile()
+          this.state = false
+          this.showEdit = false
+          this.swalAlert('Update Profile Success', '', 'success')
+        } else {
+          this.swalLoadingClose()
+          this.swalAlert('Update Profile Failed', response.msg, 'error')
+        }
+      }).catch((err) => {
+        this.swalLoadingClose()
+        console.log(err)
+      })
+    },
     mountedProfile () {
       this.actionGetProfile()
         .then((response) => {
@@ -236,6 +262,9 @@ export default {
     },
     toggleEdit () {
       this.showEdit = !this.showEdit
+    },
+    processFile (el) {
+      this.formContact.image = el.target.files[0]
     }
   },
   mounted () {

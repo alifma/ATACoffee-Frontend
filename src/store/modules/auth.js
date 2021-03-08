@@ -76,7 +76,7 @@ const moduleAuth = {
         axios.patch(`${context.rootState.apiURL}/users/${context.state.id}`, data, { headers: { token: context.state.token } }).then((response) => {
           // console.log(data)
           // context.commit('setUserDetail', data)
-          resolve(response.data.msg)
+          resolve(response.data)
         }).catch((err) => {
           reject(err)
         })

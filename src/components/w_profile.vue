@@ -408,10 +408,15 @@ export default {
       fd.append('image', this.formContact.image)
       fd.append('email', this.formContact.email)
       this.actionPostProfile(fd).then((response) => {
-        this.$swal.close()
-        this.actionGetProfile()
-        this.state = false
-        this.$swal(response, '', 'success')
+        if (response.code !== 400) {
+          this.swalLoadingClose()
+          this.actionGetProfile()
+          this.state = false
+          this.$swal('Update Success', '', 'success')
+        } else {
+          this.swalLoadingClose()
+          this.$swal('Update Failed', response.msg, 'success')
+        }
       }).catch((err) => {
         console.log(err)
       })
