@@ -1,14 +1,15 @@
 <template>
-  <div>
-    <cHeader />
-    <div class="container">
-      <div class="row">
-        <div class="col-12">
-          <h3 class="text-center textheader">
-            See how your store progress so far
-          </h3>
-        </div>
+  <div style="height:100vh;background:#F2F2F2">
+    <div class="row mx-0 my-0 p-4" style="height:10vh">
+      <div class="col-2">
+        <p class="mb-0 brown" @click="linkTo('product')"><i class="fas fa-angle-left"></i></p>
       </div>
+      <div class="col-8 text-center">
+        <p class="font-weight-bold font-poppins">Sales Chart</p>
+      </div>
+      <div class="col-2"></div>
+    </div>
+    <div class="container" style="height:90vh;overflow-y:scroll">
       <div class="row">
         <div class="col-1 col-md-2 col-lg-3">
         </div>
@@ -34,19 +35,19 @@
         <div class="col-1 col-md-2 col-lg-3">
         </div>
       </div>
-      <div class="row mt-4">
-        <div class="col-12 col-lg-8 col-md-12">
+      <div class="row my-4">
+        <div class="col-12">
           <div class="card p-4 shadow-lg" style="border-radius:25px">
             <div class="card-body">
               <div>
-                <img @click="switchChart()" src="../assets/img/more.png" alt="" class="float-right mt-3" />
-                <h1 class="font-poppins font-weight-bold">{{reportQuery.rangeDisplay}} Report</h1>
+                <img @click="switchChart()" src="../assets/img/more.png" alt="" class="float-right" />
+                <h5 class="font-poppins font-weight-bold">{{reportQuery.rangeDisplay}} Report</h5>
               </div>
-              <p class="font-weight-light text-secondary" style="font-size:20px">Last 6 Month (Revenue : IDR
+              <p class="font-weight-light text-secondary" >Last 6 Month (Revenue : IDR
                 {{formatPrice(formatPrice(Math.round((reportPagination.totalIncome*1.1)+(10000*reportPagination.allOrders))))}})
               </p>
               <div v-if="toggleChart">
-                <img src="../assets/img/Chart.png" alt="" class="img-fluid p-4" />
+                <img src="../assets/img/Chart.png" alt="" class="img-fluid" />
               </div>
               <div v-else>
                 <div v-if="loadDashboard" class="row w-100">
@@ -82,29 +83,26 @@
               <hr>
               <div>
                 <div v-if="toggleChart">
-                  <p class="font-weight-bold font-poppins text-center text-secondary"> <span
+                  <p class="mb-0 font-weight-bold font-poppins text-center text-secondary"> <span
                       style="color:#FFBA33">⬤</span> Income <span style="color:#6A4029">⬤</span> Outcome</p>
                 </div>
                 <div v-else>
                   <div class="row w-100">
-                    <div class="col-2 d-flex justify-content-left">
-                      <p class="mb-0 my-auto">Page : {{reportQuery.page}} </p>
-                    </div>
-                    <div class="col-4 d-flex justify-content-center">
+                    <div class="col-12 mb-3 d-flex justify-content-center">
                       <p v-for="(index, page) in reportPagination.totalPages" :key="index"
                         class="mb-0 btn btn-warning mx-2" @click="getReportPage(page+1)">{{page+1}}</p>
                     </div>
-                    <div class="col-2">
+                    <div class="col-4">
                       <b-form-select v-model="reportQuery.pending" @change="getReportPage(1)" size="sm"
                         :options="optionStatus">
                       </b-form-select>
                     </div>
-                    <div class="col-2">
+                    <div class="col-4">
                       <b-form-select v-model="reportQuery.sort" @change="getReportPage(1)" size="sm"
                         :options="optionSort">
                       </b-form-select>
                     </div>
-                    <div class="col-2">
+                    <div class="col-4">
                       <b-form-select v-model="reportQuery.limit" @change="getReportPage(1)" size="sm"
                         :options="optionLimit"></b-form-select>
                     </div>
@@ -114,86 +112,37 @@
             </div>
           </div>
         </div>
-        <div class="col-12 col-lg-4 col-md-12">
-          <div class="row mt-md-3 mt-lg-0 mt-0 mb-4">
-            <div class="col-12 my-3 my-lg-0 mb-lg-3 my-md-0 col-lg-12 col-md-6">
-              <div class="card shadow-lg font-poppins" style="border-radius:25px">
-                <div class="card-body">
-                  <div class="row no-gutters">
-                    <div class="col-md-4">
-                      <img :src="`${webURL}/image/${user.image}`" class="card-img product-rounded" alt="...">
-                    </div>
-                    <div class="col-md-8">
-                      <div class="card-body">
-                        <h5 class="card-title font-weight-bold">{{user.name}}</h5>
-                        <p class="card-text">{{user.email}}</p>
-                      </div>
-                    </div>
-                  </div>
-                  <hr>
-                  <div class="row">
-                    <div class="col text-center">
-                      <h5 class="font-weight-bold">Best Staff of the Month</h5>
-                      <div class="progress mx-4">
-                        <div class="progress-bar bg-success" role="progressbar" style="width: 80%"></div>
-                      </div>
-                      <h3>80%</h3>
-                      <p class="mb-0 font-weight-lighter text-secondary">Achieved 3.5M of total 5M </p>
-                      <p class="mb-0 font-weight-lighter text-secondary">478 Customer</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-12 my-3 my-lg-0 my-md-0 col-lg-12 col-md-6">
-              <div class="card shadow-lg font-poppins" style="border-radius:25px">
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col text-center">
-                      <h5 class="font-weight-bold">Goals</h5>
-                      <p class="mb-0 font-weight-lighter text-secondary">Your goals is still on 76%. Keep up the good
-                        work!</p>
-                      <div class="progress mx-4">
-                        <div class="progress-bar bg-warning" role="progressbar" style="width: 76%"></div>
-                      </div>
-                      <h3>76%</h3>
-                    </div>
-                  </div>
-                </div>
-              </div>
+      </div>
+      <div class="row mb-4">
+        <div class="col-12 text-center">
+          <div class="card p-4 shadow-lg" style="border-radius:25px">
+            <div class="card-body">
+          <h5 class="font-weight-bold">Goals</h5>
+          <p class="mb-0 font-weight-lighter text-secondary">Your goals is still on 76%. Keep up the good
+            work!</p>
+          <div class="progress mx-4">
+            <div class="progress-bar bg-warning" role="progressbar" style="width: 76%"></div>
+          </div>
+          <h3>76%</h3>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="container mt-4">
-      <div class="row">
-        <div class="col-8">
+      <div class="row mb-4">
+        <div class="col-12">
           <button @click="download()" style="font-size:20px;border-radius:25px;height:100px"
             class="btn mb-3 btn-brown w-100 h1 shadow-lg">Download Report</button>
         </div>
-        <div class="col-4">
-          <button @click="share()" style="font-size:20px;border-radius:25px;height:100px"
-            class="btn mb-3 btn-brown w-100 h1 shadow-lg">Share Report</button>
-        </div>
       </div>
     </div>
-    <hr>
-    <cFooter />
   </div>
 </template>
 
 <script>
-import cHeader from '../components/headers'
-import cFooter from '../components/footers'
 import { mapActions, mapGetters } from 'vuex'
 import { mixins } from '../helpers/mixin'
 export default {
   mixins: [mixins],
-  components: {
-    cHeader,
-    cFooter
-  },
   data () {
     return {
       loadDashboard: true,
@@ -281,146 +230,6 @@ export default {
 }
 </script>
 
-<style scoped>
-.imgmore {
-  max-width: 50px;
-  width: 100%;
-}
-.btnreport {
-  margin-top: 6%;
-  margin-bottom: 2%;
-  width: 80%;
-  margin-left: 15%;
-  background: #6a4029;
-  box-shadow: 0px 6px 20px rgba(106, 64, 41, 0.6);
-  border-radius: 20px;
-  height: 7%;
-}
-.spot2 {
-  width: 15px;
-  height: 15px;
-  border-radius: 50%;
-  background: #6a4029;
-  margin-left: 20%;
-}
-.spot1 {
-  width: 15px;
-  height: 15px;
-  border-radius: 50%;
-  background: #ffba33;
-  margin-left: 20%;
-}
-.textheader {
-  font-family: Rubik;
-  font-style: normal;
-  font-weight: bold;
-  color: #6a4029;
-  margin-bottom: 5%;
-  margin-top: 5%;
-}
-.imgchart {
-  margin-top: 10%;
-  max-width: 800px;
-  width: 100%;
-  padding-right: 10%;
-}
-.borders {
-  border: 1px solid #d6d9dc;
-  margin-top: 5%;
-  margin-bottom: 5%;
-  margin-right: 10%;
-}
-.cardmo {
-  padding-left: 5%;
-  margin-left: 15%;
-  width: 80%;
-  background: #ffffff;
-  border-radius: 20px;
-  box-shadow: 0px 6px 20px rgba(196, 196, 196, 0.67);
-}
-.btnshere {
-  background: #6a4029;
-  box-shadow: 0px 6px 20px rgba(106, 64, 41, 0.6);
-  border-radius: 20px;
-  height: 120%;
-  width: 80%;
-}
-.per {
-  margin-top: 20%;
-  margin-bottom: 20%;
-}
-.goal {
-  font-family: Nunito Sans;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 22px;
-  line-height: 30px;
-  text-align: center;
+<style>
 
-  /* color-black */
-
-  color: #000000;
-}
-.textach {
-  font-family: Poppins;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 16px;
-  line-height: 24px;
-  text-align: center;
-
-  color: #7c828a;
-}
-.textprecent {
-  margin-top: 10%;
-}
-.donat2 {
-  margin-left: 30%;
-  margin-top: 10%;
-  background-color: red;
-}
-.cardbody {
-  background: #ffffff;
-  border-radius: 20px;
-  margin-bottom: 10%;
-  width: 80%;
-  box-shadow: 0px 6px 20px rgba(196, 196, 196, 0.67);
-}
-.textbest {
-  font-family: Poppins;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 18px;
-  line-height: 27px;
-  font-weight: bold;
-}
-.borderside {
-  border: 1px solid #d6d9dc;
-  margin-top: 5%;
-  margin-bottom: 5%;
-}
-.cardtext {
-  font-family: Poppins;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 30px;
-  line-height: 45px;
-
-  /* color-black */
-
-  color: #000000;
-}
-.imgprofile {
-  max-width: 100px;
-  width: 100%;
-  border-radius: 50%;
-}
-.textleft {
-  font-family: Poppins;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 20px;
-  line-height: 30px;
-  color: #000000;
-}
 </style>

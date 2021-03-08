@@ -17,7 +17,7 @@
         </div>
       </div>
       <div v-else>
-        <div v-if="orders.length > 0" class="row">
+        <div v-if="orders.length > 0" class="row" style="height:65vh;overflow-y:scroll">
           <div class="col-12 mb-3" v-for="(item, index) in orders" :key="index">
             <div class="card" style="border-radius:15px">
               <div class="card-body">
