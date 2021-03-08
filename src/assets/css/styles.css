@@ -1094,7 +1094,6 @@
   }
 
   h3.title-menu-aside {
-    margin-top: 20px;
     font-style: normal;
     font-weight: 600;
     font-size: 22px;
@@ -1181,7 +1180,6 @@
 
   /* button admin */
   button.bt-addpromo {
-    margin-top: 60px;
     width: 284px;
     height: 80px;
     background: #FFBA33;

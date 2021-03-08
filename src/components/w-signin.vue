@@ -141,6 +141,7 @@ export default {
   },
   methods: {
     ...mapActions({
+      actionGetProfile: 'auth/getProfile',
       actionLogin: 'auth/login'
     }),
     loginForm () {
@@ -153,15 +154,17 @@ export default {
       this.actionLogin(dataLogin).then((response) => {
         // console.log(response)
         if (response === 'Email Not Registered') {
-          this.$swal.close()
+          this.swalLoadingClose()
           this.$swal('Email Not Registered', 'Please Check your Email ', 'error')
         } else if (response === 'Wrong Password') {
-          this.$swal.close()
+          this.swalLoadingClose()
           this.$swal('Wrong Password', 'Please Check your Password ', 'error')
         } else {
-          this.$swal.close()
-          this.$swal('Login Success', ' ', 'success')
-          this.$router.push('/product')
+          this.actionGetProfile().then((res) => {
+            this.swalLoadingClose()
+            this.$swal('Login Success', ' ', 'success')
+            this.$router.push('/product')
+          })
         }
       })
       // this.$router.push('/')

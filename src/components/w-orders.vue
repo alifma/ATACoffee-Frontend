@@ -1,53 +1,26 @@
 <template>
-  <div
-    style="
+  <div style="
       background-image: url('https://i.ibb.co/xG1TYf0/bg-History.png');
       background-repeat: no-repeat;
       background-position: center;
-    "
-  >
+      background-size: cover;
+    ">
     <!-- Header -->
     <componentHeader />
-      <div v-if="orders.length > 0">
-        <div class="container py-4">
-          <h1 class="text-white text-center tittle pt-4" style="font-size: 40px; text-shadow: 2px 2px 4px #000000">
-            Let's see what you have bought!
-          </h1>
-        </div>
-        <!-- <b-modal id="deleteModal" hide-footer hide-header title="Using Component Methods" centered>
-          <div class="p-5">
-            <div class="d-block text-center">
-              <p class="font-poppins font-weight-light" style="font-size: 20px">
-                Are you sure want to delete this order?
-              </p>
-            </div>
-            <div class="w-100">
-              <button class="btn btn-primary text-center float-left mr-3 font-weight-bold" style="
-                      width: 40%;
-                      margin-right: 5%;
-                      background: #fff;
-                      border: 3px solid #6a4029;
-                      color: #6a4029;
-                    " @click="$bvModal.hide('deleteModal')">
-                Cancel
-              </button>
-              <button class="btn btn-brown text-center float-right ml-3" style="
-                      width: 40%;
-                      margin-left: 5%;
-                      border: 3px solid #6a4029;
-                    " @click="deleteConfirm(item.inv)">
-                Delete
-              </button>
-            </div>
+    <div v-if="orders.length > 0"  style="min-height:50vh">
+      <div class="container py-4">
+        <h1 class="text-white text-center tittle pt-4" style="font-size: 40px; text-shadow: 2px 2px 4px #000000">
+          Let's see what you have bought!
+        </h1>
+      </div>
+      <div class="container mb-4">
+        <div v-if="lostOrder" class="row w-100">
+          <div class="w-100 text-center p-4 m-4">
+            <b-spinner variant="warning" style="width: 3rem; height: 3rem;" label="Loading..."></b-spinner>
           </div>
-        </b-modal> -->
-        <div class="container mb-4">
-            <div v-if="lostOrder" class="row w-100">
-              <div class="w-100 text-center p-4 m-4">
-                <b-spinner variant="warning" style="width: 3rem; height: 3rem;" label="Loading..."></b-spinner>
-              </div>
-            </div>
-          <div v-else class="row mb-4">
+        </div>
+        <div v-else class="container">
+          <div class="row">
             <div class="col-12 col-sm-6 col-lg-4 mt-2" v-for="(item, index) in orders" :key="index">
               <div class="card cardheight">
                 <div class="card-body">
@@ -85,76 +58,73 @@
               </div>
             </div>
           </div>
-          <div class="card row" style="border-radius: 25px">
-            <div class="card-body col w-100 d-flex">
-              <div class="row w-100">
-                <div class="col-2 d-flex justify-content-left">
-                  <p class="mb-0 my-auto">Page : {{ orderQuery.page }}</p>
-                </div>
-                <div class="col-4 d-flex justify-content-center">
-                  <p class="mb-0 my-auto">Select :</p>
-                  <p v-for="(index, page) in pagination.totalPages" :key="index" class="mb-0 btn btn-warning mx-2"
-                    @click="getOrderLimitQuery(page + 1)">
-                    {{ page + 1 }}
-                  </p>
-                </div>
-                <div class="col-2">
-                  <b-form-select v-model="orderQuery.pending" @change="getOrderLimitQuery(1)" size="sm"
-                    :options="optionFilter">
-                  </b-form-select>
-                </div>
-                <div class="col-2">
-                  <b-form-select v-model="orderQuery.sort" @change="getOrderLimitQuery(1)" size="sm"
-                    :options="optionSort">
-                  </b-form-select>
-                </div>
-                <div class="col-2">
-                  <b-form-select v-model="orderQuery.limit" @change="getOrderLimitQuery(1)" size="sm"
-                    :options="options"></b-form-select>
-                </div>
-              </div>
+        </div>
+      </div>
+    </div>
+    <div v-else>
+      <div class="container py-4 d-flex justify-content-center" style="height: 50vh">
+        <h1 class="text-white text-center my-auto font-rubik" style="font-size: 40px; text-shadow: 2px 2px 4px #000000">
+          You have no order!<br />
+          Start your order now
+        </h1>
+      </div>
+    </div>
+    <div class="container">
+      <div class="card row my-4 mx-2" style="border-radius: 25px">
+        <div class="card-body col w-100 d-flex">
+          <div class="row w-100">
+            <div class="col-6">
+              <b-form-group>
+                <b-form-radio-group id="btn-radios-2" @change="setOrderSort()" v-model="orderQuery.page"
+                  button-variant="outline-warning" :options="optionPage" buttons></b-form-radio-group>
+              </b-form-group>
+            </div>
+            <div class="col-2">
+              <b-form-select v-model="orderQuery.pending" @change="getOrderLimitQuery(1)" size="sm"
+                :options="optionFilter">
+              </b-form-select>
+            </div>
+            <div class="col-2">
+              <b-form-select v-model="orderQuery.sort" @change="getOrderLimitQuery(1)" size="sm" :options="optionSort">
+              </b-form-select>
+            </div>
+            <div class="col-2">
+              <b-form-select v-model="orderQuery.limit" @change="getOrderLimitQuery(1)" size="sm" :options="options">
+              </b-form-select>
             </div>
           </div>
         </div>
       </div>
-      <div v-else>
-        <div class="container py-4 d-flex justify-content-center" style="height: 50vh">
-          <h1 class="text-white text-center my-auto font-rubik"
-            style="font-size: 40px; text-shadow: 2px 2px 4px #000000">
-            You have no order!<br />
-            Start your order now
-          </h1>
+    </div>
+    <!-- end Header -->
+    <componentFooter />
+    <!-- end footer -->
+    <b-modal id="deleteModal" hide-footer hide-header title="Using Component Methods" centered>
+      <div class="p-5">
+        <div class="d-block text-center">
+          <p class="font-poppins font-weight-light" style="font-size: 20px">
+            Are you sure want to delete this order?
+          </p>
         </div>
-      </div>
-      <!-- end Header -->
-      <componentFooter />
-      <!-- end footer -->
-      <b-modal id="deleteModal" hide-footer hide-header title="Using Component Methods" centered>
-        <div class="p-5">
-          <div class="d-block text-center">
-            <p class="font-poppins font-weight-light" style="font-size: 20px">
-              Are you sure want to delete this order?
-            </p>
-          </div>
-          <div class="w-100">
-            <button class="btn btn-primary text-center float-left mr-3 font-weight-bold" style="
+        <div class="w-100">
+          <button class="btn btn-primary text-center float-left mr-3 font-weight-bold" style="
               width: 40%;
               margin-right: 5%;
               background: #fff;
               border: 3px solid #6a4029;
               color: #6a4029;
             " @click="$bvModal.hide('deleteModal')">
-              Cancel
-            </button>
-            <button class="btn btn-brown text-center float-right ml-3"
-              style="width: 40%; margin-left: 5%; border: 3px solid #6a4029" @click="deleteConfirm()">
-              Delete
-            </button>
-          </div>
+            Cancel
+          </button>
+          <button class="btn btn-brown text-center float-right ml-3"
+            style="width: 40%; margin-left: 5%; border: 3px solid #6a4029" @click="deleteConfirm()">
+            Delete
+          </button>
         </div>
-      </b-modal>
       </div>
-      </template>
+    </b-modal>
+  </div>
+</template>
 
 <script>
 import componentHeader from '../components/headers'
@@ -190,6 +160,7 @@ export default {
   },
   computed: {
     ...mapGetters({
+      optionPage: 'orders/optionPage',
       orders: 'orders/getAllOrders',
       userID: 'auth/getUserID',
       pagination: 'orders/getAllOrdersPagination'

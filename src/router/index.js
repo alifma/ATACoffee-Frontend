@@ -126,9 +126,9 @@ router.beforeEach((to, from, next) => {
             title: '',
             text: 'Admin Access Only!'
           })
-          // next({
-          //   path: '/product'
-          // })
+          next({
+            path: '/product'
+          })
         }
       } else {
         next()
@@ -145,17 +145,22 @@ router.beforeEach((to, from, next) => {
     }
   } else {
     // if (store.getters['auth/getToken']) {
-    //   Swal.fire({
-    //     icon: 'info',
-    //     title: '',
-    //     text: 'You already logged in!'
-    //   })
-    //   next({
-    //     path: '/product'
-    //   })
-    // } else {
-    next()
-    // }
+    if (to.path === '/login' || to.path === '/register') {
+      if (store.getters['auth/getToken']) {
+        Swal.fire({
+          icon: 'info',
+          title: '',
+          text: 'You already Logged in!'
+        })
+        next({
+          path: '/product'
+        })
+      } else {
+        next()
+      }
+    } else {
+      next()
+    }
   }
 })
 

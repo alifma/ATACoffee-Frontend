@@ -6,7 +6,7 @@
           <p class="mb-0 brown" @click="linkTo('product')"><i class="fas fa-angle-left"></i></p>
         </div>
         <div class="col-9">
-          <p class="text-right mb-0 brown" @click="toggleCheckout()"><i class="fas fa-shopping-cart"></i></p>
+          <p v-if="userAccess != null" class="text-right mb-0 brown" @click="toggleCheckout()"><i class="fas fa-shopping-cart"></i></p>
         </div>
       </div>
       <div class="row mx-0 my-0" style="height:75vh">

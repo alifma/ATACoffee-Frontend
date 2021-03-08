@@ -11,36 +11,20 @@
         <div class="row">
           <div class="col-md-3 mt-5">
             <div class="card-fotoprofile">
-              <div
-                v-if="
+              <div v-if="
                   getUserDetail.image === 'default.png' ||
                   getUserDetail.image === undefined
-                "
-              >
-                <img
-                  src="../assets/img/avatar.png"
-                  class="img-f-profile mt-5"
-                  alt="foto profile"
-                />
+                ">
+                <img src="../assets/img/avatar.png" class="mt-5"  style="border-radius:50%;image-position:center;object-fit: cover;object-position: center;height: 15vh;width:15vh" alt="foto profile" />
               </div>
               <div v-else>
-                <img
-                  :src="`${webURL}/image/${getUserDetail.image}`"
-                  class="img-f-profile mt-5"
-                  alt="foto profile"
-                />
+                <img :src="`${webURL}/image/${getUserDetail.image}`" class="mt-5" style="border-radius:50%;image-position:center;object-fit: cover;object-position: center;height: 15vh;width:15vh"  alt="foto profile" />
               </div>
-              <span @click="btnChangeFoto()" class="post-img"
-                ><i class="fas fa-pencil-alt"></i
-              ></span>
+              <span @click="btnChangeFoto()" class="post-img"><i class="fas fa-pencil-alt"></i></span>
               <div class="card-body">
                 <div v-show="state === true">
-                  <input
-                    @change="processFile($event)"
-                    type="file"
-                    class="font-poppins w-70 ml-5 mb-n4 img-input"
-                    style="font-size: 12px"
-                  />
+                  <input @change="processFile($event)" type="file" class="font-poppins w-70 ml-5 mb-n4 img-input"
+                    style="font-size: 12px" />
                 </div>
                 <div v-if="getUserDetail.username != null">
                   <h5 class="card-title font-rubik" style="font-size: 2rem">
@@ -52,10 +36,7 @@
                     Username
                   </h5>
                 </div>
-                <h6
-                  class="card-subtitle mb-2 text-muted font-rubik"
-                  style="font-size: 0.8rem"
-                >
+                <h6 class="card-subtitle mb-2 text-muted font-rubik" style="font-size: 0.8rem">
                   {{ formContact.email }}
                 </h6>
                 <div v-if="pagination.errorMsg === '0 Result'">
@@ -73,64 +54,39 @@
             <div class="card-contact-profile">
               <div class="row">
                 <div class="col-10 col-md-10">
-                  <h3
-                    class="font-poppins font-weight-bold ttl-left"
-                    style="color: #4f5665; font-size: 25px"
-                  >
+                  <h3 class="font-poppins font-weight-bold ttl-left" style="color: #4f5665; font-size: 25px">
                     Contacts
                   </h3>
                 </div>
                 <div class="col-2 col-md-2">
-                  <span @click="btnContact()" class="post-img-c mt-n3 mr-2"
-                    ><i class="fas fa-pencil-alt"></i
-                  ></span>
+                  <span @click="btnContact()" class="post-img-c mt-n3 mr-2"><i class="fas fa-pencil-alt"></i></span>
                 </div>
               </div>
               <!-- form contacts -->
               <div class="row mt-2">
                 <div class="col-6 col-md-6">
-                  <label class="font-poppins lb-contact" for="email-contact"
-                    >Email adress :
+                  <label class="font-poppins lb-contact" for="email-contact">Email adress :
                   </label>
                 </div>
                 <div class="col-6 col-md-6">
-                  <label class="font-poppins lb-contact" for="mobile-contact"
-                    >Mobile number :</label
-                  >
+                  <label class="font-poppins lb-contact" for="mobile-contact">Mobile number :</label>
                 </div>
                 <div class="col-6 col-md-6">
-                  <input
-                    v-model="formContact.email"
-                    class="font-poppins contacBorder w-100"
-                    type="text"
-                    placeholder="Edit your email"
-                    id="email-contact"
-                  />
+                  <input v-model="formContact.email" class="font-poppins contacBorder w-100" type="text"
+                    placeholder="Edit your email" id="email-contact" />
                 </div>
                 <div class="col-6 col-md-6">
-                  <input
-                    v-model="formContact.handphone"
-                    class="font-poppins contacBorder w-100"
-                    type="text"
-                    placeholder="Edit your mobile phone (+62)"
-                    id="mobile-contact"
-                  />
+                  <input v-model="formContact.handphone" class="font-poppins contacBorder w-100" type="text"
+                    placeholder="Edit your mobile phone (+62)" id="mobile-contact" />
                 </div>
               </div>
               <div class="row mt-5 row-delivery">
                 <div class="col-12 col-md-12">
-                  <label class="font-poppins lb-contact" for="address-contact"
-                    >Delivery adress :</label
-                  >
+                  <label class="font-poppins lb-contact" for="address-contact">Delivery adress :</label>
                 </div>
                 <div class="col-12 col-md-6">
-                  <input
-                    v-model="formContact.address"
-                    class="font-poppins contacBorder w-100"
-                    type="text"
-                    placeholder="Edit your address"
-                    id="address-contact"
-                  />
+                  <input v-model="formContact.address" class="font-poppins contacBorder w-100" type="text"
+                    placeholder="Edit your address" id="address-contact" />
                 </div>
               </div>
               <!-- form contacts -->
@@ -142,84 +98,49 @@
             <div class="card-detail-profile w-100">
               <div class="row">
                 <div class="col-10 col-md-10">
-                  <h3
-                    class="font-poppins font-weight-bold"
-                    style="color: #4f5665; font-size: 25px"
-                  >
+                  <h3 class="font-poppins font-weight-bold" style="color: #4f5665; font-size: 25px">
                     Details
                   </h3>
                 </div>
                 <div class="col-2 col-md-2">
-                  <span @click="btnDetails()" class="post-img-c mt-n3 mr-2"
-                    ><i class="fas fa-pencil-alt"></i
-                  ></span>
+                  <span @click="btnDetails()" class="post-img-c mt-n3 mr-2"><i class="fas fa-pencil-alt"></i></span>
                 </div>
               </div>
               <!-- form details -->
               <div class="row mt-3">
                 <div class="col-6 col-md-7">
-                  <label class="font-poppins lb-contact" for="name-detail"
-                    >Display name :</label
-                  >
+                  <label class="font-poppins lb-contact" for="name-detail">Display name :</label>
                 </div>
                 <div class="col-6 col-md-5">
-                  <label class="font-poppins lb-contact" for="date-detail"
-                    >DD/MM/YY</label
-                  >
+                  <label class="font-poppins lb-contact" for="date-detail">DD/MM/YY</label>
                 </div>
               </div>
               <div class="row">
                 <div class="col-6 col-md-7">
-                  <input
-                    v-model="formContact.username"
-                    class="font-poppins contacBorder w-100"
-                    type="text"
-                    placeholder="Edit user name"
-                    id="name-detail"
-                  />
+                  <input v-model="formContact.username" class="font-poppins contacBorder w-100" type="text"
+                    placeholder="Edit user name" id="name-detail" />
                 </div>
                 <div class="col-6 col-md-5">
-                  <input
-                    v-model="formContact.lahir"
-                    type="date"
-                    class="font-poppins contacBorder w-100"
-                    id="date-detail"
-                    style="background: #fff"
-                  />
+                  <input v-model="formContact.lahir" type="date" class="font-poppins contacBorder w-100"
+                    id="date-detail" style="background: #fff" />
                 </div>
               </div>
               <div class="row mt-4">
                 <div class="col-6 col-md-7">
-                  <label class="font-poppins lb-contact" for="first-name-detail"
-                    >First name :</label
-                  >
+                  <label class="font-poppins lb-contact" for="first-name-detail">First name :</label>
                 </div>
                 <!-- radio -->
                 <div class="col-6 col-md-5">
                   <div class="form-check col-11">
-                    <input
-                      v-model="formContact.gender"
-                      class="form-check-input"
-                      type="radio"
-                      name="exampleRadios"
-                      id="male"
-                      value="Male"
-                      checked
-                    />
+                    <input v-model="formContact.gender" class="form-check-input" type="radio" name="exampleRadios"
+                      id="male" value="Male" checked />
                     <label class="form-check-label" for="male"> Male </label>
                   </div>
                   <div class="form-check col-12">
-                    <input
-                      v-model="formContact.gender"
-                      class="form-check-input"
-                      type="radio"
-                      name="exampleRadios"
-                      id="female"
-                      value="Female"
-                      checked
-                    />
+                    <input v-model="formContact.gender" class="form-check-input" type="radio" name="exampleRadios"
+                      id="female" value="Female" checked />
                     <label class="form-check-label" for="female">
-                      female
+                      Female
                     </label>
                   </div>
                 </div>
@@ -227,29 +148,17 @@
               </div>
               <div class="row">
                 <div class="col-6 col-md-7">
-                  <input
-                    v-model="formContact.firstname"
-                    class="font-poppins contacBorder w-100"
-                    type="text"
-                    id="first-name-detail"
-                    placeholder="Edit frist name"
-                  />
+                  <input v-model="formContact.firstname" class="font-poppins contacBorder w-100" type="text"
+                    id="first-name-detail" placeholder="Edit frist name" />
                 </div>
               </div>
               <div class="row mt-4">
                 <div class="col-12 col-md-7">
-                  <label class="font-poppins lb-contact" for="last-name-detail"
-                    >Last name :</label
-                  >
+                  <label class="font-poppins lb-contact" for="last-name-detail">Last name :</label>
                 </div>
                 <div class="col-6 col-md-7">
-                  <input
-                    v-model="formContact.lastname"
-                    class="font-poppins contacBorder w-100"
-                    type="text"
-                    id="last-name-detail"
-                    placeholder="Edit last name"
-                  />
+                  <input v-model="formContact.lastname" class="font-poppins contacBorder w-100" type="text"
+                    id="last-name-detail" placeholder="Edit last name" />
                 </div>
               </div>
               <!-- end form details -->
@@ -259,70 +168,50 @@
           <div class="col-md-4 mt-5">
             <div class="row text-xl-center">
               <div class="col-12">
-                <h3
-                  class="font-poppins font-weight-bold"
-                  style="color: #fff; font-size: 25px"
-                >
+                <h3 class="font-poppins font-weight-bold" style="color: #fff; font-size: 25px">
                   Do you want to save the change?
                 </h3>
               </div>
               <div class="col-12">
-                <button
-                  @click="savechange()"
-                  class="btn-brown p-3 w-100 mt-4"
-                  style="border-radius: 15px; float: right; border: none"
-                >
+                <button @click="savechange()" class="btn-brown p-3 w-100 mt-4"
+                  style="border-radius: 15px; float: right; border: none">
                   Save Change
                 </button>
               </div>
               <div class="col-12">
-                <button
-                  @click="cancel()"
-                  class="btn btn-warning font-poppins font-weight-bold p-3 w-100 mt-3"
-                  style="
+                <button @click="cancel()" class="btn btn-warning font-poppins font-weight-bold p-3 w-100 mt-3" style="
                     border-radius: 15px;
                     border: none;
                     font-size: 18px;
                     color: #6a4029;
-                  "
-                >
+                  ">
                   cancel
                 </button>
               </div>
               <div class="col-12">
-                <button
-                  @click="editPassword()"
-                  class="btn btn-light font-poppins font-weight-bold p-3 w-100 mt-3"
+                <button @click="editPassword()" class="btn btn-light font-poppins font-weight-bold p-3 w-100 mt-3"
                   style="
                     border-radius: 15px;
                     border: none;
                     text-align: left;
                     font-size: 18px;
                     color: #6a4029;
-                  "
-                >
+                  ">
                   Edit Password
-                  <span class="ico-bt-right"
-                    ><i class="fas fa-chevron-right"></i
-                  ></span>
+                  <span class="ico-bt-right"><i class="fas fa-chevron-right"></i></span>
                 </button>
               </div>
               <div class="col-12">
-                <button
-                  @click="logout()"
-                  class="btn btn-light font-poppins font-weight-bold p-3 w-100 mt-3 bt-bawah"
+                <button @click="logout()" class="btn btn-light font-poppins font-weight-bold p-3 w-100 mt-3 bt-bawah"
                   style="
                     border-radius: 15px;
                     border: none;
                     text-align: left;
                     font-size: 18px;
                     color: #6a4029;
-                  "
-                >
+                  ">
                   Log out
-                  <span class="ico-bt-right"
-                    ><i class="fas fa-chevron-right"></i
-                  ></span>
+                  <span class="ico-bt-right"><i class="fas fa-chevron-right"></i></span>
                 </button>
               </div>
             </div>

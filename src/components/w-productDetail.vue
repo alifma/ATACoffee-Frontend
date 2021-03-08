@@ -10,7 +10,7 @@
       <div>
         <div class="row py-4">
           <div class="col-md-5 col-lg-5 text-center">
-            <img style="width:75%" class="product-rounded" :src="`${webURL}/image/${detail.image}`" alt="">
+            <img style="border-radius:50%;image-position:center;object-fit: cover;object-position: center;height: 40vh;width:40vh" class="product-rounded" :src="`${webURL}/image/${detail.image}`" alt="">
             <div class="mt-4">
               <h1 class="font-poppins font-weight-bolder">{{detail.name.toUpperCase()}}</h1>
               <h5 class="font-poppins font-weight-light">IDR {{formatPrice(detail.price)}}</h5>

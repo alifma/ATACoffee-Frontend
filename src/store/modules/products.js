@@ -11,14 +11,9 @@ const moduleProducts = {
         delivery: [],
         size: []
       },
-      dataTesting: {
-        id: 7,
-        name: 'admin@atac.com',
-        access: 1,
-        token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywiZW1haWwiOiJhZG1pbkBhdGFjLmNvbSIsImFjY2VzcyI6MSwiaWF0IjoxNjEzMDQwNDM0fQ.FGOETBx3rxQej09x9m2BSxrRg9gEbu_GDPm3aKuiWVY'
-      },
       listItems: [],
-      paginationItem: []
+      paginationItem: [],
+      optionPage: []
     }
   },
   mutations: {
@@ -34,12 +29,20 @@ const moduleProducts = {
     setAllItems (state, payload) {
       state.listItems = payload.data
       state.paginationItem = payload.pagination
+    },
+    setOptionPage (state, payload) {
+      const holderPage = []
+      for (let i = 1; i <= payload; i++) {
+        const value = { text: `${i}`, value: `${i}` }
+        holderPage.push(value)
+      }
+      state.optionPage = holderPage
     }
   },
   actions: {
     getDetail (context, id) {
       return new Promise((resolve, reject) => {
-        axios.get(`${context.rootState.apiURL}/items/${id}`, { headers: { token: context.state.dataTesting.token } })
+        axios.get(`${context.rootState.apiURL}/items/${id}`, { headers: { token: context.rootState.auth.token } })
           .then((response) => {
             context.commit('setDetail', response.data.data[0])
             resolve(response.data.data[0])
@@ -51,7 +54,7 @@ const moduleProducts = {
     },
     updateDetail (context, data) {
       return new Promise((resolve, reject) => {
-        axios.patch(`${context.rootState.apiURL}/items/${data.id}`, data.fd, { headers: { token: context.state.dataTesting.token } })
+        axios.patch(`${context.rootState.apiURL}/items/${data.id}`, data.fd, { headers: { token: context.rootState.auth.token } })
           .then((response) => {
             resolve(response)
           })
@@ -63,9 +66,10 @@ const moduleProducts = {
     getAllProduct (context, data) {
       return new Promise((resolve, reject) => {
         const sql = `${context.rootState.apiURL}/items?limit=${data.limit}&category=${data.category}&page=${data.page}&name=${data.name}&sort=${data.sort}&order=${data.order}`
-        axios.get(sql, { headers: { token: context.state.dataTesting.token } })
+        axios.get(sql, { headers: { token: context.rootState.auth.token } })
           .then((response) => {
             resolve(response.data)
+            context.commit('setOptionPage', response.data.pagination.pageResult)
             context.commit('setAllItems', response.data)
           }).catch((err) => {
             console.log(err)
@@ -75,7 +79,7 @@ const moduleProducts = {
     },
     deleteProduct (context, id) {
       return new Promise((resolve, reject) => {
-        axios.delete(`${context.rootState.apiURL}/items/${id}`, { headers: { token: context.state.dataTesting.token } })
+        axios.delete(`${context.rootState.apiURL}/items/${id}`, { headers: { token: context.rootState.auth.token } })
           .then((response) => {
             resolve(response)
           })
@@ -99,7 +103,8 @@ const moduleProducts = {
   getters: {
     detail: state => state.detail,
     allitems: state => state.listItems,
-    paginationItem: state => state.paginationItem
+    paginationItem: state => state.paginationItem,
+    optionPage: state => state.optionPage
   }
 }
 export default moduleProducts

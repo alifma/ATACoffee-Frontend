@@ -4,12 +4,13 @@
     <cHeader />
     <div class="container" style="min-height:50vh">
       <div class="container py-4">
-        <h1 class="text-white font-rubik" style="font-size: 40px;text-shadow: 2px 2px 4px #000000;">Finish your customer order
+        <h1 class="text-white font-rubik" style="font-size: 40px;text-shadow: 2px 2px 4px #000000;">Finish your customer
+          order
           now.</h1>
       </div>
       <div class="container mb-4 pb-4">
         <div class="row">
-          <div class="col-md-12 col-lg-6">
+          <div class="col-12 col-lg-7 col-md-12">
             <div class="card" style="border-radius:25px">
               <div class="card-body p-4">
                 <h1 class="text-center font-poppins font-weight-bold mt-4" style="color:#362115;">Order Summary</h1>
@@ -60,15 +61,14 @@
                     <td class="pb-0" style="text-align:right;width:min-content">
                       <h3 class="font-poppins font-weight-bold" style="color:#362115;">IDR
                         {{formatPrice(totalPrice+tax+shipping)}}
-                        </h3>
+                      </h3>
                     </td>
                   </tr>
                 </table>
               </div>
             </div>
           </div>
-          <div class="col-1"></div>
-          <div class="col-5">
+          <div class="col-12 col-lg-5 col-md-12 mt-4 mt-lg-0 mt-md-4">
             <!-- <p class="text-white font-rubik float-right mb-0" style="text-shadow: 2px 2px 4px #000000;">edit</p> -->
             <h3 class="text-white font-rubik" style="text-shadow: 2px 2px 4px #000000;">Address details</h3>
             <div class="card" style="border-radius:25px">
@@ -84,8 +84,7 @@
             <div class="card" style="border-radius:25px">
               <div class="card-body p-4 my-2">
                 <b-form-group>
-                  <b-form-radio-group v-model="paymentType" :options="paymentOptions" size="lg"
-                    plain stacked disabled>
+                  <b-form-radio-group v-model="paymentType" :options="paymentOptions" size="lg" plain stacked disabled>
                   </b-form-radio-group>
                 </b-form-group>
               </div>

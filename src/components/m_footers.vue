@@ -6,7 +6,7 @@
           <i class="fas fa-lg mx-4 fa-home"></i>
         </p>
       </div>
-      <div class="col-9 text-right">
+      <div v-if="getAccess !== null" class="col-9 text-right">
         <p class="text-right d-inline" @click="linkTo('profile')">
           <i class="far fa-lg fa-user mx-4" ></i>
         </p>
@@ -19,10 +19,15 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import { mixins } from '../helpers/mixin'
 export default {
-  mixins: [mixins]
-
+  mixins: [mixins],
+  computed: {
+    ...mapGetters({
+      getAccess: 'auth/getAccess'
+    })
+  }
 }
 </script>
 

@@ -43,8 +43,8 @@
                 <img @click="switchChart()" src="../assets/img/more.png" alt="" class="float-right" />
                 <h5 class="font-poppins font-weight-bold">{{reportQuery.rangeDisplay}} Report</h5>
               </div>
-              <p class="font-weight-light text-secondary" >Last 6 Month (Revenue : IDR
-                {{formatPrice(formatPrice(Math.round((reportPagination.totalIncome*1.1)+(10000*reportPagination.allOrders))))}})
+              <p class="font-weight-light text-secondary" style="font-size:20px">(Total Revenue : IDR
+                {{formatPrice((reportPagination.totalIncome*1.1)+(10000*reportPagination.totalOrders))}})
               </p>
               <div v-if="toggleChart">
                 <img src="../assets/img/Chart.png" alt="" class="img-fluid" />
@@ -55,7 +55,7 @@
                     <b-spinner variant="warning" style="width: 3rem; height: 3rem;" label="Loading..."></b-spinner>
                   </div>
                 </div>
-                <table v-else-if="report.length > 0" class="table table-responsive-sm">
+                <table v-else-if="report.length > 0" class="table table-responsive-sm table-responsive-md">
                   <thead class="thead-dark text-center">
                     <tr>
                       <th scope="col">Inv</th>
@@ -87,10 +87,12 @@
                       style="color:#FFBA33">⬤</span> Income <span style="color:#6A4029">⬤</span> Outcome</p>
                 </div>
                 <div v-else>
-                  <div class="row w-100">
-                    <div class="col-12 mb-3 d-flex justify-content-center">
-                      <p v-for="(index, page) in reportPagination.totalPages" :key="index"
-                        class="mb-0 btn btn-warning mx-2" @click="getReportPage(page+1)">{{page+1}}</p>
+                  <div class="row mx-0 w-100">
+                    <div class="col-12 text-center w-100" style="overflow-y:scroll;white-space:pre">
+                      <b-form-group>
+                        <b-form-radio-group id="btn-radios-2" @change="getReport()" v-model="reportQuery.page"
+                          button-variant="outline-warning" :options="optionPageReport" buttons></b-form-radio-group>
+                      </b-form-group>
                     </div>
                     <div class="col-4">
                       <b-form-select v-model="reportQuery.pending" @change="getReportPage(1)" size="sm"
@@ -171,6 +173,7 @@ export default {
   },
   computed: {
     ...mapGetters({
+      optionPageReport: 'orders/optionPageReport',
       user: 'auth/getUserDetail',
       report: 'orders/report',
       reportPagination: 'orders/reportPagination'

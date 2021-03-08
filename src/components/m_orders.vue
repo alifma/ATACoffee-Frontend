@@ -17,7 +17,7 @@
         </div>
       </div>
       <div v-else>
-        <div v-if="orders.length > 0" class="row" style="height:65vh;overflow-y:scroll">
+        <div v-if="orders.length > 0" class="row" style="max-height:65vh;overflow-y:scroll">
           <div class="col-12 mb-3" v-for="(item, index) in orders" :key="index">
             <div class="card" style="border-radius:15px">
               <div class="card-body">
@@ -57,10 +57,10 @@
     <div class="container" style="height:15vh">
       <div class="row w-100">
         <div class="col-12 mb-3 text-center">
-          <p v-for="(index, page) in pagination.totalPages" :key="index" class="mb-0 btn btn-warning mx-2 text-center"
-            @click="getOrderLimitQuery(page + 1)">
-            {{ page + 1 }}
-          </p>
+          <b-form-group>
+            <b-form-radio-group id="btn-radios-2" @change="setOrderSort()" v-model="orderQuery.page"
+              button-variant="outline-warning" :options="optionPage" buttons></b-form-radio-group>
+          </b-form-group>
         </div>
         <div class="col-4">
           <b-form-select v-model="orderQuery.pending" @change="getOrderLimitQuery(1)" size="sm" :options="optionFilter">
@@ -131,6 +131,7 @@ export default {
   mixins: [mixins],
   computed: {
     ...mapGetters({
+      optionPage: 'orders/optionPage',
       orders: 'orders/getAllOrders',
       userID: 'auth/getUserID',
       pagination: 'orders/getAllOrdersPagination'

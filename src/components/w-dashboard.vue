@@ -42,8 +42,8 @@
                 <img @click="switchChart()" src="../assets/img/more.png" alt="" class="float-right mt-3" />
                 <h1 class="font-poppins font-weight-bold">{{reportQuery.rangeDisplay}} Report</h1>
               </div>
-              <p class="font-weight-light text-secondary" style="font-size:20px">Last 6 Month (Revenue : IDR
-                {{formatPrice(formatPrice(Math.round((reportPagination.totalIncome*1.1)+(10000*reportPagination.allOrders))))}})
+              <p class="font-weight-light text-secondary" style="font-size:20px">(Total Revenue : IDR
+                {{formatPrice((reportPagination.totalIncome*1.1)+(10000*reportPagination.totalOrders))}})
               </p>
               <div v-if="toggleChart">
                 <img src="../assets/img/Chart.png" alt="" class="img-fluid p-4" />
@@ -86,13 +86,12 @@
                       style="color:#FFBA33">⬤</span> Income <span style="color:#6A4029">⬤</span> Outcome</p>
                 </div>
                 <div v-else>
-                  <div class="row w-100">
-                    <div class="col-2 d-flex justify-content-left">
-                      <p class="mb-0 my-auto">Page : {{reportQuery.page}} </p>
-                    </div>
-                    <div class="col-4 d-flex justify-content-center">
-                      <p v-for="(index, page) in reportPagination.totalPages" :key="index"
-                        class="mb-0 btn btn-warning mx-2" @click="getReportPage(page+1)">{{page+1}}</p>
+                  <div class="row  mx-0 w-100">
+                    <div class="col-6 w-100" style="overflow-y:scroll;white-space:pre">
+                      <b-form-group>
+                        <b-form-radio-group id="btn-radios-2" @change="getReport()" v-model="reportQuery.page"
+                          button-variant="outline-warning" :options="optionPageReport" buttons></b-form-radio-group>
+                      </b-form-group>
                     </div>
                     <div class="col-2">
                       <b-form-select v-model="reportQuery.pending" @change="getReportPage(1)" size="sm"
@@ -120,8 +119,8 @@
               <div class="card shadow-lg font-poppins" style="border-radius:25px">
                 <div class="card-body">
                   <div class="row no-gutters">
-                    <div class="col-md-4">
-                      <img :src="`${webURL}/image/${user.image}`" class="card-img product-rounded" alt="...">
+                    <div class="col-md-4 my-auto text-center">
+                      <img :src="`${webURL}/image/${user.image === undefined ? 'default.png' : user.image}`" class="card-img product-rounded"  style="border-radius:50%;image-position:center;object-fit: cover;object-position: center;height: 13vh;width:13vh" alt="...">
                     </div>
                     <div class="col-md-8">
                       <div class="card-body">
@@ -224,6 +223,7 @@ export default {
     ...mapGetters({
       user: 'auth/getUserDetail',
       report: 'orders/report',
+      optionPageReport: 'orders/optionPageReport',
       reportPagination: 'orders/reportPagination'
     })
   },

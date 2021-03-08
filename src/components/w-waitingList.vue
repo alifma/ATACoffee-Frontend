@@ -27,13 +27,11 @@
         <div class="card row" style="border-radius:25px">
           <div class="card-body col w-100 d-flex">
             <div class="row w-100">
-              <div class="col-3 d-flex justify-content-left">
-                <p class="mb-0 my-auto">Page : {{pendingQuery.page}} </p>
-              </div>
-              <div class="col-5 d-flex justify-content-center">
-                <p class="mb-0 my-auto">Select : </p>
-                <p v-for="(index, page) in pagination.totalPages" :key="index" class="mb-0 btn btn-warning mx-2"
-                  @click="getPendingPageQuery(page+1)">{{page+1}}</p>
+              <div class="col-8 text-left">
+                <b-form-group>
+                  <b-form-radio-group id="btn-radios-2" @change="getPending()" v-model="pendingQuery.page"
+                    button-variant="outline-warning" :options="optionPending" buttons></b-form-radio-group>
+                </b-form-group>
               </div>
               <div class="col-2">
                 <b-form-select v-model="pendingQuery.sort" @change="getPendingLimitQuery('')" size="sm" :options="optionSort">
@@ -115,6 +113,7 @@ export default {
   },
   computed: {
     ...mapGetters({
+      optionPending: 'orders/optionPending',
       pendingOrders: 'orders/getPendingOrders',
       pagination: 'orders/getPendingPagination'
     })

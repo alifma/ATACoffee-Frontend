@@ -8,17 +8,14 @@ const moduleOrders = {
       pendingOrders: [],
       pendingPagination: [],
       userOrders: [],
-      dataTesting: {
-        id: 7,
-        name: 'admin@atac.com',
-        access: 1,
-        token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywiZW1haWwiOiJhZG1pbkBhdGFjLmNvbSIsImFjY2VzcyI6MSwiaWF0IjoxNjEzMDQwNDM0fQ.FGOETBx3rxQej09x9m2BSxrRg9gEbu_GDPm3aKuiWVY'
-      },
       detailOrdersHead: {},
       detailOrdersBody: [],
       shipping: 10000,
       report: [],
-      reportPagination: []
+      reportPagination: [],
+      optionPageReport: [],
+      optionPage: [],
+      optionPending: []
     }
   },
   mutations: {
@@ -42,16 +39,40 @@ const moduleOrders = {
     },
     setUserOrders (state, payload) {
       state.userOrders = payload
+    },
+    setOptionPageReport (state, payload) {
+      const holderPage = []
+      for (let i = 1; i <= payload; i++) {
+        const value = { text: `${i}`, value: `${i}` }
+        holderPage.push(value)
+      }
+      state.optionPageReport = holderPage
+    },
+    setOptionPage (state, payload) {
+      const holderPage = []
+      for (let i = 1; i <= payload; i++) {
+        const value = { text: `${i}`, value: `${i}` }
+        holderPage.push(value)
+      }
+      state.optionPage = holderPage
+    },
+    setOptionPending (state, payload) {
+      const holderPage = []
+      for (let i = 1; i <= payload; i++) {
+        const value = { text: `${i}`, value: `${i}` }
+        holderPage.push(value)
+      }
+      state.optionPending = holderPage
     }
   },
   actions: {
     actionGetAllOrders (context, data) {
       return new Promise((resolve, reject) => {
-        axios.get(`${context.rootState.apiURL}/orders?limit=${data.limit}&user=${data.user}&pending=${data.pending}&page=${data.page}`, { headers: { token: context.state.dataTesting.token } })
+        axios.get(`${context.rootState.apiURL}/orders?limit=${data.limit}&user=${data.user}&pending=${data.pending}&page=${data.page}`, { headers: { token: context.rootState.auth.token } })
           .then((response) => {
             context.commit('setAllOrders', response.data)
+            context.commit('setOptionPage', response.data.pagination.totalPages)
             resolve(response.data)
-            // console.log(response)
           }).catch((error) => {
             console.log(error)
             reject(error)
@@ -60,8 +81,9 @@ const moduleOrders = {
     },
     actionGetPendingOrders (context, data) {
       return new Promise((resolve, reject) => {
-        axios.get(`${context.rootState.apiURL}/orders?limit=${data.limit}&page=${data.page}&pending=1&sort=${data.sort}`, { headers: { token: context.state.dataTesting.token } }).then((response) => {
+        axios.get(`${context.rootState.apiURL}/orders?limit=${data.limit}&page=${data.page}&pending=1&sort=${data.sort}`, { headers: { token: context.rootState.auth.token } }).then((response) => {
           context.commit('setPendingOrders', response.data)
+          context.commit('setOptionPending', response.data.pagination.totalPages)
           resolve(response.data)
         }).catch((error) => {
           console.log(error)
@@ -71,7 +93,7 @@ const moduleOrders = {
     },
     actionGetDetailOrders (context, inv) {
       return new Promise((resolve, reject) => {
-        axios.get(`${context.rootState.apiURL}/orders/${inv}`, { headers: { token: context.state.dataTesting.token } }).then((response) => {
+        axios.get(`${context.rootState.apiURL}/orders/${inv}`, { headers: { token: context.rootState.auth.token } }).then((response) => {
           context.commit('setDetailOrderHead', response.data.data.head[0])
           context.commit('setDetailOrderBody', response.data.data.body)
           resolve(response.data)
@@ -117,9 +139,10 @@ const moduleOrders = {
     },
     actionGetReport (context, data) {
       return new Promise((resolve, reject) => {
-        axios.get(`${context.rootState.apiURL}/orders?limit=${data.limit}&pending=${data.pending}&page=${data.page}&range=${data.range}`, { headers: { token: context.state.dataTesting.token } })
+        axios.get(`${context.rootState.apiURL}/orders?limit=${data.limit}&pending=${data.pending}&page=${data.page}&range=${data.range}`, { headers: { token: context.rootState.auth.token } })
           .then((response) => {
             context.commit('setReport', response.data)
+            context.commit('setOptionPageReport', response.data.pagination.totalPages)
             resolve(response.data)
             // console.log(response)
           }).catch((error) => {
@@ -146,7 +169,10 @@ const moduleOrders = {
     tax (state) {
       return state.detailOrdersBody.reduce((a, b) => a + b.amount * b.price, 0) * 0.1
     },
-    shipping: state => state.shipping
+    shipping: state => state.shipping,
+    optionPageReport: state => state.optionPageReport,
+    optionPage: state => state.optionPage,
+    optionPending: state => state.optionPending
   }
 }
 export default moduleOrders

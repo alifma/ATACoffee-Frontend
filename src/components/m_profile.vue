@@ -187,7 +187,7 @@ export default {
   mixins: [mixins],
   data () {
     return {
-      showEdit: true,
+      showEdit: false,
       formContact: {
         username: '',
         handphone: '',

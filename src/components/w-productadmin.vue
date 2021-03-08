@@ -2,125 +2,127 @@
   <div>
     <!-- header -->
     <cHeader />
-    <div class="container-bars">
-      <!-- aside left -->
-      <aside class="left" id="side-left">
-        <h3 class="title-aside-promo">Promo for you</h3>
-        <p class="info-aside-promo">
-          Coupons will be updated every weeks. Check them out!
-        </p>
-        <!-- box menu promo -->
-        <section class="box-aside-menu" id="aside-menu3">KETIGA</section>
-        <section class="box-aside-menu" id="aside-menu2">KEDUA</section>
-        <section class="box-aside-menu" id="aside-menu1">
-          <span v-if="getAccess == 1" @click="test()" class="icon-edit-cupon"><i class="fas fa-pencil-alt"></i></span>
-          <img src="../assets/img/menu-Img4.png" alt="img4" class="img-aside-promo mt-5" />
-          <h3 class="title-menu-aside mb-3">Beef Spaghetti</h3>
-          <h3 class="discon-menu-aside mt-n2">20% OFF</h3>
-          <p class="info-discon-aside">
-            Buy 1 Choco Oreo and get 20% off for Beef Spaghetti
-          </p>
-          <hr class="breakline" />
-          <p class="title-codecupon">COUPON CODE</p>
-          <h2 class="codecupon-aside">FNPR15RG</h2>
-          <p class="sub-codecupon mt-5">Valid untill October 10th 2020</p>
-          <button v-if="getAccess != null" @click="btnCuppon()" class="btn btn-cupon mt-5">
-            Apply Coupon
-          </button>
-          <!-- info foot aside -->
-          <p class="msg-cupon">Terms and Condition</p>
-          <ul class="list-msg-cupon ml-n4">
-            <li class="txt-msg-cupon">
-              1. You can only apply 1 coupon per day
-            </li>
-            <li class="txt-msg-cupon">2. it only for dine in</li>
-            <li class="txt-msg-cupon">3. Buy 1 get 1 only for new user</li>
-            <li class="txt-msg-cupon">
-              4. Should make member card to apply coupon
-            </li>
-          </ul>
-          <!-- button admin -->
-          <button v-if="getAccess == 1" @click="addpromo()" class="btn btn-warning bt-addpromo">
-            Add New Promo
-          </button>
-        </section>
-        <!-- end box menu promo -->
-      </aside>
-      <!-- and aside left -->
-      <!-- main menu -->
-      <section class="main-menu" id="main-menu">
-        <div class="row mb-5">
-          <div class="col-md-12">
-            <span @click="setProductCategory('')" class="bt-favorite bt-active mr-5">
-              Favorite Product
-            </span>
-            <span v-for="(item, index) in categories" :key="index" @click="setProductCategory(item.value)"
-              class="bt-vcoffe ml-4 mr-5">{{item.text}}</span>
-          </div>
-        </div>
-        <!-- menu -->
-        <div v-if="loadProduct" class="row w-100">
-          <div class="w-100 text-center p-4 m-4">
-            <b-spinner variant="warning" style="width: 3rem; height: 3rem;" label="Loading..."></b-spinner>
-          </div>
-        </div>
-        <div v-else-if="allitems.length === 0" class="row w-100">
-          <div class="w-100 text-center p-4 m-4">
-            <h1>No items</h1>
-          </div>
-        </div>
-        <div v-else class="row">
-          <div class="col-md-3 mt-5 mb-4" v-for="(element, index) in allitems" :key="index">
-            <div class="card-menu">
-              <img @click="detailProduct(element.id)" :src="`${webURL}/image/${element.image}`" alt=""
-                class="img-menus" />
+    <div class="container">
+      <div class="row">
+        <div class="col-4 border-0">
+          <h4 class="font-weight-bold font-poppins text-center brown pt-5 mb-3">Promo for you</h4>
+          <p class="font-poppins text-center">Coupons will be updated every weeks.<br />Check them out!</p>
+          <div class="container pt-3">
+            <div class="card border-0 shadow" style="border-radius:15px;background:#FFCB65">
               <div class="card-body">
-                <h5 class="card-title-menus mt-n3">{{ element.name }}</h5>
-                <h6 class="card-subtitle-menus mb-2">
-                  IDR {{ formatPrice(element.price) }}
-                </h6>
-                <span v-if="getAccess == 1" @click="editProduct(element.id)" class="icon-edit-menus"><i
-                    class="fas fa-pencil-alt"></i></span>
+                <div class="row">
+                  <div class="col-12 text-center my-auto">
+                    <img src="../assets/img/menu-Img4.png"
+                      style="border-radius:50%;image-position:center;object-fit: cover;object-position: center;height: 120px;width:120px"
+                      class="card-img product-rounded">
+                  </div>
+                  <div class="col-12 text-center ">
+                    <h3 class="title-menu-aside  mt-3">Beef Spaghetti</h3>
+                    <h3 class="title-menu-aside ">20% OFF</h3>
+                    <p class="info-discon-aside">
+                      Buy 1 Choco Oreo and get 20% off for Beef Spaghetti
+                    </p>
+                    <hr class="breakline" />
+                    <p class="title-codecupon">COUPON CODE</p>
+                    <h2 class="codecupon-aside">FNPR15RG</h2>
+                    <p class="sub-codecupon mt-5">Valid untill October 10th 2020</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button v-if="getAccess != null" @click="btnCuppon()" class="btn btn-cupon w-100 mt-5">
+              Apply Coupon
+            </button>
+            <p class="msg-cupon mt-3">Terms and Condition</p>
+            <ul class="list-msg-cupon ml-n4">
+              <li class="txt-msg-cupon">
+                1. You can only apply 1 coupon per day
+              </li>
+              <li class="txt-msg-cupon">2. it only for dine in</li>
+              <li class="txt-msg-cupon">3. Buy 1 get 1 only for new user</li>
+              <li class="txt-msg-cupon">
+                4. Should make member card to apply coupon
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-8 border-left">
+          <div class="row">
+            <div class="col-12 mt-3" style="white-space:pre">
+              <span @click="setProductCategory('')" class="bt-favorite bt-active mr-5">
+                Favorite Product
+              </span>
+              <span v-for="(item, index) in categories" :key="index" @click="setProductCategory(item.value)"
+                class="bt-vcoffe ml-4 mr-5">{{item.text}}</span>
+            </div>
+            <div class="col-12 mt-3">
+              <div v-if="loadProduct" class="row w-100">
+                <div class="w-100 text-center p-4 m-4">
+                  <b-spinner variant="warning" style="width: 3rem; height: 3rem;" label="Loading..."></b-spinner>
+                </div>
+              </div>
+              <div v-else-if="allitems.length === 0" class="row w-100">
+                <div class="w-100 text-center p-4 m-4">
+                  <h1>No items</h1>
+                </div>
+              </div>
+              <div v-else class="row">
+                <div class="col-md-3 mt-5 mb-4" v-for="(element, index) in allitems" :key="index">
+                  <div class="card-menu">
+                    <img @click="detailProduct(element.id)" :src="`${webURL}/image/${element.image}`" alt=""
+                      class="img-menus" />
+                    <div class="card-body">
+                      <h5 class="card-title-menus mt-n3">{{ element.name }}</h5>
+                      <h6 class="card-subtitle-menus mb-2">
+                        IDR {{ formatPrice(element.price) }}
+                      </h6>
+                      <span v-if="getAccess == 1" @click="editProduct(element.id)" class="icon-edit-menus"><i
+                          class="fas fa-pencil-alt"></i></span>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="col-2 d-flex justify-content-left">
-            <p class="mb-0 my-auto">Page : {{productQuery.page}} </p>
+          <div class="row py-3">
+            <div class="col-12 text-center">
+              <b-form-group>
+                <b-form-radio-group id="btn-radios-2" @change="setOrderSort()" v-model="productQuery.page"
+                  button-variant="outline-warning" :options="optionPage" buttons></b-form-radio-group>
+              </b-form-group>
+            </div>
+            <div class="col-4">
+              <b-form-select v-model="productQuery.order" @change="setOrderSort()" size="sm" :options="optionOrder">
+              </b-form-select>
+            </div>
+            <div class="col-4">
+              <b-form-select v-model="productQuery.sort" @change="setOrderSort()" size="sm" :options="optionSort">
+              </b-form-select>
+            </div>
+            <div class="col-4">
+              <b-form-select v-model="productQuery.limit" @change="setProductCategory('')" size="sm" :options="options">
+              </b-form-select>
+            </div>
           </div>
-          <div class="col-4 d-flex justify-content-center">
-            <p class="mb-0 my-auto">Select : </p>
-            <p v-for="(index, page) in pagination.pageResult" :key="index" class="mb-0 btn btn-warning mx-2"
-              @click="setProductPage(page+1)">{{page+1}}</p>
-          </div>
-          <div class="col-2">
-            <b-form-select v-model="productQuery.order" @change="setOrderSort()" size="sm" :options="optionOrder">
-            </b-form-select>
-          </div>
-          <div class="col-2">
-            <b-form-select v-model="productQuery.sort" @change="setOrderSort()" size="sm" :options="optionSort">
-            </b-form-select>
-          </div>
-          <div class="col-2">
-            <b-form-select v-model="productQuery.limit" @change="setProductCategory('')" size="sm" :options="options">
-            </b-form-select>
-          </div>
-        </div>
-        <!-- menu -->
-      </section>
-      <!-- end main menu -->
-    </div>
-    <section class="button-add">
-      <div class="row">
-        <div class="col-md-12" v-if="getAccess == 1">
-          <button @click="addnewproduct()" class="btn btn-add-new-product">
-            Add New Product
-          </button>
         </div>
       </div>
-    </section>
-    <!-- footer -->
+      <div class="row ">
+        <div class="col-4 my-auto border-0">
+          <button v-if="getAccess == 1" @click="addpromo()" class="btn btn-warning bt-addpromo w-100">
+            Add New Promo
+          </button>
+        </div>
+        <div class="col-8  my-auto border-left">
+          <div class="row">
+            <div class="col-12" v-if="getAccess == 1">
+              <button @click="addnewproduct()" class="btn btn-cupon w-100" style="border-radius:20px;height:80px">
+                Add New Product
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <cFooter />
   </div>
 </template>
@@ -161,7 +163,8 @@ export default {
       getAccess: 'auth/getAccess',
       allitems: 'products/allitems',
       categories: 'categories/categories',
-      pagination: 'products/paginationItem'
+      pagination: 'products/paginationItem',
+      optionPage: 'products/optionPage'
     })
   },
   methods: {

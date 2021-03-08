@@ -9,7 +9,7 @@
         </b-button>
       </div>
       <div class="col-6">
-        <p class="text-right" @click="linkTo('checkout')">
+        <p v-if="getAccess !== null" class="text-right" @click="linkTo('checkout')">
           <i class="fas fa-lg mx-4 fa-shopping-cart"></i>
         </p>
       </div>
@@ -18,10 +18,15 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import { mixins } from '../helpers/mixin'
 export default {
-  mixins: [mixins]
-
+  mixins: [mixins],
+  computed: {
+    ...mapGetters({
+      getAccess: 'auth/getAccess'
+    })
+  }
 }
 </script>
 

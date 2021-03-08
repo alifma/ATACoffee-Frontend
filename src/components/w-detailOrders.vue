@@ -1,23 +1,26 @@
 <template>
-<div style="background-image: url('https://i.ibb.co/jwqkCjf/bg-Checkout.png');background-repeat: no-repeat;background-position: center;">
+  <div
+    style="background-image: url('https://i.ibb.co/jwqkCjf/bg-Checkout.png');background-repeat: no-repeat;background-position: center;background-size:cover;">
     <!-- Header -->
     <componentHeader />
     <!-- end Header -->
     <div class="container py-4">
-      <h1 class="text-white font-rubik" style="font-size: 40px;text-shadow: 2px 2px 4px #000000;">Review your receipt</h1>
+      <h1 class="text-white font-rubik" style="font-size: 40px;text-shadow: 2px 2px 4px #000000;">Review your receipt
+      </h1>
     </div>
     <div class="container pb-4 mb-4">
       <div class="row">
-        <div class="col-md-12 col-lg-6">
+        <div class="col-12 col-lg-7 col-md-12">
           <div class="card" style="border-radius:25px">
             <div class="card-body pr-4 pb-4 pl-4 mt-4">
               <h1 class="text-center font-poppins font-weight-bold mb-0" style="color:#362115;">Order Receipt</h1>
-              <h5 v-if="detailOrdersHead.cashier != null" class="text-center mb-0 font-poppins" style="color:#362115;">Cashier : {{detailOrdersHead.cashier}}</h5>
+              <h5 v-if="detailOrdersHead.cashier != null" class="text-center mb-0 font-poppins" style="color:#362115;">
+                Cashier : {{detailOrdersHead.cashier}}</h5>
               <h5 v-else class="text-center text-danger mb-0 font-poppins">Pending</h5>
               <p class="text-center font-poppins">{{new Date(detailOrdersHead.created_at).toLocaleDateString()}}</p>
               <div style="max-height:40vh;overflow-y:scroll">
                 <!-- Jika ada itemnya -->
-                <div v-for="(item, index) in detailOrdersBody" :key="index" class="row no-gutters" style="height:18vh">
+                <div v-for="(item, index) in detailOrdersBody" :key="index" class="row no-gutters" >
                   <div class="col-md-4 text-center my-auto">
                     <img :src="`${webURL}/image/${item.image}`"
                       style="height:100px;width:100px;object-fit:cover;border-radius:25%" class="card-img">
@@ -64,8 +67,7 @@
             </div>
           </div>
         </div>
-        <div class="col-1"></div>
-        <div class="col-5">
+        <div class="col-12 col-lg-5 col-md-12 mt-4 mt-lg-0 mt-md-4">
           <h3 class="text-white font-rubik" style="text-shadow: 2px 2px 4px #000000;">Address details</h3>
           <div class="card" style="border-radius:25px">
             <div class="card-body p-4 my-2">
@@ -80,15 +82,16 @@
           <div class="card" style="border-radius:25px">
             <div class="card-body p-4 my-2">
               <b-form-group>
-                <b-form-radio-group v-model="detailOrdersHead.paymentType" disabled :options="paymentOptions" size="lg" plain
-                  stacked>
+                <b-form-radio-group v-model="detailOrdersHead.paymentType" disabled :options="paymentOptions" size="lg"
+                  plain stacked>
                 </b-form-radio-group>
               </b-form-group>
             </div>
           </div>
           <button @click="gotoOrder()" class="btn btn-brown font-poppins w-100 mt-4"
             style="font-size:20px;border-radius:25px;height:60px">Back to Order</button>
-          <button v-if="userAccess === 1" @click="gotoDashboard()" class="btn btn-warning font-weight-bold font-poppins w-100 mt-4"
+          <button v-if="userAccess === 1" @click="gotoDashboard()"
+            class="btn btn-warning font-weight-bold font-poppins w-100 mt-4"
             style="font-size:20px;border-radius:25px;height:60px">Go to Dashboard</button>
         </div>
       </div>

@@ -60,10 +60,12 @@
               </div>
             </div>
           </div>
-          <div class="row" style="height:12vh;overflow-y:scroll">
-            <div class="col-12 mb-3 justify-content-left">
-              <p v-for="(index, page) in pagination.pageResult" :key="index" class="mb-0 btn btn-warning mx-2"
-                @click="setProductPage(page+1)">{{page+1}}</p>
+          <div class="row" style="height:13vh;overflow-y:scroll">
+            <div class="col-12 justify-content-left">
+              <b-form-group>
+                <b-form-radio-group id="btn-radios-2" @change="setOrderSort()" v-model="productQuery.page"
+                  button-variant="outline-warning" :options="optionPage" buttons></b-form-radio-group>
+              </b-form-group>
             </div>
             <div class="col-4">
               <b-form-select v-model="productQuery.order" @change="setOrderSort()" size="sm" :options="optionOrder">
@@ -88,24 +90,59 @@
       <div class="px-3 py-2 h-100 text-white align-middle" style="background:#6A4029">
         <div class="row h-100">
           <div class="col-12 my-auto">
-            <ul class="list-group">
+            <ul v-if="getAccess === null" class="list-group">
+              <li @click="linkTo('login')" style="background:#6A4029" class="list-group-item border-0 my-5 py-5">
+                <p class="mb-0">Login<i class="fas fa-arrow-right ml-3"></i></p>
+              </li>
+            </ul>
+            <ul v-else-if="getAccess == 1" class="list-group">
+              <li style="background:#6A4029" @click="linkTo('profile')"
+                class="list-group-item border-top-0 border-left-0 border-right-0 border-bottom border-white">
+                <p class="mb-0"><i class="far mr-4 fa-user-circle"></i> Profile</p>
+              </li>
+              <li style="background:#6A4029" @click="linkTo('waitinglist')"
+                class="list-group-item border-top-0 border-left-0 border-right-0 border-bottom border-white">
+                <p class="mb-0"><i class="fas fa-cart-arrow-down mr-4 "></i> Pending Orders</p>
+              </li>
+              <li style="background:#6A4029" @click="linkTo('dashboard')"
+                class="list-group-item border-top-0 border-left-0 border-right-0 border-bottom border-white">
+                <p class="mb-0"><i class="fas fa-chart-line mr-4 "></i> Dashboard</p>
+              </li>
+              <li style="background:#6A4029" @click="swalAlert('Settings', 'You can change your profile setings here', 'info');linkTo('profile')"
+                class="list-group-item border-top-0 border-left-0 border-right-0 border-bottom border-white">
+                <p class="mb-0"><i class="fas fa-cog mr-4 "></i> Settings</p>
+              </li>
+              <li style="background:#6A4029" @click="swalAlert('Privacy Policy', `Every data saved is encrypted and won't be published anywhere`, 'info')"
+                class="list-group-item border-top-0 border-left-0 border-right-0 border-bottom border-white">
+                <p class="mb-0"><i class="far fa-file-alt mr-4 "></i> Privacy policy</p>
+              </li>
+              <li style="background:#6A4029" @click="swalAlert('Security', 'You can change your password here', 'info');linkTo('profile')"
+                class="list-group-item border-0 mb-5 pb-5">
+                <p class="mb-0"><i class="fas fa-shield-alt mr-4 "></i> Security</p>
+              </li>
+              <li @click="logout()" style="background:#6A4029" class="list-group-item border-0 mt-5 pt-5">
+                <p class="mb-0">Sign-out<i class="fas fa-arrow-right ml-3"></i></p>
+              </li>
+            </ul>
+            <ul v-else class="list-group">
               <li style="background:#6A4029" @click="linkTo('profile')"
                 class="list-group-item border-top-0 border-left-0 border-right-0 border-bottom border-white">
                 <p class="mb-0"><i class="far mr-4 fa-user-circle"></i> Profile</p>
               </li>
               <li style="background:#6A4029" @click="linkTo('orders')"
                 class="list-group-item border-top-0 border-left-0 border-right-0 border-bottom border-white">
-                <p class="mb-0"><i class="fas fa-cart-arrow-down mr-4 "></i> Orders</p>
+                <p class="mb-0"><i class="fas fa-cart-arrow-down mr-4 "></i> Order History</p>
               </li>
-              <li style="background:#6A4029"
+              <li style="background:#6A4029" @click="swalAlert('Settings', 'You can change your profile setings here', 'info');linkTo('profile')"
                 class="list-group-item border-top-0 border-left-0 border-right-0 border-bottom border-white">
                 <p class="mb-0"><i class="fas fa-cog mr-4 "></i> Settings</p>
               </li>
-              <li style="background:#6A4029"
+              <li style="background:#6A4029" @click="swalAlert('Privacy Policy', `Every data saved is encrypted and won't be published anywhere`, 'info')"
                 class="list-group-item border-top-0 border-left-0 border-right-0 border-bottom border-white">
                 <p class="mb-0"><i class="far fa-file-alt mr-4 "></i> Privacy policy</p>
               </li>
-              <li style="background:#6A4029" class="list-group-item border-0 mb-5 pb-5">
+              <li style="background:#6A4029" @click="swalAlert('Security', 'You can change your password here', 'info');linkTo('profile')"
+                class="list-group-item border-0 mb-5 pb-5">
                 <p class="mb-0"><i class="fas fa-shield-alt mr-4 "></i> Security</p>
               </li>
               <li @click="logout()" style="background:#6A4029" class="list-group-item border-0 mt-5 pt-5">
@@ -157,7 +194,8 @@ export default {
       getAccess: 'auth/getAccess',
       allitems: 'products/allitems',
       categories: 'categories/categories',
-      pagination: 'products/paginationItem'
+      pagination: 'products/paginationItem',
+      optionPage: 'products/optionPage'
     })
   },
   methods: {
