@@ -12,6 +12,8 @@
               <div class="card-body">
                 <div class="row">
                   <div class="col-12 text-center my-auto">
+                    <span v-if="getAccess == 1" @click="btnCuppon()" class="icon-edit-menus"><i
+                          class="fas fa-pencil-alt float-right"></i></span>
                     <img src="../assets/img/menu-Img4.png"
                       style="border-radius:50%;image-position:center;object-fit: cover;object-position: center;height: 120px;width:120px"
                       class="card-img product-rounded">
@@ -48,12 +50,12 @@
         </div>
         <div class="col-8 border-left">
           <div class="row">
-            <div class="col-12 mt-3" style="white-space:pre">
-              <span @click="setProductCategory('')" class="bt-favorite bt-active mr-5">
+            <div class="col-12 mt-3 pt-3 hideScroll" style="white-space:pre;overflow-x:scroll;overflow-y:hidden">
+              <span @click="setProductCategory('')" class="bt-favorite bt-active mx-4">
                 Favorite Product
               </span>
               <span v-for="(item, index) in categories" :key="index" @click="setProductCategory(item.value)"
-                class="bt-vcoffe ml-4 mr-5">{{item.text}}</span>
+                class="bt-vcoffe mx-4">{{item.text}}</span>
             </div>
             <div class="col-12 mt-3">
               <div v-if="loadProduct" class="row w-100">
@@ -67,7 +69,7 @@
                 </div>
               </div>
               <div v-else class="row">
-                <div class="col-md-3 mt-5 mb-4" v-for="(element, index) in allitems" :key="index">
+                <div class="col-md-4 col-lg-3 col-4 mt-5 mb-4" v-for="(element, index) in allitems" :key="index">
                   <div class="card-menu">
                     <img @click="detailProduct(element.id)" :src="`${webURL}/image/${element.image}`" alt=""
                       class="img-menus" />

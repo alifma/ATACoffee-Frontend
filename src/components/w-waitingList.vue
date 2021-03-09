@@ -1,6 +1,6 @@
 <template>
   <div
-    style="background-image: url('https://i.ibb.co/jwqkCjf/bg-Checkout.png');background-repeat: no-repeat;background-position: center;">
+    style="background-image: url('https://i.ibb.co/jwqkCjf/bg-Checkout.png');background-size:cover;background-repeat: no-repeat;background-position: center;">
     <cHeader />
     <div v-if="pendingOrders.length > 0">
       <div class="container py-4">

@@ -1,6 +1,6 @@
 <template>
   <div
-    style="background-image: url('https://i.ibb.co/jwqkCjf/bg-Checkout.png');background-repeat: no-repeat;background-position: center;">
+    style="background-image: url('https://i.ibb.co/jwqkCjf/bg-Checkout.png');background-size:cover;background-repeat: no-repeat;background-position: center;">
     <cHeader />
     <div class="container" style="min-height:50vh">
       <div class="container py-4">

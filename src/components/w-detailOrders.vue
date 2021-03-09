@@ -140,7 +140,7 @@ export default {
     },
     getDetail () {
       this.swalLoading('Preparing Data')
-      this.actionGetDetail(this.paramInv)
+      this.actionGetDetail(this.$route.params.inv)
         .then((res) => {
           this.swalLoadingClose()
         })

@@ -15,10 +15,10 @@
                   getUserDetail.image === 'default.png' ||
                   getUserDetail.image === undefined
                 ">
-                <img src="../assets/img/avatar.png" class="mt-5"  style="border-radius:50%;image-position:center;object-fit: cover;object-position: center;height: 15vh;width:15vh" alt="foto profile" />
+                <img src="../assets/img/avatar.png" class="mt-5"  style="border-radius:50%;image-position:center;object-fit: cover;object-position: center;height: 100px;width:100px" alt="foto profile" />
               </div>
               <div v-else>
-                <img :src="`${webURL}/image/${getUserDetail.image}`" class="mt-5" style="border-radius:50%;image-position:center;object-fit: cover;object-position: center;height: 15vh;width:15vh"  alt="foto profile" />
+                <img :src="`${webURL}/image/${getUserDetail.image}`" class="mt-5" style="border-radius:50%;image-position:center;object-fit: cover;object-position: center;height: 100px;width:100px"  alt="foto profile" />
               </div>
               <span @click="btnChangeFoto()" class="post-img"><i class="fas fa-pencil-alt"></i></span>
               <div class="card-body">

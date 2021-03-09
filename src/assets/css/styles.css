@@ -60,19 +60,20 @@
     margin-right: 10px;
   }
 
-  .nav-link {
+  .navigasi {
     font-size: 16px;
     font-weight: 400;
     line-height: 20px;
+    text-decoration: none;
     color: #4F5665;
     margin-right: 20px;
   }
 
-  .nav-link:hover {
+  .navigasi:hover {
     color: #fc5800;
   }
 
-  .nav-link.active {
+  .navigasi.active {
     font-family: 'Rubik';
     font-style: normal;
     font-weight: 800;
@@ -636,9 +637,6 @@
     font-family: 'Rubik';
   }
 
-  div.co-footer {
-    padding: 15vh 0;
-  }
 
   img.img-footer {
     position: absolute;
@@ -1110,9 +1108,6 @@
   }
 
   p.info-discon-aside {
-    width: 247px;
-    height: 28px;
-    margin-left: 20px;
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
@@ -1432,3 +1427,14 @@ button.btn-black {
   .icon-edit-menus:hover {
     background: #8a563a;
   }
+
+  /* Hidden Scrollbar */
+.hideScroll::-webkit-scrollbar {
+  oveflow-y:scroll;
+  display: none;
+}
+.hideScroll {
+  oveflow-y:scroll;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}

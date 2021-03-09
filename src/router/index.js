@@ -54,7 +54,7 @@ const routes = [
     path: '/product/:id',
     name: 'ProductDetails',
     component: ProductDetails,
-    meta: { auth: false }
+    meta: { auth: true }
   },
   {
     path: '/orders',
@@ -94,7 +94,7 @@ const routes = [
   },
   {
     path: '/waitinglist/:inv',
-    name: 'waitingList details',
+    name: 'waitingListdetails',
     component: WaitingListDetails,
     meta: { auth: true }
   },

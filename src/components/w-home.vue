@@ -4,7 +4,7 @@
     <componentHeader />
     <!-- end Header -->
     <!-- jumbotron -->
-    <div class="pb-5" style="background-image: url('https://i.ibb.co/Ph930NJ/bgHome.png');background-repeat: no-repeat;background-position: center;">
+    <div class="pb-5" style="background-image: url('https://i.ibb.co/Ph930NJ/bgHome.png');background-repeat: no-repeat;background-size:cover; background-position: center;">
       <div class="container py-5 pt-lg-3 pt-md-3 w-100">
         <div class=" d-none d-lg-block d-md-block">
           <div class="row">

@@ -268,7 +268,7 @@ export default {
   },
   mounted () {
     this.getDetails()
-    this.userProfile(this.userID)
+    this.userProfile(localStorage.getItem('id'))
   }
 }
 </script>
