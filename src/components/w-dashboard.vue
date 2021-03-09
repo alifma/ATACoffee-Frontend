@@ -120,7 +120,7 @@
                 <div class="card-body">
                   <div class="row no-gutters">
                     <div class="col-md-4 my-auto text-center">
-                      <img :src="`${webURL}/image/${user.image === undefined ? 'default.png' : user.image}`" class="card-img product-rounded"  style="border-radius:50%;image-position:center;object-fit: cover;object-position: center;height: 13vh;width:13vh" alt="...">
+                      <img :src="`${webURL}/image/${user.image === undefined ? 'default.png' : user.image}`" class="card-img product-rounded"  style="border-radius:50%;image-position:center;object-fit: cover;object-position: center;height: 90px;width:90px" alt="...">
                     </div>
                     <div class="col-md-8">
                       <div class="card-body">

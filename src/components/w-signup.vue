@@ -1,7 +1,70 @@
 <template>
   <div>
+    <div class="container-fluid" style="height:100%">
+      <div class="row" style="height:100%">
+        <div class="col-5"
+          style="background-image: url('https://i.ibb.co/x875dQk/bgLogin.png');background-repeat: no-repeat;background-position: center;background-size:cover;">
+        </div>
+        <div class="col-7">
+          <div class="container">
+            <div class="row">
+              <div class="col-12 py-4">
+                <div class="row">
+                  <div @click="gotoHome()" style="cursor:pointer" class="col-6 my-auto">
+                    <img src="../assets/img/icoWeb.png" alt="iconWeb" class="img-footer" />
+                    <h3 class="title-footer">Coffee Shop</h3>
+                  </div>
+                  <div class="col-6 my-auto text-right">
+                    <button @click="linkTo('login')" class="btn btn-link mr-4 bt-login-web">
+                      Login
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12">
+                <form action="" @submit.prevent="sigupForm()">
+                  <div class="row pt-3" style="height:100vh">
+                    <div class="col-2"></div>
+                    <div class="col-8 my-auto">
+                      <h2 class="brown font-weight-bold font-rubik text-center mb-0">Sign Up</h2>
+                      <div class="form-group">
+                        <label class="font-rubik font-weight-bold text-secondary">Email Address
+                          :</label>
+                        <input v-model="formData.email" type="email" class="form-control"
+                          style="border-radius:15px; height: 55px;border: 1px solid #4F5665;box-sizing:border-box"
+                          placeholder="Enter your email adress">
+                      </div>
+                      <div class="form-group">
+                        <label class="font-rubik font-weight-bold text-secondary">Password
+                          :</label>
+                        <input v-model="formData.password" type="password" class="form-control"
+                          style="border-radius:15px; height: 55px;border: 1px solid #4F5665;box-sizing:border-box"
+                          placeholder="Enter your email adress">
+                      </div>
+                      <div class="form-group">
+                        <label class="font-rubik font-weight-bold text-secondary">Phone Number :
+                          :</label>
+                        <input v-model="formData.handphone" type="text" class="form-control"
+                          style="border-radius:15px; height: 55px;border: 1px solid #4F5665;box-sizing:border-box"
+                          placeholder="Enter your phone number (+62)">
+                      </div>
+                      <router-link to="/" class="brown font-weight-bold font-rubik">Forgot password?</router-link>
+                      <button type="submit" class="w-100 mt-3 shadow btn btn-warning brown border-0"
+                        style="background:#FFC107;border-radius:20px;height:60px;font-size:20px">Login</button>
+                      <button @click="signupGoogle()" class="w-100 my-3 btn-light shadow btn border-0"
+                        style="border-radius:20px;height:60px;font-size:20px"> <img src="../assets/img/google.png"
+                          alt="google" class="img-google mr-2" />Login With Google</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <!-- from signup -->
-    <section class="form-signup-web">
+    <!-- <section class="form-signup-web">
       <div class="container-signupweb">
         <div class="row">
           <div class="col-md-5">
@@ -13,7 +76,6 @@
             />
           </div>
           <div class="col-md-7 col-lg-7">
-            <!-- bar -->
             <div class="row mt-5">
               <div @click="gotoHome()" class="col-md-4">
                 <img
@@ -30,8 +92,6 @@
               </div>
               <div class="col-md-1"></div>
             </div>
-            <!-- end bar -->
-            <!-- form data -->
             <form action="" @submit.prevent="sigupForm()">
               <div class="row">
                 <div class="col-md-12">
@@ -87,7 +147,6 @@
                 </div>
               </div>
             </form>
-            <!-- end form data -->
             <div class="col-md-12">
               <button @click="signupGoogle()" class="btn btn-light bt-google">
                 <img
@@ -101,10 +160,10 @@
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
     <!-- end frorm signup -->
     <!-- box member card -->
-    <div class="container">
+    <!-- <div class="container">
       <section class="member-card">
         <div class="row">
           <div class="col-6">
@@ -120,6 +179,21 @@
           </div>
         </div>
       </section>
+    </div> -->
+    <div class="container pt-5">
+      <div class="card shadow-lg" style="border-radius:20px">
+        <div class="card-body p-5">
+          <div class="row">
+            <div class="col-12 col-lg-6 col-md-12 text-center text-lg-left text-md-center">
+              <h2 class="font-rubik font-weight-bold">Get your member card now!</h2>
+              <p class="info-promo mt-3">Let's join with our member and enjoy the deals.</p>
+            </div>
+            <div class="col-12 col-lg-6 col-md-12 text-center text-md-center text-lg-right">
+              <button @click="promoBtn()" class="btn btn-promo">Create now</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <!-- end box member card -->
     <!-- footer -->

@@ -270,8 +270,8 @@ export default {
     },
     logout () {
       this.signout().then((response) => {
-        this.swalAlert('Logout Success', 'See you next time!', 'success')
         if (response) {
+          this.swalToast('success', 'Logout Success!')
           this.$router.push('/')
         }
       })

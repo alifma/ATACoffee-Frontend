@@ -482,6 +482,7 @@ export default {
   },
   mounted () {
     document.getElementById('link1').classList.add('active')
+    console.log(process.env)
   }
 }
 </script>

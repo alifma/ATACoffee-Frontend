@@ -10,7 +10,7 @@
       <div>
         <div class="row py-4">
           <div class="col-md-5 col-lg-5 text-center">
-            <img style="border-radius:50%;image-position:center;object-fit: cover;object-position: center;height: 40vh;width:40vh" class="product-rounded" :src="`${webURL}/image/${detail.image}`" alt="">
+            <img style="border-radius:50%;image-position:center;object-fit: cover;object-position: center;height: 200px;width:200px" class="product-rounded" :src="`${webURL}/image/${detail.image}`" alt="">
             <div class="mt-4">
               <h1 class="font-poppins font-weight-bolder">{{detail.name.toUpperCase()}}</h1>
               <h5 class="font-poppins font-weight-light">IDR {{formatPrice(detail.price)}}</h5>
@@ -102,7 +102,7 @@
         <div class="col-7">
           <div class="card shadow-lg" style="border-radius:25px">
             <!-- Jika ada itemnya -->
-            <div v-if="fixCart.length > 0" class="row no-gutters" style="height:20vh">
+            <div v-if="fixCart.length > 0" class="row no-gutters" style="height:150px">
               <div class="col-md-4 text-center my-auto">
                 <img :src="`${webURL}/image/${detail.image}`" style="height:100px;width:100px"
                   class="card-img product-rounded">
@@ -120,7 +120,7 @@
               </div>
             </div>
             <!-- Jika Tidak ada itemnya -->
-            <div v-else style="height:20vh" class="p-4 d-flex justify-content-center">
+            <div v-else style="height:150px" class="p-4 d-flex justify-content-center">
               <h5 class="text-center font-poppins font-weight-bold mb-0 my-auto">Click product size to add product</h5>
             </div>
           </div>

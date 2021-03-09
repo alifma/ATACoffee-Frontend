@@ -44,7 +44,6 @@ const moduleProducts = {
       return new Promise((resolve, reject) => {
         axios.get(`${context.rootState.apiURL}/items/${id}`, { headers: { token: context.rootState.auth.token } })
           .then((response) => {
-            console.log(response.data)
             context.commit('setDetail', response.data.data[0])
             resolve(response.data.data[0])
           })
