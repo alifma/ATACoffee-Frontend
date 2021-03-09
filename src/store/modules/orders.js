@@ -129,7 +129,6 @@ const moduleOrders = {
       return new Promise((resolve, reject) => {
         axios.delete(`${context.rootState.apiURL}/orders/${Number(inv)}`, { headers: { token: localStorage.getItem('token') } })
           .then((response) => {
-            // console.log(response)
             resolve(response.data)
           })
           .catch((err) => {
@@ -144,7 +143,6 @@ const moduleOrders = {
             context.commit('setReport', response.data)
             context.commit('setOptionPageReport', response.data.pagination.totalPages)
             resolve(response.data)
-            // console.log(response)
           }).catch((error) => {
             console.log(error)
             reject(error)

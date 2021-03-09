@@ -258,7 +258,6 @@ export default {
       this.getDetailAction(this.id)
         .then((res) => {
           this.swalLoadingClose()
-          // console.log(res)
         })
         .catch((err) => {
           this.swalLoadingClose()

@@ -196,7 +196,6 @@ export default {
       this.loadDashboard = true
       this.actionGetReport(this.reportQuery)
         .then((res) => {
-          // console.log(res)
           this.loadDashboard = false
         })
         .catch((err) => {

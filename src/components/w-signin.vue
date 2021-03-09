@@ -109,7 +109,6 @@ export default {
         password: this.formData.password
       }
       this.actionLogin(dataLogin).then((response) => {
-        // console.log(response)
         if (response === 'Email Not Registered') {
           this.swalLoadingClose()
           this.$swal('Email Not Registered', 'Please Check your Email ', 'error')

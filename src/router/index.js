@@ -113,8 +113,6 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  // console.log(to.matched[0].meta.auth)
-  // console.log(store.getters['auth/getToken'])
   if (to.matched[0].meta.auth === true) {
     if (store.getters['auth/getToken']) {
       if (to.path === '/waitinglist' || to.path === '/waitinglist/:inv' || to.path === '/dashboard') {

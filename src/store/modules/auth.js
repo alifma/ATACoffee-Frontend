@@ -42,7 +42,6 @@ const moduleAuth = {
           resolve(response.data.msg)
         }).catch((err) => {
           console.log(err)
-          // console.log(err.data.code)
         })
       })
     },
@@ -74,8 +73,6 @@ const moduleAuth = {
     postProfile (context, data) {
       return new Promise((resolve, reject) => {
         axios.patch(`${context.rootState.apiURL}/users/${context.state.id}`, data, { headers: { token: context.state.token } }).then((response) => {
-          // console.log(data)
-          // context.commit('setUserDetail', data)
           resolve(response.data)
         }).catch((err) => {
           reject(err)

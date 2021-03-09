@@ -283,7 +283,6 @@ export default {
       this.formContact.image = el.target.files[0]
     },
     savechange () {
-      // console.log(this.formContact)
       this.swalLoading('Updating Data')
       const fd = new FormData()
       fd.append('name', `${this.formContact.firstname} ${this.formContact.lastname}`)
