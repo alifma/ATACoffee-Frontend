@@ -10,6 +10,10 @@ Adapun hasil aplikasi web coffee shop kami silahkan klik link berikut [ATA-Coffe
  - Sweetalert2
  - fontawesome
  - Vuex
+
+
+### Demo
+You can try the application demo [here](http://52.91.116.102:5005/) 
  
 ### Materi Presentasi
 Silahkan klik [disini]
